@@ -1,0 +1,7 @@
+[
+  { "id": "marley_military",    "label": "Marley Military",    "sort": 0, "watch_ep": 60 },
+  { "id": "warriors",           "label": "Warriors",           "sort": 1, "watch_ep": 60 },
+  { "id": "paradis_government", "label": "Paradis Government", "sort": 2, "watch_ep": 60 },
+  { "id": "scouts",             "label": "Scouts",             "sort": 3, "watch_ep": 1 },
+  { "id": "lore_history",       "label": "Lore / History",     "sort": 5, "watch_ep": 1 }
+]

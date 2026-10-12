@@ -1,0 +1,57 @@
+[
+  {
+    "id": "evt_life_inside_walls", "type": "event", "title": "Life Inside the Walls",
+    "faction_lane": "lore_history", "watch_ep": 1, "story_order": 1,
+    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "summary": "Humanity lives behind three concentric Walls, hunted by man-eating Titans outside them.",
+    "because": null, "setup_ref": null, "participants": ["char_eren"]
+  },
+  {
+    "id": "evt_world_beyond_walls", "type": "event", "title": "The World Beyond the Walls",
+    "faction_lane": "lore_history", "watch_ep": 59, "story_order": 2,
+    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "summary": "The Survey Corps reach the ocean and learn that the world extends far beyond the Walls.",
+    "because": "What the Scouts find beyond the Walls overturns what humanity believed about its world.",
+    "setup_ref": "evt_life_inside_walls", "participants": ["char_eren"]
+  },
+  {
+    "id": "evt_liberio_zone", "type": "event", "title": "Liberio Internment Zone",
+    "faction_lane": "marley_military", "watch_ep": 60, "story_order": 3,
+    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "summary": "Eldians live confined to an internment zone in the Marleyan city of Liberio.",
+    "because": null, "setup_ref": "evt_world_beyond_walls", "participants": ["char_gabi", "char_falco"]
+  },
+  {
+    "id": "evt_warrior_candidates", "type": "event", "title": "Warrior Candidates",
+    "faction_lane": "warriors", "watch_ep": 60, "story_order": 4,
+    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 2,
+    "summary": "Child candidates compete to inherit the Armored Titan.",
+    "because": "Eldian children can win honorary status for their families by becoming Warriors.",
+    "setup_ref": "evt_liberio_zone", "participants": ["char_gabi", "char_falco", "char_reiner"]
+  },
+  {
+    "id": "evt_declaration_of_war", "type": "event", "title": "Declaration of War",
+    "faction_lane": "marley_military", "watch_ep": 64, "story_order": 5,
+    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "summary": "Eren attacks the Marleyan festival in Liberio and declares war on the world.",
+    "because": "Eren aims to strike Marley before it can strike Paradis.",
+    "setup_ref": "evt_world_beyond_walls", "participants": ["char_eren"]
+  },
+  {
+    "id": "char_eren", "type": "character", "title": "Eren", "watch_ep": 1, "confidence": "shown",
+    "aliases": ["Eren Yeager"], "lane_history": [{ "from_ep": 1, "lane": "scouts" }]
+  },
+  {
+    "id": "char_reiner", "type": "character", "title": "Reiner", "watch_ep": 1, "confidence": "shown",
+    "aliases": ["Reiner Braun"],
+    "lane_history": [{ "from_ep": 1, "lane": "scouts" }, { "from_ep": 60, "lane": "warriors" }]
+  },
+  {
+    "id": "char_gabi", "type": "character", "title": "Gabi", "watch_ep": 60, "confidence": "shown",
+    "aliases": ["Gabi Braun"], "lane_history": [{ "from_ep": 60, "lane": "warriors" }]
+  },
+  {
+    "id": "char_falco", "type": "character", "title": "Falco", "watch_ep": 60, "confidence": "shown",
+    "aliases": ["Falco Grice"], "lane_history": [{ "from_ep": 60, "lane": "warriors" }]
+  }
+]
