@@ -138,11 +138,22 @@ export function lintContent(c: ContentSet): LintIssue[] {
   }
 
   // 5. Spoiler lint: copy may not mention anything with a later watch_ep.
+  //
+  // Two vocabularies with DIFFERENT semantics, which is the subtlety that makes title checking work:
+  //   termMax — the latest gate at which any entity uses this term. A title may only contain terms
+  //             that are already safe at the title's own episode. Using max means a node cannot
+  //             launder its own secret by being the first mention of it.
+  //   termEp  — the EARLIEST gate. Prose may use a term from this episode on, because some earlier
+  //             node has already introduced it.
+  // Both are required: "Armored Titan" as Bertholdt's title at 31 is fine (max 31 <= 31), but the
+  // same words as a title at 20 are not.
   const termEp = new Map<string, number>(); // lowercased term -> earliest episode any entity using it appears
+  const termMax = new Map<string, number>(); // lowercased term -> latest gate it is known to appear at
   const addTerm = (t: string, ep: number) => {
     const k = t.trim().toLowerCase();
     if (k.length < 3) return;
     termEp.set(k, Math.min(termEp.get(k) ?? Infinity, ep));
+    termMax.set(k, Math.max(termMax.get(k) ?? 0, ep));
   };
   for (const n of c.nodes) addTerm(n.title, n.watch_ep);
   for (const l of c.lanes) addTerm(l.label, l.watch_ep);
@@ -164,11 +175,32 @@ export function lintContent(c: ContentSet): LintIssue[] {
       scan(n.id, n.watch_ep, "summary", n.summary);
       scan(n.id, n.watch_ep, "because", n.because);
       scan(n.id, n.watch_ep, "happened_in", n.happened_in);
+      // TITLE_LEAK: a title renders on the canvas at all times, so it obeys the strict rule -- it may
+      // only use terms whose LATEST gate is at or before this episode. Titles name the action or the
+      // mystery, never the secret identity ("The Sky Fills", not "The Rumbling").
+      for (const [term, latest] of termMax) {
+        if (latest <= n.watch_ep) continue;
+        if (new RegExp(`(^|[^a-z0-9])${esc(term)}(?![a-z0-9])`, "i").test(n.title))
+          error("TITLE_LEAK", n.id, `title (ep ${n.watch_ep}) names "${term}", which is not known until ep ${latest}`);
+      }
     }
   }
   for (const e of c.edges) scan(e.id, e.watch_ep, "why_text", e.why_text);
   for (const f of c.facts) scan(f.id, f.revealed_ep, "text", f.text);
   for (const g of c.goals) scan(g.character, g.from_ep, "goal", g.text);
+
+  // 6. STALE_EDGE: an edge gated far later than both of its endpoints reads as broken UI -- two
+  // visible nodes sitting next to each other with no line. Warn, never error: a relationship may
+  // legitimately only become meaningful much later (Reiner's split persona spans 17 to 84).
+  const STALE_EDGE_THRESHOLD = 10;
+  for (const e of c.edges) {
+    const from = nodes.get(e.from);
+    const to = nodes.get(e.to);
+    if (!from || !to) continue; // REF_MISSING already reported
+    const latest = Math.max(from.watch_ep, to.watch_ep);
+    if (e.watch_ep > latest + STALE_EDGE_THRESHOLD)
+      warn("STALE_EDGE", e.id, `unlocks at ep ${e.watch_ep}, more than ${STALE_EDGE_THRESHOLD} after its latest endpoint (ep ${latest})`);
+  }
 
   return issues;
 }

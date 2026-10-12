@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, KNOWLEDGE_STATES } from "./enums";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, IMPORTANCE, KNOWLEDGE_STATES } from "./enums";
 
 /**
  * Authoring schema (spec section 7). Field names follow the spec.
@@ -57,8 +57,9 @@ const CharacterNode = z.object({
   title: z.string().min(1),
   watch_ep: ep,
   confidence: confidence.default("shown"),
-  // importance (core/major/minor) arrives as tier 1/2/3: one prominence scale, not two.
-  tier: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(2),
+  // Character prominence. NOT nodes.tier, which is event-only (the Rule of 7 pool filters to
+  // type === "event", so characters never compete for a canvas slot).
+  importance: z.enum(IMPORTANCE).default("major"),
   /** One present-tense sentence. Must not describe anything later than watch_ep. */
   summary: z.string().min(1).nullable().default(null),
   // Server-side only. See the bio/tags/aliases note in src/db/schema.ts.

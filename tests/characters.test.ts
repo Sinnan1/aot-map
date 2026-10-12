@@ -41,10 +41,15 @@ describe("character nodes", () => {
     expect(JSON.stringify(c.nodes)).not.toContain('"aliases"');
   });
 
-  it("importance maps onto the single tier scale", () => {
+  it("importance is the character prominence scale, not the event tier", () => {
     const c = sample();
-    expect(char(c, "char_eren").tier).toBe(1); // core
-    expect(char(c, "char_sasha").tier).toBe(2); // major
+    expect(char(c, "char_eren").importance).toBe("core");
+    expect(char(c, "char_sasha").importance).toBe("major");
+    // tier belongs to events alone: placeEvents() filters to type === "event", so characters never
+    // enter the Rule of 7 pool and cannot cannibalise a plot beat's canvas slot.
+    const eren = c.nodes.find((n) => n.id === "char_eren") as Record<string, unknown>;
+    expect(eren).not.toHaveProperty("tier");
+    expect(chars(c).every((n) => !("tier" in n))).toBe(true);
   });
 
   it("carries the batch 3A reference columns", () => {

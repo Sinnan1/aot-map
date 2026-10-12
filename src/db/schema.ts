@@ -1,5 +1,5 @@
 import { boolean, index, integer, jsonb, pgEnum, pgTable, primaryKey, serial, smallint, text, uniqueIndex, type AnyPgColumn } from "drizzle-orm/pg-core";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, KNOWLEDGE_STATES } from "@/content/enums";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, IMPORTANCE, KNOWLEDGE_STATES } from "@/content/enums";
 
 /**
  * Every table that holds viewer-visible content carries an episode gate column
@@ -14,6 +14,7 @@ export const edgeTypeEnum = pgEnum("edge_type", EDGE_TYPES);
 export const knowledgeStateEnum = pgEnum("knowledge_state", KNOWLEDGE_STATES);
 export const depthLayerEnum = pgEnum("depth_layer", DEPTH_LAYERS);
 export const nodeTypeEnum = pgEnum("node_type", ["event", "character"]);
+export const importanceEnum = pgEnum("importance", IMPORTANCE);
 export const episodeTypeEnum = pgEnum("episode_type", EPISODE_TYPES);
 
 export const episodes = pgTable(
@@ -58,7 +59,10 @@ export const nodes = pgTable(
     happenedIn: text("happened_in"),
     confidence: confidenceEnum("confidence").notNull(),
     depthLayer: depthLayerEnum("depth_layer").notNull().default("surface"),
+    /** Event-only: the Rule of 7 primary/clustered split. Never set on characters. */
     tier: smallint("tier").notNull().default(2),
+    /** Character prominence. Null on events, which use tier instead. */
+    importance: importanceEnum("importance"),
     summary: text("summary"),
     because: text("because"),
     setupRef: text("setup_ref").references((): AnyPgColumn => nodes.id),

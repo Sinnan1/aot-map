@@ -35,7 +35,7 @@ export function withFuture(): ContentSet {
     },
     {
       id: "char_late", type: "character", title: "Late Character", watch_ep: 70, confidence: "shown",
-      tier: 2, summary: null, bio: null, tags: [], icon: null, color: null, source_url: null,
+      importance: "major", summary: null, bio: null, tags: [], icon: null, color: null, source_url: null,
       lane_history: [{ from_ep: 70, lane: "yeagerists" }],
     },
   );

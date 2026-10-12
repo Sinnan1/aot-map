@@ -38,8 +38,30 @@ Other scripts: `npm test`, `npm run typecheck`, `npm run content:lint [dir] [--s
 ## Characters
 
 Characters are `nodes` rows, not a separate table: `title` is the name, `watch_ep` is the gate, `lane_history`
-is the faction path, `tier` is prominence (the Rule of 7 scale, so `importance` was folded into it rather than
-added beside it), and `aliases`/`tags` are `text[]`.
+is the faction path, and `importance` (`core`/`major`/`minor`) is cast prominence.
+
+`importance` is deliberately **not** `tier`. `tier` is event-only: `placeEvents()` filters to `type === "event"`,
+so characters never enter the Rule of 7 pool and cannot cannibalise a plot beat's canvas slot. Promoting a
+character changes nothing about the layout — `tests/researcher-contracts.test.ts` asserts exactly that.
+
+## Content authoring rules
+
+The lint is the traffic controller for incoming data. Two rules exist because they correspond to two
+different failure modes:
+
+- **`TITLE_LEAK`** — titles render on the canvas at all times, so they obey the strictest rule: a title may only
+  use terms already known at that episode. Checked against the **latest** gate of each term, because prose is
+  checked against the **earliest** and both are needed — otherwise a node could launder its own secret by being
+  its first mention.
+- **`STALE_EDGE`** — an edge more than 10 episodes after its later endpoint reads as broken UI (two visible nodes,
+  no line). A **warning**, not an error: a relationship may legitimately only become meaningful much later.
+
+`content/RESEARCHER-BRIEF.md` is the contract for the relational drop (events, edges, knowledge states), with the
+executable half in `tests/researcher-contracts.test.ts`. If the two ever disagree, the test is the arbiter.
+
+**Not implemented: `ORPHANED_CONTEXT`.** As specified it cannot fire on correct data — `causes` is forward in
+time, so tracing backward always reaches already-visible parents, and a cause gated later than its effect is
+already a `GATE_ORDER` error. The real risk is lineage *depth*, which will be reported once real edges land.
 
 The gate value is the episode a character is **named**, not the episode they are first on screen — those differ
 for most of the cast. See `content/slice/README.md` for the full rewrite and the list of `watch_ep` values
