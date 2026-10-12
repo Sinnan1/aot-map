@@ -31,9 +31,14 @@ npm run db:seed-episodes    # lints content/episodes.csv, then seeds the episode
 npm run content:seed        # lints first; refuses to seed on errors
 ```
 
-Other scripts: `npm test`, `npm run typecheck`, `npm run content:lint [dir] [--strict]`,
+Other scripts: `npm test`, `npm run typecheck`, `npm run content:lint [dir]`,
+`npm run content:lint-strict` (warnings are failures — this is the content acceptance gate),
+`npm run content:lineage [dir]` (informational: causal depth per event, flags traces over 4 hops),
 `npm run db:check-episodes` (lint the spine without a database),
 `npm run db:generate` (after editing `src/db/schema.ts`).
+
+`npm run content:lint -- --strict` **does not work**: npm swallows the flag before the script sees it,
+so it passes silently. Use `content:lint-strict`. `tests/content-lint-cli.test.ts` pins the exit codes.
 
 ## Characters
 
@@ -58,6 +63,8 @@ different failure modes:
 
 `content/RESEARCHER-BRIEF.md` is the contract for the relational drop (events, edges, knowledge states), with the
 executable half in `tests/researcher-contracts.test.ts`. If the two ever disagree, the test is the arbiter.
+The researcher's gate is `content:lint-strict`; `researcher-contracts.test.ts` is a linter regression suite
+pinned to sample ids, so it is not their acceptance test.
 
 **Not implemented: `ORPHANED_CONTEXT`.** As specified it cannot fire on correct data — `causes` is forward in
 time, so tracing backward always reaches already-visible parents, and a cause gated later than its effect is

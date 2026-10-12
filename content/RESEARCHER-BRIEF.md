@@ -4,9 +4,9 @@ The last drop was `nodes.json` + `aliases.json`. This one is the graph itself �
 the authoring rules start to bite, because edges and knowledge states are **relations**, not entities.
 
 Three JSON files. One array per file. No pipe-delimited strings, no comments, no trailing commas.
-Every rule below is enforced by `npm run content:lint`, and the executable half of this document
-is `tests/researcher-contracts.test.ts` — if a rule here ever disagrees with that test, one of
-the two is wrong.
+Every rule below is enforced by `content:lint-strict`, and the linter's own behaviour is pinned by
+`tests/researcher-contracts.test.ts` — if a rule here ever disagrees with that test, one of the two
+is wrong.
 
 ## Before you start
 
@@ -166,6 +166,33 @@ be reported once your edges land; it is how we find the places that need stones.
 
 ---
 
+## Your acceptance test
+
+**`npm run content:lint-strict` — that is the gate. Nothing else.**
+
+```
+npm run content:lint-strict          # content/slice, warnings are failures
+npx tsx scripts/content-lint.ts content/your-dir --strict   # lint a submission in place
+```
+
+Zero errors **and** zero warnings to pass. Use the two-step form above to check your own directory
+before submitting; the seeder runs the same check and refuses on errors.
+
+> **`npm run content:lint -- --strict` does not work.** npm swallows the flag before the script sees
+> it, which silently passes. Use `content:lint-strict`. This is a known trap, not your mistake.
+
+**`tests/researcher-contracts.test.ts` is not your test.** It is a regression suite for the linter
+itself, pinned to the ids in `content/slice`. It will fail the moment real data replaces the sample,
+for reasons that have nothing to do with your work. Ignore it; `npm test` is mine to run.
+
+**`npm run content:lineage` is optional and informational.** It prints how many hops each event is
+from a causal root — the S4→S1 promise — and flags anything deeper than 4 as a hint to add a
+stepping stone. It never fails. Run it against your own directory to see where your traces run long:
+
+```
+npx tsx scripts/content-lineage.ts content/your-dir
+```
+
 ## Quick checklist
 
 - [ ] Every `watch_ep` exists in `episodes.csv` (1–89)
@@ -177,7 +204,7 @@ be reported once your edges land; it is how we find the places that need stones.
 - [ ] Every non-null `because` has a `causes` edge into it
 - [ ] No title names something not yet known
 - [ ] No alias `from_ep` precedes its node's `watch_ep`
-- [ ] `npm run content:lint` → 0 errors
+- [ ] `npm run content:lint-strict` → 0 errors, 0 warnings
 
 ## Still needs a second reviewer
 

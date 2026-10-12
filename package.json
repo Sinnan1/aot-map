@@ -8,11 +8,13 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "content:lint": "tsx scripts/content-lint.ts",
+    "content:lint-strict": "tsx scripts/content-lint.ts content/slice --strict",
     "content:seed": "tsx scripts/content-seed.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/db-migrate.ts",
     "db:seed-episodes": "tsx scripts/episodes-seed.ts",
-    "db:check-episodes": "tsx scripts/episodes-seed.ts --check"
+    "db:check-episodes": "tsx scripts/episodes-seed.ts --check",
+    "content:lineage": "tsx scripts/content-lineage.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.4",
