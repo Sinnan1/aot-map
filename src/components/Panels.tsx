@@ -55,7 +55,7 @@ export function NodePanel({ graph, view, dispatch }: P) {
       </header>
 
       <section>
-        <h3>What happened</h3>
+        <h3>{n.type === "event" ? "What happened" : "Overview"}</h3>
         <p>{n.summary}</p>
       </section>
 
@@ -118,7 +118,7 @@ export function NodePanel({ graph, view, dispatch }: P) {
       {n.depth === "paths" && <PathsVoid nodes={[n]} />}
 
       <div className="actions">
-        {view.lens !== "why" && <button className="primary" onClick={() => dispatch({ type: "lens", lens: "why" })}>Trace why</button>}
+        {n.type === "event" && view.lens !== "why" && <button className="primary" onClick={() => dispatch({ type: "lens", lens: "why" })}>Trace why</button>}
         <button onClick={() => dispatch({ type: "select_node", id: null })}>Close</button>
       </div>
     </article>

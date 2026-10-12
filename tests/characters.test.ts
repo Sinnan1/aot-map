@@ -35,8 +35,9 @@ describe("character nodes", () => {
 
   it("aliases live in aliases.json, gated independently of their node", () => {
     const c = sample();
-    expect(c.aliases).toHaveLength(42);
-    expect(new Set(c.aliases.map((a) => a.node_id))).toHaveProperty("size", 19);
+    const charAliases = c.aliases.filter((a) => a.node_id.startsWith("char_"));
+    expect(charAliases).toHaveLength(42);
+    expect(new Set(charAliases.map((a) => a.node_id))).toHaveProperty("size", 19);
     // The names moved out of nodes.json entirely.
     expect(JSON.stringify(c.nodes)).not.toContain('"aliases"');
   });
@@ -124,10 +125,22 @@ describe("the gate seals the newly added characters", () => {
   it("bio, tags and aliases never reach the client, at any gate", async () => {
     const db = await makeDb(sample());
     for (const progress of [1, 20, 33, 64, 89]) {
-      const json = JSON.stringify(await loadGatedGraph(db, makeGate({ progress })));
+      const g = await loadGatedGraph(db, makeGate({ progress }));
+      const json = JSON.stringify(g);
+      const erenJson = JSON.stringify(g.nodes.find((n) => n.id === "char_eren"));
       // Eren is visible from ep 1, so his own row must not smuggle the rest of the plot.
-      for (const leak of ["bio", "tags", "aliases", "Yeagerists", "Founding Titan", "Rumbling", "Attack Titan", "#2e5a27"]) {
+      for (const leak of ["bio", "tags", "aliases", "Yeagerists", "#2e5a27"]) {
         expect(json, `progress ${progress} leaked ${leak}`).not.toContain(leak);
+      }
+      for (const erenLeak of ["Founding Titan", "Attack Titan", "Rumbling"]) {
+        expect(erenJson, `progress ${progress} char_eren leaked ${erenLeak}`).not.toContain(erenLeak);
+      }
+      if (progress < 43) {
+        expect(json, `progress ${progress} leaked Founding Titan`).not.toContain("Founding Titan");
+        expect(json, `progress ${progress} leaked Attack Titan`).not.toContain("Attack Titan");
+      }
+      if (progress < 69) {
+        expect(json, `progress ${progress} leaked Rumbling`).not.toContain("Rumbling");
       }
     }
   });

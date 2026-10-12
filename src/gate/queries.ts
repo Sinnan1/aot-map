@@ -84,7 +84,7 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
   for (const r of partRows) participants.set(r.nodeId, [...(participants.get(r.nodeId) ?? []), r.characterId]);
 
   const nodes: CNode[] = nodeRows
-    .filter((n) => n.type === "character" || (n.lane !== null && laneIds.has(n.lane)))
+    .filter((n) => n.type !== "event" || (n.lane !== null && laneIds.has(n.lane)))
     .map((n) => ({
       ...n,
       tier: n.tier as 1 | 2 | 3,

@@ -29,9 +29,9 @@ export async function seedContent(db: DB, c: ContentSet): Promise<void> {
                 voidPos: n.void_pos, importance: null,
               }
             : {
-                id: n.id, type: "character" as const, title: n.title, factionLane: null, watchEp: n.watch_ep, storyOrder: null,
+                id: n.id, type: n.type, title: n.title, factionLane: null, watchEp: n.watch_ep, storyOrder: null,
                 isFlashback: false, happenedIn: null, confidence: n.confidence, depthLayer: "surface" as const,
-                // Characters never enter the Rule of 7 pool (placeEvents filters to events), so tier is
+                // Characters and Titans never enter the Rule of 7 pool (placeEvents filters to events), so tier is
                 // not theirs to set. Prominence is importance instead.
                 tier: 2,
                 importance: n.importance,

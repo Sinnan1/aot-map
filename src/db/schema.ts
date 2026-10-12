@@ -13,7 +13,7 @@ export const confidenceEnum = pgEnum("confidence", CONFIDENCE);
 export const edgeTypeEnum = pgEnum("edge_type", EDGE_TYPES);
 export const knowledgeStateEnum = pgEnum("knowledge_state", KNOWLEDGE_STATES);
 export const depthLayerEnum = pgEnum("depth_layer", DEPTH_LAYERS);
-export const nodeTypeEnum = pgEnum("node_type", ["event", "character"]);
+export const nodeTypeEnum = pgEnum("node_type", ["event", "character", "titan", "concept", "location"]);
 export const importanceEnum = pgEnum("importance", IMPORTANCE);
 export const episodeTypeEnum = pgEnum("episode_type", EPISODE_TYPES);
 

@@ -71,6 +71,57 @@ const CharacterNode = z.object({
   lane_history: z.array(z.object({ from_ep: ep, lane: z.string() })).min(1),
 });
 
+const TitanNode = z.object({
+  id: slug("titan"),
+  type: z.literal("titan"),
+  title: z.string().min(1),
+  watch_ep: ep,
+  confidence: confidence.default("shown"),
+  importance: z.enum(IMPORTANCE).default("major"),
+  /** One present-tense sentence. Must not describe anything later than watch_ep. */
+  summary: z.string().min(1).nullable().default(null),
+  // Server-side only. See the bio/tags/aliases note in src/db/schema.ts.
+  bio: z.string().min(1).nullable().default(null),
+  tags: z.array(z.string()).default([]),
+  icon: z.string().nullable().default(null),
+  color: z.string().nullable().default(null),
+  source_url: z.url().nullable().default(null),
+});
+
+const ConceptNode = z.object({
+  id: slug("concept"),
+  type: z.literal("concept"),
+  title: z.string().min(1),
+  watch_ep: ep,
+  confidence: confidence.default("shown"),
+  importance: z.enum(IMPORTANCE).default("major"),
+  /** One present-tense sentence. Must not describe anything later than watch_ep. */
+  summary: z.string().min(1).nullable().default(null),
+  // Server-side only. See the bio/tags/aliases note in src/db/schema.ts.
+  bio: z.string().min(1).nullable().default(null),
+  tags: z.array(z.string()).default([]),
+  icon: z.string().nullable().default(null),
+  color: z.string().nullable().default(null),
+  source_url: z.url().nullable().default(null),
+});
+
+const LocationNode = z.object({
+  id: slug("location"),
+  type: z.literal("location"),
+  title: z.string().min(1),
+  watch_ep: ep,
+  confidence: confidence.default("shown"),
+  importance: z.enum(IMPORTANCE).default("major"),
+  /** One present-tense sentence. Must not describe anything later than watch_ep. */
+  summary: z.string().min(1).nullable().default(null),
+  // Server-side only. See the bio/tags/aliases note in src/db/schema.ts.
+  bio: z.string().min(1).nullable().default(null),
+  tags: z.array(z.string()).default([]),
+  icon: z.string().nullable().default(null),
+  color: z.string().nullable().default(null),
+  source_url: z.url().nullable().default(null),
+});
+
 export const Edge = z.object({
   id: slug("edge"),
   from: z.string(),
@@ -113,7 +164,7 @@ export const Term = z.object({ term: z.string().min(3), watch_ep: ep });
  * so a name cannot be keyed by itself.
  */
 export const NodeAlias = z.object({
-  node_id: slug("char"), // characters today; events may use it later
+  node_id: z.union([slug("char"), slug("titan"), slug("concept"), slug("location")]), // characters, titans, concepts, and locations
   alias: z.string().min(2),
   from_ep: ep,
 });
@@ -146,7 +197,7 @@ export type EpisodeC = z.infer<typeof Episode>;
 
 export const ContentSet = z.object({
   lanes: z.array(Lane),
-  nodes: z.array(z.union([EventNode, CharacterNode])),
+  nodes: z.array(z.union([EventNode, CharacterNode, TitanNode, ConceptNode, LocationNode])),
   edges: z.array(Edge),
   facts: z.array(Fact),
   knowledge_states: z.array(KnowledgeState),
@@ -161,3 +212,6 @@ export type NodeAliasC = z.infer<typeof NodeAlias>;
 export type NodeC = ContentSet["nodes"][number];
 export type EventNodeC = Extract<NodeC, { type: "event" }>;
 export type CharacterNodeC = Extract<NodeC, { type: "character" }>;
+export type TitanNodeC = Extract<NodeC, { type: "titan" }>;
+export type ConceptNodeC = Extract<NodeC, { type: "concept" }>;
+export type LocationNodeC = Extract<NodeC, { type: "location" }>;

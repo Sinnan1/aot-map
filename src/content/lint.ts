@@ -62,7 +62,7 @@ export function lintContent(c: ContentSet): LintIssue[] {
       if (MULTI_SENTENCE.test(n.summary)) warn("ONE_SENTENCE", n.id, "'summary' should be one sentence");
 
       if (n.tier === 1 && n.depth_layer === "surface") tier1PerEp.set(n.watch_ep, (tier1PerEp.get(n.watch_ep) ?? 0) + 1);
-    } else {
+    } else if (n.type === "character") {
       let prev = 0;
       n.lane_history.forEach((h, i) => {
         const lane = lanes.get(h.lane);
@@ -73,6 +73,8 @@ export function lintContent(c: ContentSet): LintIssue[] {
         if (i === 0 && h.from_ep !== n.watch_ep) error("HISTORY_START", n.id, `first lane_history entry must start at the character's watch_ep (${n.watch_ep})`);
         prev = h.from_ep;
       });
+    } else {
+      if (n.summary && MULTI_SENTENCE.test(n.summary)) warn("ONE_SENTENCE", n.id, "'summary' should be one sentence");
     }
   }
   for (const [ep, count] of tier1PerEp) {
@@ -183,6 +185,8 @@ export function lintContent(c: ContentSet): LintIssue[] {
         if (new RegExp(`(^|[^a-z0-9])${esc(term)}(?![a-z0-9])`, "i").test(n.title))
           error("TITLE_LEAK", n.id, `title (ep ${n.watch_ep}) names "${term}", which is not known until ep ${latest}`);
       }
+    } else if (n.type === "titan" || n.type === "concept" || n.type === "location") {
+      scan(n.id, n.watch_ep, "summary", n.summary);
     }
   }
   for (const e of c.edges) scan(e.id, e.watch_ep, "why_text", e.why_text);

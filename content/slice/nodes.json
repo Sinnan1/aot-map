@@ -582,5 +582,718 @@
         "lane": "warriors"
       }
     ]
+  },
+  {
+    "id": "titan_founding",
+    "type": "titan",
+    "title": "Founding Titan",
+    "watch_ep": 43,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "The progenitor of all Titans capable of controlling other Titans and human memories.",
+    "bio": "The original Titan power that connects all Subjects of Ymir. It can manipulate memories, alter biology, command other Titans via the Coordinate, and initiate the Rumbling.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "royal_blood",
+      "coordinate"
+    ],
+    "icon": "crown",
+    "color": "#8E44AD",
+    "source_url": "https://attackontitan.fandom.com/wiki/Founding_Titan_(Anime)"
+  },
+  {
+    "id": "titan_attack",
+    "type": "titan",
+    "title": "Attack Titan",
+    "watch_ep": 58,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "A fierce combat Titan that fights for freedom across generations.",
+    "bio": "One of the Nine Titans, known for relentless brawling strength and the unique ability to perceive memories of both past and future inheritors, continuously striving for freedom.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "eren_yeager",
+      "future_memories"
+    ],
+    "icon": "swords",
+    "color": "#27AE60",
+    "source_url": "https://attackontitan.fandom.com/wiki/Attack_Titan_(Anime)"
+  },
+  {
+    "id": "titan_armored",
+    "type": "titan",
+    "title": "Armored Titan",
+    "watch_ep": 2,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A heavily armored juggernaut capable of breaching stone fortifications.",
+    "bio": "Possesses thick plates of hardened skin covering almost its entire body, serving as a defensive tank and siege weapon that broke through Wall Maria's inner gate in 845.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "marley_warriors",
+      "reiner_braun",
+      "hardening"
+    ],
+    "icon": "shield",
+    "color": "#E67E22",
+    "source_url": "https://attackontitan.fandom.com/wiki/Armored_Titan_(Anime)"
+  },
+  {
+    "id": "titan_colossal",
+    "type": "titan",
+    "title": "Colossal Titan",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "A 60-meter towering Titan that emits immense heat and explosive blasts.",
+    "bio": "A colossal 60-meter Titan renowned for devastating explosive transformations, massive physical power, and the ability to release boiling steam to repel attackers.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "bertholdt_hoover",
+      "armin_arlelt",
+      "steam"
+    ],
+    "icon": "flame",
+    "color": "#C0392B",
+    "source_url": "https://attackontitan.fandom.com/wiki/Colossal_Titan_(Anime)"
+  },
+  {
+    "id": "titan_female",
+    "type": "titan",
+    "title": "Female Titan",
+    "watch_ep": 17,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "An agile, versatile Titan skilled in martial arts and localized hardening.",
+    "bio": "An all-around combatant with exceptional mobility, endurance, crystal hardening, and a high-pitched scream that attracts Pure Titans. Piloted by Annie Leonhart.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "annie_leonhart",
+      "hardening",
+      "martial_arts"
+    ],
+    "icon": "gem",
+    "color": "#E91E63",
+    "source_url": "https://attackontitan.fandom.com/wiki/Female_Titan_(Anime)"
+  },
+  {
+    "id": "titan_beast",
+    "type": "titan",
+    "title": "Beast Titan",
+    "watch_ep": 26,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A 17-meter ape-like Titan with deadly long-range throwing accuracy.",
+    "bio": "A distinct 17-meter Titan with fur-covered skin and long arms. Inherited by Zeke Jaeger, its royal blood enables speech, precise long-range bombardment, and Titan creation.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "zeke_jaeger",
+      "marley_warriors",
+      "throwing"
+    ],
+    "icon": "paw",
+    "color": "#795548",
+    "source_url": "https://attackontitan.fandom.com/wiki/Beast_Titan_(Anime)"
+  },
+  {
+    "id": "titan_jaw",
+    "type": "titan",
+    "title": "Jaw Titan",
+    "watch_ep": 60,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A small, rapid assault Titan with crushing jaws and hardened claws.",
+    "bio": "A ferocious 5-meter quad-legged Titan known for supreme speed and hardened jaws that can crush Titan crystal and steel, held successively by Marcel, Ymir, Porco, and Falco.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "ymir",
+      "porco_galliard",
+      "falco_grice",
+      "speed"
+    ],
+    "icon": "scissors",
+    "color": "#F39C12",
+    "source_url": "https://attackontitan.fandom.com/wiki/Jaw_Titan_(Anime)"
+  },
+  {
+    "id": "titan_cart",
+    "type": "titan",
+    "title": "Cart Titan",
+    "watch_ep": 60,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A quadrupedal Titan boasting unmatched endurance and pack capability.",
+    "bio": "A quadrupedal Titan with unrivaled stamina, able to stay transformed for months. It functions as mobile artillery, scout, and logistical support, operated by Pieck Finger.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "pieck_finger",
+      "marley_warriors",
+      "endurance"
+    ],
+    "icon": "truck",
+    "color": "#16A085",
+    "source_url": "https://attackontitan.fandom.com/wiki/Cart_Titan_(Anime)"
+  },
+  {
+    "id": "titan_war_hammer",
+    "type": "titan",
+    "title": "War Hammer Titan",
+    "watch_ep": 65,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A versatile Titan that constructs weapons and structures from hardened flesh.",
+    "bio": "Possessed by the Tybur family, it creates diverse weaponry and spikes from hardened Titan flesh. Its pilot operates remotely from underground encased within an armored crystal.",
+    "tags": [
+      "nine_titans",
+      "shifter",
+      "tybur_family",
+      "hardening",
+      "weapons"
+    ],
+    "icon": "hammer",
+    "color": "#BDC3C7",
+    "source_url": "https://attackontitan.fandom.com/wiki/War_Hammer_Titan_(Anime)"
+  },
+  {
+    "id": "titan_pure",
+    "type": "titan",
+    "title": "Pure Titan",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Mindless man-eating giant humans roaming Paradis Island.",
+    "bio": "Subjects of Ymir transformed into mindless cannibalistic giants by Titan spinal fluid. Ranging from 3 to 15 meters, they seek out humans instinctively without cognitive awareness.",
+    "tags": [
+      "titans",
+      "mindless",
+      "paradis",
+      "threat",
+      "subjects_of_ymir"
+    ],
+    "icon": "skull",
+    "color": "#95A5A6",
+    "source_url": "https://attackontitan.fandom.com/wiki/Titan_(Anime)"
+  },
+  {
+    "id": "titan_wall",
+    "type": "titan",
+    "title": "Wall Titans",
+    "watch_ep": 25,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Colossal-scale Titans standing dormant inside the stone of the three Walls.",
+    "bio": "Countless Colossal-like Titans encased inside Walls Maria, Rose, and Sheena via hardening by King Karl Fritz, later unleashed by Eren Jaeger to trample the world in the Rumbling.",
+    "tags": [
+      "titans",
+      "walls",
+      "rumbling",
+      "colossal",
+      "karl_fritz"
+    ],
+    "icon": "wall",
+    "color": "#34495E",
+    "source_url": "https://attackontitan.fandom.com/wiki/Wall_Titan_(Anime)"
+  },
+  {
+    "id": "concept_the_paths",
+    "type": "concept",
+    "title": "The Paths",
+    "watch_ep": 58,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "Metaphysical network connecting all Subjects of Ymir and Titans.",
+    "bio": "An invisible channel linking all Eldians to the Coordinate, transmitting memories, thoughts, and Titan flesh from a timeless desert realm.",
+    "tags": [
+      "paths",
+      "titans",
+      "founding_titan",
+      "ymir",
+      "coordinate"
+    ],
+    "icon": "network",
+    "color": "#00e5ff",
+    "source_url": null
+  },
+  {
+    "id": "concept_subjects_of_ymir",
+    "type": "concept",
+    "title": "Subjects of Ymir",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "Ethnic group descended from Ymir Fritz capable of turning into Titans.",
+    "bio": "Humans biologically linked to the Founder Ymir who can transform into Pure Titans or inherit Nine Titan powers through spinal fluid and Paths.",
+    "tags": [
+      "eldians",
+      "ymir",
+      "titans",
+      "biology",
+      "paths"
+    ],
+    "icon": "users",
+    "color": "#eab308",
+    "source_url": null
+  },
+  {
+    "id": "concept_royal_blood",
+    "type": "concept",
+    "title": "Royal Blood",
+    "watch_ep": 44,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "True royal lineage required to unlock the Founding Titan's full power.",
+    "bio": "The biological descent from King Fritz and Ymir, required to command the Founding Titan and access the Coordinate without restriction.",
+    "tags": [
+      "fritz",
+      "reiss",
+      "founding_titan",
+      "coordinate",
+      "bloodline"
+    ],
+    "icon": "crown",
+    "color": "#f59e0b",
+    "source_url": null
+  },
+  {
+    "id": "concept_vow_renouncing_war",
+    "type": "concept",
+    "title": "Vow Renouncing War",
+    "watch_ep": 44,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Binding pact by the First King preventing royal inheritors from using the Founding Titan in war.",
+    "bio": "A binding mental constraint placed on the Founding Titan by the 145th King, forcing royal inheritors to submit to Eldia's eventual destruction.",
+    "tags": [
+      "karl_fritz",
+      "founding_titan",
+      "paradis",
+      "pacifism",
+      "royal_blood"
+    ],
+    "icon": "shield-off",
+    "color": "#64748b",
+    "source_url": null
+  },
+  {
+    "id": "concept_the_rumbling",
+    "type": "concept",
+    "title": "The Rumbling",
+    "watch_ep": 69,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "Cataclysmic threat to unleash the Wall Titans to march across and flatten the earth.",
+    "bio": "The cataclysmic defense mechanism created by Karl Fritz, unleashing the Wall Titans to march across and trample all lands outside Paradis Island.",
+    "tags": [
+      "colossal_titans",
+      "paradis",
+      "walls",
+      "apocalypse",
+      "founding_titan"
+    ],
+    "icon": "flame",
+    "color": "#ef4444",
+    "source_url": null
+  },
+  {
+    "id": "concept_coordinate",
+    "type": "concept",
+    "title": "Coordinate",
+    "watch_ep": 37,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "Sought-after power that allows its wielder to command other Titans at will.",
+    "bio": "The focal point of all Paths connecting all Eldians, allowing whoever wields it to command Titans and alter Eldian biology or memories.",
+    "tags": [
+      "paths",
+      "founding_titan",
+      "titans",
+      "command"
+    ],
+    "icon": "crosshair",
+    "color": "#8b5cf6",
+    "source_url": null
+  },
+  {
+    "id": "concept_titan_inheritance",
+    "type": "concept",
+    "title": "Titan inheritance",
+    "watch_ep": 43,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Transfer of a Titan power by consuming a Titan shifter's spinal fluid.",
+    "bio": "Process where a Pure Titan consumes a Titan shifter to inherit their power, memories, and the remaining span of the 13-year Curse of Ymir.",
+    "tags": [
+      "nine_titans",
+      "spinal_fluid",
+      "succession",
+      "curse_of_ymir"
+    ],
+    "icon": "dna",
+    "color": "#10b981",
+    "source_url": null
+  },
+  {
+    "id": "concept_memory_manipulation",
+    "type": "concept",
+    "title": "Memory manipulation",
+    "watch_ep": 42,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Royal power used to erase or rewrite humanity's memories inside the Walls.",
+    "bio": "The ability of the Founding Titan to rewrite recollections of all Subjects of Ymir, used by the First King to make humanity forget the outside world.",
+    "tags": [
+      "founding_titan",
+      "memory",
+      "first_king",
+      "eldians"
+    ],
+    "icon": "brain",
+    "color": "#ec4899",
+    "source_url": null
+  },
+  {
+    "id": "concept_eldian_internment",
+    "type": "concept",
+    "title": "Eldian internment",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Walled ghettos in Marley where Eldians are confined and monitored.",
+    "bio": "Segregated zones where continental Eldians are forced to reside under heavy Marleyan surveillance, compulsory armbands, and systemic subjugation.",
+    "tags": [
+      "marley",
+      "liberio",
+      "eldians",
+      "oppression",
+      "segregation"
+    ],
+    "icon": "lock",
+    "color": "#78716c",
+    "source_url": null
+  },
+  {
+    "id": "concept_great_titan_war",
+    "type": "concept",
+    "title": "Great Titan War",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Civil war among Eldian noble houses that led to the empire's collapse.",
+    "bio": "A devastating conflict where the Eight Titans feuded for supremacy, exploited by Marley and Karl Fritz to overthrow the Eldian Empire 80 years ago.",
+    "tags": [
+      "eldia",
+      "marley",
+      "karl_fritz",
+      "nine_titans",
+      "history"
+    ],
+    "icon": "swords",
+    "color": "#dc2626",
+    "source_url": null
+  },
+  {
+    "id": "concept_paradise_island_isolation",
+    "type": "concept",
+    "title": "Paradise Island isolation",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Century-long seclusion of Eldians behind the three walls on Paradis.",
+    "bio": "Self-imposed exile led by Karl Fritz, moving Eldians to Paradis Island behind massive walls and wiping their memories of external human civilization.",
+    "tags": [
+      "paradis",
+      "walls",
+      "karl_fritz",
+      "isolation",
+      "world_history"
+    ],
+    "icon": "wall",
+    "color": "#334155",
+    "source_url": null
+  },
+  {
+    "id": "concept_warrior_program",
+    "type": "concept",
+    "title": "Warrior program",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "Marleyan military program training Eldian youths to inherit Titans.",
+    "bio": "Marleyan initiative recruiting loyal Eldian youths to inherit the Seven Titans, offering their families honorary Marleyan citizenship for military service.",
+    "tags": [
+      "marley",
+      "warriors",
+      "nine_titans",
+      "candidates",
+      "military"
+    ],
+    "icon": "award",
+    "color": "#d97706",
+    "source_url": null
+  },
+  {
+    "id": "location_shiganshina",
+    "type": "location",
+    "title": "Shiganshina",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "The southern gateway district of Wall Maria and hometown of Eren Yeager.",
+    "bio": "A protruding southern district of Wall Maria where the series begins. The site of the initial Titan breach in 845, the basement revelation, and the climactic clash before the Rumbling.",
+    "tags": [
+      "paradis",
+      "district",
+      "wall_maria",
+      "eren_hometown",
+      "battleground"
+    ],
+    "icon": "gate",
+    "color": "#D35400",
+    "source_url": "https://attackontitan.fandom.com/wiki/Shiganshina_District_(Anime)"
+  },
+  {
+    "id": "location_trost_district",
+    "type": "location",
+    "title": "Trost District",
+    "watch_ep": 2,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "The southern outer district of Wall Rose defending humanity's interior.",
+    "bio": "Southern gateway of Wall Rose breached by the Colossal Titan in 850. Scene of the intense Struggle for Trost where Eren sealed the gate with a boulder, marking humanity's first reclaimed victory.",
+    "tags": [
+      "paradis",
+      "district",
+      "wall_rose",
+      "garrison",
+      "first_victory"
+    ],
+    "icon": "shield",
+    "color": "#E74C3C",
+    "source_url": "https://attackontitan.fandom.com/wiki/Trost_District_(Anime)"
+  },
+  {
+    "id": "location_wall_maria",
+    "type": "location",
+    "title": "Wall Maria",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "The outermost defensive wall protecting humanity's territory from the Titans.",
+    "bio": "The outermost 50-meter circular wall enclosing the largest territory on Paradis Island. Its breach in 845 forced mankind to abandon a third of its land until retaken in 850.",
+    "tags": [
+      "paradis",
+      "wall",
+      "defensive_perimeter",
+      "outer_ring"
+    ],
+    "icon": "wall",
+    "color": "#A04000",
+    "source_url": "https://attackontitan.fandom.com/wiki/Wall_Maria_(Anime)"
+  },
+  {
+    "id": "location_wall_rose",
+    "type": "location",
+    "title": "Wall Rose",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "The middle defensive wall safeguarding agricultural and civilian lands.",
+    "bio": "The second concentric wall defending Paradis Island. It became humanity's outermost defensive perimeter for five years following the fall of Wall Maria until the invasion was repelled.",
+    "tags": [
+      "paradis",
+      "wall",
+      "middle_ring",
+      "refugee_zone"
+    ],
+    "icon": "wall",
+    "color": "#C0392B",
+    "source_url": "https://attackontitan.fandom.com/wiki/Wall_Rose_(Anime)"
+  },
+  {
+    "id": "location_wall_sheena",
+    "type": "location",
+    "title": "Wall Sheena",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "The innermost defensive wall shielding the wealthy elite and monarchy.",
+    "bio": "The innermost wall of Paradis Island, safeguarding the royal capital, nobility, and Military Police. It contains wealth, power, and the deepest secrets regarding the origin of the Walls.",
+    "tags": [
+      "paradis",
+      "wall",
+      "inner_ring",
+      "royalty",
+      "military_police"
+    ],
+    "icon": "crown",
+    "color": "#8E44AD",
+    "source_url": "https://attackontitan.fandom.com/wiki/Wall_Sina_(Anime)"
+  },
+  {
+    "id": "location_mitras",
+    "type": "location",
+    "title": "Mitras",
+    "watch_ep": 14,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "The royal capital city situated within Wall Sheena.",
+    "bio": "The capital city of Eldia inside Wall Sheena. Home to the royal palace and government administration, it served as the focal point for Erwin Smith and the Scout Regiment's bloodless coup.",
+    "tags": [
+      "paradis",
+      "capital",
+      "wall_sheena",
+      "palace",
+      "coup_detat"
+    ],
+    "icon": "castle",
+    "color": "#9B59B6",
+    "source_url": "https://attackontitan.fandom.com/wiki/Capital_Mitras_(Anime)"
+  },
+  {
+    "id": "location_stohess_district",
+    "type": "location",
+    "title": "Stohess District",
+    "watch_ep": 23,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "An eastern district of Wall Sheena where the Female Titan was unmasked.",
+    "bio": "An eastern district of Wall Sheena where the Scout Regiment orchestrated an operation to corner Annie Leonhart, resulting in a brutal urban Titan battle that exposed a Wall Titan.",
+    "tags": [
+      "paradis",
+      "district",
+      "wall_sheena",
+      "female_titan_ambush"
+    ],
+    "icon": "building",
+    "color": "#2980B9",
+    "source_url": "https://attackontitan.fandom.com/wiki/Stohess_District_(Anime)"
+  },
+  {
+    "id": "location_marley",
+    "type": "location",
+    "title": "Marley",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "A dominant global military empire across the sea from Paradis.",
+    "bio": "A superpower across the ocean that conquered rivals using enslaved Eldian Titan shifters. Marley sought the Founding Titan to secure fossil fuel reserves, driving the conflict with Paradis.",
+    "tags": [
+      "nation",
+      "empire",
+      "warriors",
+      "mainland",
+      "military_superpower"
+    ],
+    "icon": "flag",
+    "color": "#2C3E50",
+    "source_url": "https://attackontitan.fandom.com/wiki/Marley_(Anime)"
+  },
+  {
+    "id": "location_liberio",
+    "type": "location",
+    "title": "Liberio",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A segregated internment city for Eldians living under Marleyan rule.",
+    "bio": "A walled internment zone within Marley where Eldians are forced to live. Hometown of the Warrior candidates and the target of Eren Yeager and the Scout Regiment's devastating surprise raid in 854.",
+    "tags": [
+      "marley",
+      "internment_zone",
+      "eldians",
+      "warriors",
+      "liberio_raid"
+    ],
+    "icon": "home",
+    "color": "#7F8C8D",
+    "source_url": "https://attackontitan.fandom.com/wiki/Liberio_(Anime)"
+  },
+  {
+    "id": "location_paradis_island",
+    "type": "location",
+    "title": "Paradis Island",
+    "watch_ep": 57,
+    "confidence": "shown",
+    "importance": "core",
+    "summary": "The massive island haven for Eldia surrounded by the three Walls.",
+    "bio": "An isolated island continent where King Karl Fritz established Eldia's refuge inside three colossal walls. Rich in iceburst stone resources, it was deemed the Island of Devils by the outside world.",
+    "tags": [
+      "island",
+      "paradis",
+      "eldia",
+      "walls",
+      "iceburst_stone"
+    ],
+    "icon": "mountain",
+    "color": "#27AE60",
+    "source_url": "https://attackontitan.fandom.com/wiki/Paradis_Island_(Anime)"
+  },
+  {
+    "id": "location_reiss_chapel",
+    "type": "location",
+    "title": "Reiss Chapel",
+    "watch_ep": 40,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A secluded country church concealing a glowing underground cavern beneath the Reiss estate.",
+    "bio": "A rural chapel near Orvud District concealing a subterranean crystalline cavern. It hosted secret royal succession ceremonies and was the site where Grisha Jaeger slew the Reiss family.",
+    "tags": [
+      "paradis",
+      "chapel",
+      "reiss_family",
+      "crystal_cavern",
+      "succession"
+    ],
+    "icon": "gem",
+    "color": "#16A085",
+    "source_url": "https://attackontitan.fandom.com/wiki/Underground_Chapel_(Anime)"
+  },
+  {
+    "id": "location_ragako_village",
+    "type": "location",
+    "title": "Ragako Village",
+    "watch_ep": 27,
+    "confidence": "shown",
+    "importance": "minor",
+    "summary": "Conny Springer's rural hometown within Wall Rose, found eerily devastated without bloodshed.",
+    "bio": "A peaceful rural settlement within Wall Rose whose residents, including Conny Springer's family, were secretly converted into Pure Titans by Zeke Jaeger using aerosolized spinal fluid.",
+    "tags": [
+      "paradis",
+      "village",
+      "wall_rose",
+      "conny_springer",
+      "beast_titan_experiment"
+    ],
+    "icon": "tree",
+    "color": "#D4AC0D",
+    "source_url": "https://attackontitan.fandom.com/wiki/Ragako_(Anime)"
+  },
+  {
+    "id": "location_fort_salta",
+    "type": "location",
+    "title": "Fort Salta",
+    "watch_ep": 88,
+    "confidence": "shown",
+    "importance": "major",
+    "summary": "A Marleyan plateau fortress and the final battleground of the Rumbling.",
+    "bio": "A mountain stronghold and airship research base in southern Marley. It became the final bastion of human defense and the site of the climatic Battle of Heaven and Earth against Eren's Rumbling.",
+    "tags": [
+      "marley",
+      "fortress",
+      "airship_base",
+      "rumbling",
+      "final_battle"
+    ],
+    "icon": "fortress",
+    "color": "#34495E",
+    "source_url": "https://attackontitan.fandom.com/wiki/Fort_Salta_(Anime)"
   }
 ]

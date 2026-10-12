@@ -208,5 +208,455 @@
     "node_id": "char_porco",
     "alias": "Pock",
     "from_ep": 78
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "Founder",
+    "from_ep": 43
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "The Coordinate",
+    "from_ep": 43
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "Progenitor Titan",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_attack",
+    "alias": "Rogue Titan",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_attack",
+    "alias": "Shingeki no Kyojin",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_armored",
+    "alias": "Armoured Titan",
+    "from_ep": 2
+  },
+  {
+    "node_id": "titan_armored",
+    "alias": "Yoroi no Kyojin",
+    "from_ep": 2
+  },
+  {
+    "node_id": "titan_colossal",
+    "alias": "Colossus Titan",
+    "from_ep": 1
+  },
+  {
+    "node_id": "titan_colossal",
+    "alias": "God of Destruction",
+    "from_ep": 62
+  },
+  {
+    "node_id": "titan_female",
+    "alias": "Megata no Kyojin",
+    "from_ep": 17
+  },
+  {
+    "node_id": "titan_beast",
+    "alias": "Beast",
+    "from_ep": 26
+  },
+  {
+    "node_id": "titan_beast",
+    "alias": "Kemono no Kyojin",
+    "from_ep": 26
+  },
+  {
+    "node_id": "titan_beast",
+    "alias": "Monkey Titan",
+    "from_ep": 26
+  },
+  {
+    "node_id": "titan_jaw",
+    "alias": "Jaws Titan",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_jaw",
+    "alias": "Agito no Kyojin",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_cart",
+    "alias": "Quadrupedal Titan",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_cart",
+    "alias": "Shariki no Kyojin",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_war_hammer",
+    "alias": "Warhammer Titan",
+    "from_ep": 65
+  },
+  {
+    "node_id": "titan_war_hammer",
+    "alias": "Sentsui no Kyojin",
+    "from_ep": 65
+  },
+  {
+    "node_id": "titan_pure",
+    "alias": "Mindless Titans",
+    "from_ep": 57
+  },
+  {
+    "node_id": "titan_pure",
+    "alias": "Regular Titans",
+    "from_ep": 57
+  },
+  {
+    "node_id": "titan_pure",
+    "alias": "Standard Titans",
+    "from_ep": 57
+  },
+  {
+    "node_id": "titan_pure",
+    "alias": "Pure Titans",
+    "from_ep": 57
+  },
+  {
+    "node_id": "titan_wall",
+    "alias": "Colossus Titans",
+    "from_ep": 25
+  },
+  {
+    "node_id": "titan_wall",
+    "alias": "Wall Colossals",
+    "from_ep": 25
+  },
+  {
+    "node_id": "titan_wall",
+    "alias": "Wall-dwelling Titans",
+    "from_ep": 25
+  },
+  {
+    "node_id": "concept_the_paths",
+    "alias": "Paths",
+    "from_ep": 58
+  },
+  {
+    "node_id": "concept_the_paths",
+    "alias": "Invisible Paths",
+    "from_ep": 58
+  },
+  {
+    "node_id": "concept_the_paths",
+    "alias": "Path Realm",
+    "from_ep": 78
+  },
+  {
+    "node_id": "concept_subjects_of_ymir",
+    "alias": "Eldians",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_subjects_of_ymir",
+    "alias": "People of Ymir",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_subjects_of_ymir",
+    "alias": "Descendants of Ymir",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_royal_blood",
+    "alias": "Fritz Bloodline",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_royal_blood",
+    "alias": "Reiss Bloodline",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_royal_blood",
+    "alias": "Royal Lineage",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "Pact of Non-Resistance",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "First King's Will",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "King's Vow",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_the_rumbling",
+    "alias": "Earth Flattening",
+    "from_ep": 69
+  },
+  {
+    "node_id": "concept_the_rumbling",
+    "alias": "Wall Titan Trampling",
+    "from_ep": 69
+  },
+  {
+    "node_id": "concept_coordinate",
+    "alias": "The Coordinate",
+    "from_ep": 37
+  },
+  {
+    "node_id": "concept_coordinate",
+    "alias": "Intersection of Paths",
+    "from_ep": 58
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Titan Succession",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Power of the Titans Inheritance",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Shifter Transfer",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Memory Alteration",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Memory Wiping",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Mind Alteration",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_eldian_internment",
+    "alias": "Liberio Internment Zone",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_eldian_internment",
+    "alias": "Internment Zones",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_eldian_internment",
+    "alias": "Eldian Ghettos",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_great_titan_war",
+    "alias": "Titan Civil War",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_great_titan_war",
+    "alias": "Fall of Eldia",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_paradise_island_isolation",
+    "alias": "Paradis Isolation",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_paradise_island_isolation",
+    "alias": "Wall Paradis Seclusion",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_paradise_island_isolation",
+    "alias": "Island of Devils",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_warrior_program",
+    "alias": "Marleyan Warriors",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_warrior_program",
+    "alias": "Warrior Unit",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_warrior_program",
+    "alias": "Warrior Candidates",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_shiganshina",
+    "alias": "Shiganshina District",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_shiganshina",
+    "alias": "Shiganshina-ku",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_trost_district",
+    "alias": "Trost",
+    "from_ep": 2
+  },
+  {
+    "node_id": "location_trost_district",
+    "alias": "Trost-ku",
+    "from_ep": 2
+  },
+  {
+    "node_id": "location_wall_maria",
+    "alias": "Wōru Maria",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_maria",
+    "alias": "Maria Wall",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_rose",
+    "alias": "Wall Rosé",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_rose",
+    "alias": "Wōru Rōze",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_rose",
+    "alias": "Rose Wall",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
+    "alias": "Wall Sina",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
+    "alias": "Wōru Shīna",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
+    "alias": "Sina Wall",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "Capital Mitras",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "Royal Capital",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "Ōto Mittorasu",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_stohess_district",
+    "alias": "Stohess",
+    "from_ep": 23
+  },
+  {
+    "node_id": "location_stohess_district",
+    "alias": "Stohess-ku",
+    "from_ep": 23
+  },
+  {
+    "node_id": "location_marley",
+    "alias": "Marleyan Empire",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_marley",
+    "alias": "Māre",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_liberio",
+    "alias": "Liberio Internment Zone",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_liberio",
+    "alias": "Reberio",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_paradis_island",
+    "alias": "Paradis",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_paradis_island",
+    "alias": "Paradi-tō",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_paradis_island",
+    "alias": "The Island of Devils",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_reiss_chapel",
+    "alias": "Underground Chapel",
+    "from_ep": 40
+  },
+  {
+    "node_id": "location_reiss_chapel",
+    "alias": "Reiss Family Chapel",
+    "from_ep": 40
+  },
+  {
+    "node_id": "location_reiss_chapel",
+    "alias": "Crystal Cavern",
+    "from_ep": 42
+  },
+  {
+    "node_id": "location_ragako_village",
+    "alias": "Ragako",
+    "from_ep": 27
+  },
+  {
+    "node_id": "location_ragako_village",
+    "alias": "Ragako-mura",
+    "from_ep": 27
+  },
+  {
+    "node_id": "location_fort_salta",
+    "alias": "Fortress Salta",
+    "from_ep": 88
+  },
+  {
+    "node_id": "location_fort_salta",
+    "alias": "Suratoa-yōsai",
+    "from_ep": 88
   }
 ]

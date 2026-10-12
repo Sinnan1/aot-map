@@ -8,7 +8,7 @@ export interface CLane { id: string; label: string; sort: number }
 
 export interface CNode {
   id: string;
-  type: "event" | "character";
+  type: "event" | "character" | "titan" | "concept" | "location";
   title: string;
   lane: string | null; // events only
   watchEp: number;
@@ -43,7 +43,7 @@ export interface GatedGraph {
   laneHistory: CLaneStep[];
 }
 
-export interface SearchHit { id: string; title: string; watchEp: number; type: "event" | "character" }
+export interface SearchHit { id: string; title: string; watchEp: number; type: "event" | "character" | "titan" | "concept" | "location" }
 
 /**
  * A watched episode. Gated on episode_abs, so an unwatched viewer never receives a row: the

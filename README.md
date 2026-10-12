@@ -40,14 +40,14 @@ Other scripts: `npm test`, `npm run typecheck`, `npm run content:lint [dir]`,
 `npm run content:lint -- --strict` **does not work**: npm swallows the flag before the script sees it,
 so it passes silently. Use `content:lint-strict`. `tests/content-lint-cli.test.ts` pins the exit codes.
 
-## Characters
+## Characters, Titans, Concepts & Locations
 
-Characters are `nodes` rows, not a separate table: `title` is the name, `watch_ep` is the gate, `lane_history`
-is the faction path, and `importance` (`core`/`major`/`minor`) is cast prominence.
+Characters (`type: "character"`), Titans (`type: "titan"`), Concepts (`type: "concept"`), and Locations (`type: "location"`) are `nodes` rows, not separate tables: `title` is the name, `watch_ep` is the gate, `lane_history` is the character faction path, and `importance` (`core`/`major`/`minor`) is prominence.
 
 `importance` is deliberately **not** `tier`. `tier` is event-only: `placeEvents()` filters to `type === "event"`,
-so characters never enter the Rule of 7 pool and cannot cannibalise a plot beat's canvas slot. Promoting a
-character changes nothing about the layout — `tests/researcher-contracts.test.ts` asserts exactly that.
+so characters, Titans, Concepts, and Locations never enter the Rule of 7 pool and cannot cannibalise a plot beat's canvas slot, while
+`holdersAt()` and the ribbon's lane dots filter to `type === "character"`. Promoting a non-event node changes
+nothing about the event layout — `tests/researcher-contracts.test.ts` and `tests/titans.test.ts` assert that.
 
 ## Content authoring rules
 
@@ -147,7 +147,7 @@ gate work, there is no UI control yet), Hint mode.
 ## Before you trust it
 
 - `content/slice` is **sample data** to prove the pipeline. Episode numbers and copy need real authoring and a second reviewer.
-- `NEXT_PUBLIC_FINALE_EP` defaults to 87. Confirm whether the "Final Chapters" specials count in your numbering.
+- `NEXT_PUBLIC_FINALE_EP` defaults to 89 (including the two "Final Chapters" specials as Episodes 88 and 89).
 - The UI compiles, builds, and serves correct gated HTML, but has **not been looked at in a real browser or on a phone**.
   Expect polish work on the ribbon, sheet snapping, and touch scrubbing.
 - On phones, arrows whose far end is in an off-screen lane are not drawn. The sheet still lists every cause and effect.
