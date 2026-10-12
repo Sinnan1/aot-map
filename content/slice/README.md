@@ -33,7 +33,26 @@ icon,color,tags,first_appears_ep,source_url`). It is sample data, and it was rew
 - **Two lane gates moved.** `warriors` 60 -> 23 and `paradis_government` 60 -> 38, because Annie is unmasked
   at 23 and the Royal Government arc opens at 38. They were set when only Marley-era characters existed.
 
-Because `bio`/`tags`/`aliases` cannot ship, **alias search is not wired up**: `searchGated` matches `title`
-and `summary` only. Making aliases searchable needs a per-alias gate (`character_aliases(node_id, alias,
-from_ep)`), since "Founding Titan" is safe at 79 and not at 1. Until then a flat `aliases` match would let a
-viewer at ep 1 search their way to the ending.
+## Aliases
+
+`aliases.json` holds the 42 alternative names, one row per `(node_id, alias)`, each with its own `from_ep`.
+
+Names are gated **independently of their node**, because the safe episode for a name is usually much later than
+the episode the character appears: Eren is visible from ep 1, but "Attack Titan" is not safe until 25 and
+"Founding Titan" not until 80. A flat `nodes.aliases` array could only ever use the node's own gate, so
+searching "Founding Titan" at ep 1 would hand over the ending.
+
+Rows are keyed on the pair, never the name alone. "Jaw Titan" is held by Ymir from 31, Falco from 78 and Porco
+from 78; "Colossal Titan" by Bertholdt from 31 and Armin from 55. A per-name value would give Falco Ymir's
+episode. `ALIAS_BEFORE_NODE` in the lint rejects any `from_ep` earlier than its node's `watch_ep`.
+
+**The `from_ep` values are drafts** and need the same second review as `watch_ep`. They were read off the
+episode arcs and biased late — a late value only hides a name temporarily, an early one leaks. 12 are inferences
+rather than plainly-shown beats: `Vice Chief Reiner@84`, `Flying Titan@83`, `Commander Hange@69`,
+`Queen Historia@47`, `Goddess@34`, `Lady Ymir@34`, `Dancing Titan@35`, `Krista Lenz@30`, `Christa Lenz@30`,
+`Boy Wonder@74`, `Horse Face@8`, `Pock@78`. The other 30 either mirror the node's gate (spelling variants like
+`Eren Jaeger`, which carry no information) or land on an episode where the name is plainly said.
+
+Aliases are **server-side only**, and are reachable solely through `searchGatedAliases()`, which returns node
+ids and never the matched text. They are deliberately absent from `loadGatedGraph`, because putting them in the
+graph payload would reverse the invariant in `src/gate/types.ts` and break the "never sends aliases" test.

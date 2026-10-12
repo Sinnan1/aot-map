@@ -11,6 +11,7 @@ export async function seedContent(db: DB, c: ContentSet): Promise<void> {
     await tx.delete(t.edges);
     await tx.delete(t.laneHistory);
     await tx.delete(t.nodeParticipants);
+    await tx.delete(t.nodeAliases); // FK to nodes, so it must go before them
     await tx.update(t.nodes).set({ setupRef: null });
     await tx.delete(t.nodes);
     await tx.delete(t.lanes);
@@ -25,12 +26,12 @@ export async function seedContent(db: DB, c: ContentSet): Promise<void> {
                 id: n.id, type: "event" as const, title: n.title, factionLane: n.faction_lane, watchEp: n.watch_ep,
                 storyOrder: n.story_order, isFlashback: n.is_flashback, happenedIn: n.happened_in, confidence: n.confidence,
                 depthLayer: n.depth_layer, tier: n.tier, summary: n.summary, because: n.because, setupRef: n.setup_ref,
-                voidPos: n.void_pos, aliases: n.aliases,
+                voidPos: n.void_pos,
               }
             : {
                 id: n.id, type: "character" as const, title: n.title, factionLane: null, watchEp: n.watch_ep, storyOrder: null,
                 isFlashback: false, happenedIn: null, confidence: n.confidence, depthLayer: "surface" as const, tier: n.tier,
-                summary: n.summary, because: null, setupRef: null, voidPos: null, aliases: n.aliases,
+                summary: n.summary, because: null, setupRef: null, voidPos: null,
                 bio: n.bio, tags: n.tags, icon: n.icon, color: n.color, sourceUrl: n.source_url,
               },
         ),
@@ -49,5 +50,7 @@ export async function seedContent(db: DB, c: ContentSet): Promise<void> {
       await tx.insert(t.knowledgeStates).values(c.knowledge_states.map((k) => ({ holder: k.holder, factId: k.fact, state: k.state, fromEp: k.from_ep, toEp: k.to_ep, confidence: k.confidence })));
     if (c.goals.length)
       await tx.insert(t.characterGoals).values(c.goals.map((g) => ({ characterId: g.character, text: g.text, fromEp: g.from_ep, toEp: g.to_ep, confidence: g.confidence })));
+
+    if (c.aliases.length) await tx.insert(t.nodeAliases).values(c.aliases.map((a) => ({ nodeId: a.node_id, alias: a.alias, fromEp: a.from_ep })));
   });
 }

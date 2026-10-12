@@ -7,7 +7,7 @@ import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, KNOWLEDGE_STATES }
  *   lanes.watch_ep      lanes are content too ("Yeagerists" is a spoiler for new viewers)
  *   nodes.tier          1 = primary, 2/3 = clustered first (powers the Rule of 7)
  *   nodes.participants  characters involved in an event (powers the Character lens)
- *   nodes.aliases       extra names the spoiler lint should watch for
+ *   aliases[]           alternative names, gated independently of their node (aliases.json)
  *   goals[]             character goals shown in the node detail panel
  *   terms[]             spoiler glossary for words that are not nodes
  */
@@ -41,7 +41,6 @@ const EventNode = z
     setup_ref: slug("evt").nullable().default(null),
     void_pos: z.object({ x: z.number(), y: z.number(), z: z.number() }).nullable().default(null),
     participants: z.array(slug("char")).default([]), // EXT
-    aliases: z.array(z.string()).default([]), // EXT
   })
   .superRefine((n, ctx) => {
     if (n.is_flashback && !n.happened_in)
@@ -69,7 +68,6 @@ const CharacterNode = z.object({
   color: z.string().nullable().default(null),
   source_url: z.url().nullable().default(null),
   lane_history: z.array(z.object({ from_ep: ep, lane: z.string() })).min(1),
-  aliases: z.array(z.string()).default([]),
 });
 
 export const Edge = z.object({
@@ -102,6 +100,22 @@ export const Goal = z.object({
 });
 
 export const Term = z.object({ term: z.string().min(3), watch_ep: ep });
+
+/**
+ * An alternative name for a node, gated independently of the node itself.
+ *
+ * from_ep is the episode the name becomes SAFE, which is usually later than the node's watch_ep:
+ * "Founding Titan" belongs to a node visible from ep 1 but is not sayable until 80. It is never
+ * earlier than the node's gate, which lint enforces (ALIAS_BEFORE_NODE).
+ *
+ * One row per (node, name): "Jaw Titan" is held by Ymir from 31, Falco from 78 and Porco from 78,
+ * so a name cannot be keyed by itself.
+ */
+export const NodeAlias = z.object({
+  node_id: slug("char"), // characters today; events may use it later
+  alias: z.string().min(2),
+  from_ep: ep,
+});
 
 /**
  * The episode spine (content/episodes.csv). episode_abs is the numbering authority: every
@@ -137,10 +151,12 @@ export const ContentSet = z.object({
   knowledge_states: z.array(KnowledgeState),
   goals: z.array(Goal).default([]),
   terms: z.array(Term).default([]),
+  aliases: z.array(NodeAlias).default([]), // EXT: names gated independently of their node
 });
 
 export type ContentSet = z.infer<typeof ContentSet>;
 export type LaneC = z.infer<typeof Lane>;
+export type NodeAliasC = z.infer<typeof NodeAlias>;
 export type NodeC = ContentSet["nodes"][number];
 export type EventNodeC = Extract<NodeC, { type: "event" }>;
 export type CharacterNodeC = Extract<NodeC, { type: "character" }>;

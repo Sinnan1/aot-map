@@ -11,6 +11,7 @@ const FILES = {
   knowledge_states: "knowledge_states.json",
   goals: "goals.json",
   terms: "terms.json",
+  aliases: "aliases.json",
 } as const;
 
 /** Reads a content directory (one JSON file per table), validates it, and returns a typed ContentSet. */

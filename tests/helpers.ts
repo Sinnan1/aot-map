@@ -26,17 +26,17 @@ export function withFuture(): ContentSet {
       id: "evt_late_event", type: "event", title: "Late Event", faction_lane: "yeagerists", watch_ep: 70, story_order: 2,
       is_flashback: true, happened_in: "years earlier", confidence: "shown", depth_layer: "surface", tier: 1,
       summary: "Something only ep 70 viewers should see.", because: "A hidden cause.", setup_ref: "evt_declaration_of_war",
-      void_pos: null, participants: ["char_eren", "char_late"], aliases: [],
+      void_pos: null, participants: ["char_eren", "char_late"],
     },
     {
       id: "evt_theory_event", type: "event", title: "Fan Theory Event", faction_lane: "marley_military", watch_ep: 61, story_order: null,
       is_flashback: false, happened_in: null, confidence: "interpretation", depth_layer: "surface", tier: 2,
-      summary: "A debated reading.", because: null, setup_ref: null, void_pos: null, participants: [], aliases: [],
+      summary: "A debated reading.", because: null, setup_ref: null, void_pos: null, participants: [],
     },
     {
       id: "char_late", type: "character", title: "Late Character", watch_ep: 70, confidence: "shown",
       tier: 2, summary: null, bio: null, tags: [], icon: null, color: null, source_url: null,
-      lane_history: [{ from_ep: 70, lane: "yeagerists" }], aliases: [],
+      lane_history: [{ from_ep: 70, lane: "yeagerists" }],
     },
   );
   c.edges.push({ id: "edge_declaration_to_late", from: "evt_declaration_of_war", to: "evt_late_event", type: "causes", watch_ep: 70, confidence: "shown", why_text: "Late link." });

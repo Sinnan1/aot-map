@@ -79,6 +79,20 @@ export function lintContent(c: ContentSet): LintIssue[] {
     if (count > 4) warn("TIER1_DENSITY", `ep_${ep}`, `${count} tier-1 events in one episode; the Rule of 7 will cluster the overflow`);
   }
 
+  // 2b. Aliases: reference an existing node, never precede the node's own gate, never duplicate.
+  const aliasKey = (a: (typeof c.aliases)[number]) => `${a.node_id}|${a.alias.toLowerCase()}`;
+  const aliasSeen = new Map<string, number>();
+  for (const a of c.aliases) {
+    const key = aliasKey(a);
+    const node = nodes.get(a.node_id);
+    if (!node) error("REF_MISSING", key, `alias node_id "${a.node_id}" does not exist`);
+    else if (a.from_ep < node.watch_ep)
+      error("ALIAS_BEFORE_NODE", key, `alias is safe at ep ${a.from_ep}, before the node it names (ep ${node.watch_ep})`);
+    const prev = aliasSeen.get(key);
+    if (prev !== undefined) error("DUPLICATE_ALIAS", key, `duplicates the alias declared at ep ${prev}`);
+    else aliasSeen.set(key, a.from_ep);
+  }
+
   // 3. Edges
   for (const e of c.edges) {
     const from = nodes.get(e.from);
@@ -130,12 +144,13 @@ export function lintContent(c: ContentSet): LintIssue[] {
     if (k.length < 3) return;
     termEp.set(k, Math.min(termEp.get(k) ?? Infinity, ep));
   };
-  for (const n of c.nodes) {
-    addTerm(n.title, n.watch_ep);
-    n.aliases.forEach((a) => addTerm(a, n.watch_ep));
-  }
+  for (const n of c.nodes) addTerm(n.title, n.watch_ep);
   for (const l of c.lanes) addTerm(l.label, l.watch_ep);
   for (const t of c.terms) addTerm(t.term, t.watch_ep);
+  // Aliases use their OWN from_ep, never the node's watch_ep. addTerm takes the earliest episode a
+  // term is safe, so "Jaw Titan" (Ymir at 31, Falco and Porco at 78) becomes vocabulary at 31, and
+  // "Founding Titan" does not become vocabulary at all until 80 even though its node is visible at 1.
+  for (const a of c.aliases) addTerm(a.alias, a.from_ep);
 
   const patterns = [...termEp].map(([term, ep]) => ({ term, ep, re: new RegExp(`(^|[^a-z0-9])${esc(term)}(?![a-z0-9])`, "i") }));
   const scan = (id: string, ep: number, field: string, text: string | null) => {

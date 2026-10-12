@@ -130,6 +130,38 @@ export async function loadGatedEpisodes(db: DB, gate: Gate): Promise<CEpisode[]>
     .orderBy(t.episodes.episodeAbs);
 }
 
+/**
+ * Gated alias search.
+ *
+ * The one place alias text is matched, and it never leaves the server: the return value is node
+ * ids, so the client learns THAT "Krista Lenz" points at Historia, never the surrounding words.
+ * Both gates must pass -- the node's watch_ep AND the alias's own from_ep -- so an alias cannot
+ * become findable before the name it stands for is safe.
+ *
+ * Kept out of loadGatedGraph on purpose: putting aliases in the graph payload would reverse the
+ * documented invariant in src/gate/types.ts and break tests/gate.test.ts's "never sends aliases".
+ */
+export async function searchGatedAliases(db: DB, gate: Gate, q: string, limit = 8): Promise<SearchHit[]> {
+  const term = q.trim().slice(0, 80);
+  if (term.length < 2 || gate.progress < 1) return [];
+  const like = `%${term.replace(/[\\%_]/g, "\\$&")}%`;
+
+  return db
+    .selectDistinct({ id: t.nodes.id, title: t.nodes.title, watchEp: t.nodes.watchEp, type: t.nodes.type })
+    .from(t.nodeAliases)
+    .innerJoin(t.nodes, eq(t.nodes.id, t.nodeAliases.nodeId))
+    .where(
+      and(
+        lte(t.nodes.watchEp, gate.progress),
+        lte(t.nodeAliases.fromEp, gate.progress),
+        inArray(t.nodes.confidence, allowedConfidence(gate)),
+        ilike(t.nodeAliases.alias, like),
+      ),
+    )
+    .orderBy(t.nodes.watchEp, t.nodes.title)
+    .limit(limit);
+}
+
 /** Gated search. The index never contains anything past the viewer's progress. */
 export async function searchGated(db: DB, gate: Gate, q: string, limit = 8): Promise<SearchHit[]> {
   const term = q.trim().slice(0, 80);
@@ -151,5 +183,10 @@ export async function searchGated(db: DB, gate: Gate, q: string, limit = 8): Pro
     )
     .orderBy(t.nodes.watchEp, t.nodes.title)
     .limit(limit);
-  return rows;
+
+  // Alias matches, deduped against the rows found by title/summary so one node is never listed twice.
+  const aliasHits = await searchGatedAliases(db, gate, term, limit);
+  const seen = new Set(rows.map((r) => r.id));
+  for (const hit of aliasHits) if (!seen.has(hit.id) && rows.length < limit) rows.push(hit);
+  return rows.slice(0, limit);
 }

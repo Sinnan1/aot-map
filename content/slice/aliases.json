@@ -1,0 +1,212 @@
+[
+  {
+    "node_id": "char_eren",
+    "alias": "Eren Jaeger",
+    "from_ep": 1
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Attack Titan",
+    "from_ep": 25
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Founding Titan",
+    "from_ep": 80
+  },
+  {
+    "node_id": "char_mikasa",
+    "alias": "Mikasa Ackermann",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "Armin Arlelt",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "Colossal Titan",
+    "from_ep": 55
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "Armored Titan",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "Vice Chief Reiner",
+    "from_ep": 84
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "Bertolt Hoover",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "Colossal Titan",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_annie",
+    "alias": "Female Titan",
+    "from_ep": 23
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "Levi Ackermann",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "Captain Levi",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "Humanity's Strongest Soldier",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "Hans Zoe",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "Section Commander Hange",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "Commander Hange",
+    "from_ep": 69
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Krista Lenz",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Queen Historia",
+    "from_ep": 47
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Christa Lenz",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Goddess",
+    "from_ep": 34
+  },
+  {
+    "node_id": "char_grisha",
+    "alias": "Grisha Jaeger",
+    "from_ep": 48
+  },
+  {
+    "node_id": "char_grisha",
+    "alias": "The Doctor",
+    "from_ep": 48
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Zeke Jaeger",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Beast Titan",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Boy Wonder",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Warchief Zeke",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Dancing Titan",
+    "from_ep": 35
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Jaw Titan",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Lady Ymir",
+    "from_ep": 34
+  },
+  {
+    "node_id": "char_jean",
+    "alias": "Jean Kirschtein",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_jean",
+    "alias": "Horse Face",
+    "from_ep": 8
+  },
+  {
+    "node_id": "char_connie",
+    "alias": "Conny Springer",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_sasha",
+    "alias": "Sasha Braus",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_sasha",
+    "alias": "Potato Girl",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Flying Titan",
+    "from_ep": 83
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Jaw Titan",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "Armored Titan Candidate",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_pieck",
+    "alias": "Cart Titan",
+    "from_ep": 75
+  },
+  {
+    "node_id": "char_pieck",
+    "alias": "Cart",
+    "from_ep": 75
+  },
+  {
+    "node_id": "char_porco",
+    "alias": "Jaw Titan",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_porco",
+    "alias": "Pock",
+    "from_ep": 78
+  }
+]

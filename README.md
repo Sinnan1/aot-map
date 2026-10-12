@@ -45,9 +45,16 @@ The gate value is the episode a character is **named**, not the episode they are
 for most of the cast. See `content/slice/README.md` for the full rewrite and the list of `watch_ep` values
 awaiting a second reviewer.
 
-`bio`, `tags` and `aliases` are stored but **never selected** into the gated payload: they are written with
-whole-series knowledge (Hange's bio says he succeeds Erwin; Eren's tags say "yeagerists"), so they spoil against
-any gate. Alias search is consequently not wired up; it needs a per-alias gate first.
+`bio` and `tags` are stored but **never selected** into the gated payload: they are written with whole-series
+knowledge (Hange's bio says he succeeds Erwin; Eren's tags say "yeagerists"), so they spoil against any gate.
+
+Alias names live in `content/slice/aliases.json`, gated **per name** rather than per node — "Founding Titan"
+belongs to a node visible from ep 1 but is not safe until 80. They are reachable only through
+`searchGatedAliases()`, which returns node ids and never the matched text. They are deliberately absent from
+`loadGatedGraph`; putting them in the graph payload would reverse the invariant in `src/gate/types.ts`.
+
+The `from_ep` values are drafts, biased late, and need a second reviewer. See `content/slice/README.md` for the
+12 that are inferences.
 
 ## The episode spine
 

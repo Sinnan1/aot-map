@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { lintContent } from "@/content/lint";
 import type { CharacterNodeC, ContentSet } from "@/content/schema";
-import { loadGatedGraph } from "@/gate/queries";
+import { loadGatedGraph, searchGated, searchGatedAliases } from "@/gate/queries";
 import { makeGate } from "@/gate/gate";
 import { makeDb, sample } from "./helpers";
 
@@ -26,11 +26,19 @@ describe("character nodes", () => {
 
   it("Krista Lenz survives as an alias of Historia, not as a node", () => {
     const c = sample();
-    const h = char(c, "char_historia");
-    expect(h.title).toBe("Historia Reiss");
-    expect(h.aliases).toEqual(expect.arrayContaining(["Krista Lenz", "Christa Lenz", "Queen Historia"]));
-    expect(h.bio).toContain("Krista persona"); // the merged row's copy is kept
-    expect(chars(c).filter((n) => n.aliases.includes("Krista Lenz"))).toHaveLength(1);
+    expect(char(c, "char_historia").title).toBe("Historia Reiss");
+    expect(char(c, "char_historia").bio).toContain("Krista persona"); // the merged row's copy is kept
+    const krista = c.aliases.filter((a) => a.alias === "Krista Lenz");
+    expect(krista.map((a) => a.node_id)).toEqual(["char_historia"]);
+    expect(ids(c)).not.toContain("char_krista_lenz"); // never a second bubble
+  });
+
+  it("aliases live in aliases.json, gated independently of their node", () => {
+    const c = sample();
+    expect(c.aliases).toHaveLength(42);
+    expect(new Set(c.aliases.map((a) => a.node_id))).toHaveProperty("size", 19);
+    // The names moved out of nodes.json entirely.
+    expect(JSON.stringify(c.nodes)).not.toContain('"aliases"');
   });
 
   it("importance maps onto the single tier scale", () => {
@@ -47,7 +55,9 @@ describe("character nodes", () => {
     expect(e.icon).toBe("attack_titan");
     expect(e.color).toBe("#2e5a27");
     expect(e.source_url).toContain("attackontitan.fandom.com");
-    expect(e.aliases).toContain("Founding Titan");
+    // Eren's Titan titles are aliases now, and both are gated far later than his node (ep 1).
+    const ep1 = c.aliases.filter((a) => a.node_id === "char_eren").map((a) => [a.alias, a.from_ep]);
+    expect(ep1).toEqual(expect.arrayContaining([["Attack Titan", 25], ["Founding Titan", 80]]));
   });
 
   it("watch_ep is the reveal, never the first sighting on screen", () => {
@@ -115,6 +125,54 @@ describe("the gate seals the newly added characters", () => {
         expect(json, `progress ${progress} leaked ${leak}`).not.toContain(leak);
       }
     }
+  });
+
+  it("alias search is gated twice, and returns ids rather than alias text", async () => {
+    const db = await makeDb(sample());
+    const idsOf = async (q: string, progress: number) => (await searchGatedAliases(db, makeGate({ progress }), q)).map((h) => h.id);
+    const hit = idsOf;
+
+    // Eren's node is visible from ep 1, but "Founding Titan" is only safe from 80.
+    expect(await hit("Founding Titan", 1)).toEqual([]);
+    expect(await hit("Founding Titan", 79)).toEqual([]);
+    expect(await hit("Founding Titan", 80)).toEqual(["char_eren"]);
+
+    // "Attack Titan" (25) is earlier than "Founding Titan" (80) on the same node.
+    expect(await hit("Attack Titan", 24)).toEqual([]);
+    expect(await hit("Attack Titan", 25)).toEqual(["char_eren"]);
+
+    // One name, three holders on three timelines. Falco's Jaw Titan is not safe until 78.
+    expect(await hit("Jaw Titan", 31)).toEqual(["char_ymir"]);
+    expect((await hit("Jaw Titan", 78)).sort()).toEqual(["char_falco", "char_porco", "char_ymir"]);
+
+    // Krista Lenz belongs to Historia, whose node is gated at 30.
+    expect(await hit("Krista", 29)).toEqual([]);
+    expect(await hit("Krista", 30)).toEqual(["char_historia"]);
+
+    // Hits never carry the matched text back to the client.
+    expect(JSON.stringify(await searchGatedAliases(db, makeGate({ progress: 89 }), "Founding Titan"))).not.toContain("Founding Titan");
+  });
+
+  it("alias search does not leak a node that the gate removed", async () => {
+    const db = await makeDb(sample());
+    const hit = async (q: string, progress: number) => (await searchGatedAliases(db, makeGate({ progress }), q)).map((h) => h.id);
+    // Zeke is gated at 74; at 20 even a matching alias must return nothing.
+    expect(await hit("Beast Titan", 20)).toEqual([]);
+    expect(await hit("Beast Titan", 74)).toEqual(["char_zeke"]);
+  });
+
+  it("searchGated includes alias matches without duplicating a node", async () => {
+    const db = await makeDb(sample());
+    const hits = await searchGated(db, makeGate({ progress: 89 }), "Eren");
+    // "Eren" matches both char_eren (title) and char_eren (alias "Eren Jaeger"): one row.
+    expect(hits.filter((h) => h.id === "char_eren")).toHaveLength(1);
+    // A pure-alias query still finds the node.
+    expect((await searchGated(db, makeGate({ progress: 89 }), "Mikasa Ackermann")).map((h) => h.id)).toContain("char_mikasa");
+  });
+
+  it("rewatch mode reaches every alias", async () => {
+    const db = await makeDb(sample());
+    expect((await searchGatedAliases(db, makeGate({ rewatch: true }), "Warchief")).map((h) => h.id)).toEqual(["char_zeke"]);
   });
 
   it("rewatch mode reaches all 19 characters", async () => {

@@ -121,11 +121,6 @@
         "from_ep": 1,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Eren Jaeger",
-      "Attack Titan",
-      "Founding Titan"
     ]
   },
   {
@@ -151,9 +146,6 @@
         "from_ep": 3,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Mikasa Ackermann"
     ]
   },
   {
@@ -180,10 +172,6 @@
         "from_ep": 3,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Armin Arlelt",
-      "Colossal Titan"
     ]
   },
   {
@@ -213,10 +201,6 @@
         "from_ep": 31,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Armored Titan",
-      "Vice Chief Reiner"
     ]
   },
   {
@@ -242,10 +226,6 @@
         "from_ep": 31,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Bertolt Hoover",
-      "Colossal Titan"
     ]
   },
   {
@@ -271,9 +251,6 @@
         "from_ep": 23,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Female Titan"
     ]
   },
   {
@@ -299,11 +276,6 @@
         "from_ep": 14,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Levi Ackermann",
-      "Captain Levi",
-      "Humanity's Strongest Soldier"
     ]
   },
   {
@@ -329,11 +301,6 @@
         "from_ep": 15,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Hans Zoe",
-      "Section Commander Hange",
-      "Commander Hange"
     ]
   },
   {
@@ -364,12 +331,6 @@
         "from_ep": 40,
         "lane": "paradis_government"
       }
-    ],
-    "aliases": [
-      "Krista Lenz",
-      "Queen Historia",
-      "Christa Lenz",
-      "Goddess"
     ]
   },
   {
@@ -395,10 +356,6 @@
         "from_ep": 48,
         "lane": "lore_history"
       }
-    ],
-    "aliases": [
-      "Grisha Jaeger",
-      "The Doctor"
     ]
   },
   {
@@ -424,12 +381,6 @@
         "from_ep": 74,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Zeke Jaeger",
-      "Beast Titan",
-      "Boy Wonder",
-      "Warchief Zeke"
     ]
   },
   {
@@ -455,11 +406,6 @@
         "from_ep": 30,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Dancing Titan",
-      "Jaw Titan",
-      "Lady Ymir"
     ]
   },
   {
@@ -485,10 +431,6 @@
         "from_ep": 3,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Jean Kirschtein",
-      "Horse Face"
     ]
   },
   {
@@ -514,9 +456,6 @@
         "from_ep": 3,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Conny Springer"
     ]
   },
   {
@@ -542,10 +481,6 @@
         "from_ep": 3,
         "lane": "scouts"
       }
-    ],
-    "aliases": [
-      "Sasha Braus",
-      "Potato Girl"
     ]
   },
   {
@@ -571,10 +506,6 @@
         "from_ep": 63,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Flying Titan",
-      "Jaw Titan"
     ]
   },
   {
@@ -600,9 +531,6 @@
         "from_ep": 63,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Armored Titan Candidate"
     ]
   },
   {
@@ -628,10 +556,6 @@
         "from_ep": 75,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Cart Titan",
-      "Cart"
     ]
   },
   {
@@ -657,10 +581,6 @@
         "from_ep": 78,
         "lane": "warriors"
       }
-    ],
-    "aliases": [
-      "Jaw Titan",
-      "Pock"
     ]
   }
 ]

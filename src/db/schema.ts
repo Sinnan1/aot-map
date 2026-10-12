@@ -63,7 +63,6 @@ export const nodes = pgTable(
     because: text("because"),
     setupRef: text("setup_ref").references((): AnyPgColumn => nodes.id),
     voidPos: jsonb("void_pos").$type<{ x: number; y: number; z: number } | null>(),
-    aliases: text("aliases").array().notNull().default([]),
 
     // Reference copy, server-side only. NOT in the gated client payload: bio and tags are
     // written with whole-series knowledge (Hange's bio mentions succeeding Erwin; Eren's tags
@@ -95,6 +94,32 @@ export const laneHistory = pgTable(
     laneId: text("lane_id").notNull().references(() => lanes.id),
   },
   (t) => [primaryKey({ columns: [t.characterId, t.fromEp] })],
+);
+
+/**
+ * Alternative names, gated independently of the node they belong to.
+ *
+ * from_ep is a spoiler gate, not a bookkeeping column: "Founding Titan" belongs to a node visible
+ * from ep 1 but is not safe to read until 80. Never earlier than the node's watch_ep (the lint
+ * enforces it). Keyed on (node_id, alias) because one name can be held by several characters on
+ * different timelines.
+ *
+ * Server-side only: the client gets alias text through gated search, never through the graph
+ * payload. See nodeAliasesSearch in src/gate/queries.ts.
+ */
+export const nodeAliases = pgTable(
+  "node_aliases",
+  {
+    id: serial("id").primaryKey(),
+    nodeId: text("node_id").notNull().references(() => nodes.id),
+    alias: text("alias").notNull(),
+    fromEp: integer("from_ep").notNull(),
+  },
+  (t) => [
+    uniqueIndex("node_aliases_node_alias_uidx").on(t.nodeId, t.alias),
+    index("node_aliases_from_ep_idx").on(t.fromEp),
+    index("node_aliases_alias_idx").on(t.alias),
+  ],
 );
 
 export const edges = pgTable(
