@@ -65,15 +65,29 @@ describe("titan nodes", () => {
   it("gates Titan aliases independently of their Titan node", () => {
     const c = sample();
     const titanAliases = c.aliases.filter((a) => a.node_id.startsWith("titan_"));
-    expect(titanAliases).toHaveLength(26);
+    expect(titanAliases).toHaveLength(47);
 
     // Founding Titan is visible at ep 43, but "Progenitor Titan" is Marley/Kruger framing (ep 58).
     const founding = titanAliases.filter((a) => a.node_id === "titan_founding").map((a) => [a.alias, a.from_ep]);
-    expect(founding).toEqual([["Founder", 43], ["The Coordinate", 43], ["Progenitor Titan", 58]]);
+    expect(founding).toEqual(
+      expect.arrayContaining([
+        ["Founder", 43],
+        ["The Founder", 43],
+        ["The Coordinate", 43],
+        ["Progenitor Titan", 58],
+        ["始祖の巨人", 43],
+        ["Shiso no Kyojin", 43],
+      ]),
+    );
 
     // Colossal Titan is visible at ep 1, but "God of Destruction" is Marley-arc framing (ep 62).
     const colossal = titanAliases.filter((a) => a.node_id === "titan_colossal").map((a) => [a.alias, a.from_ep]);
-    expect(colossal).toEqual([["Colossus Titan", 1], ["God of Destruction", 62]]);
+    expect(colossal).toEqual([
+      ["Colossus Titan", 1],
+      ["God of Destruction", 62],
+      ["超大型巨人", 1],
+      ["Chōōgata Kyojin", 1],
+    ]);
   });
 
   it("lints clean and flags spoiler copy in Titan summaries", () => {
@@ -99,6 +113,7 @@ describe("concept nodes", () => {
       expect(cs.map((n) => n.id), id).toContain(id);
     }
     expect(concept(c, "concept_the_paths").importance).toBe("core");
+    expect(concept(c, "concept_titan_inheritance").importance).toBe("core");
     expect(concept(c, "concept_great_titan_war").importance).toBe("major");
     expect(cs.every((n) => !("tier" in n) && !("lane_history" in n))).toBe(true);
   });
@@ -118,7 +133,7 @@ describe("concept nodes", () => {
     expect(concept(c, "concept_the_rumbling").watch_ep).toBe(69);
 
     const conceptAliases = c.aliases.filter((a) => a.node_id.startsWith("concept_"));
-    expect(conceptAliases).toHaveLength(33);
+    expect(conceptAliases).toHaveLength(59);
   });
 });
 
@@ -153,7 +168,7 @@ describe("location nodes", () => {
     expect(location(c, "location_reiss_chapel").summary).not.toMatch(/titan succession/i);
 
     const locAliases = c.aliases.filter((a) => a.node_id.startsWith("location_"));
-    expect(locAliases).toHaveLength(31);
+    expect(locAliases).toHaveLength(54);
   });
 });
 
@@ -202,7 +217,13 @@ describe("the gate and search seal Titan, Concept, and Location nodes and aliase
 
     expect(await aliasIds("God of Destruction", 1)).toEqual([]);
     expect(await aliasIds("God of Destruction", 61)).toEqual([]);
-    expect(await aliasIds("God of Destruction", 62)).toEqual(["titan_colossal"]);
+    expect(await aliasIds("God of Destruction", 62)).toEqual(["titan_colossal", "char_bertholdt"]);
+
+    expect(await aliasIds("進撃の巨人", 25)).toEqual([]);
+    expect(await aliasIds("進撃の巨人", 58)).toEqual(["char_eren", "titan_attack"]);
+
+    expect(await aliasIds("Curse of Ymir", 43)).toEqual([]);
+    expect(await aliasIds("Curse of Ymir", 58)).toEqual(["concept_titan_inheritance"]);
 
     expect(await aliasIds("Intersection of Paths", 37)).toEqual([]);
     expect(await aliasIds("Intersection of Paths", 58)).toEqual(["concept_coordinate"]);
@@ -220,9 +241,90 @@ describe("the gate and search seal Titan, Concept, and Location nodes and aliase
   it("never leaks Titan, Concept, or Location bio, tags, or future memory spoilers to the client", async () => {
     for (const progress of [1, 25, 43, 58, 65, 89]) {
       const json = JSON.stringify(await loadGatedGraph(db, makeGate({ progress })));
-      for (const leak of ["future inheritors", "karl_fritz", "nine_titans", "curse_of_ymir", "iceburst_stone", "aerosolized spinal fluid", "#8E44AD", "#00e5ff"]) {
+      for (const leak of ["future inheritors", "karl_fritz", "nine_titans", "curse_of_ymir", "iceburst_stone", "inhaled spinal fluid gas", "#8E44AD", "#8B4513"]) {
         expect(json, `progress ${progress} leaked ${leak}`).not.toContain(leak);
       }
     }
   });
+
+  it("loads all 63 Character/Titan/Concept/Faction/Location relationships, gates by max(visible_from_ep, endpoints), and clamps expires_ep", async () => {
+    const c = sample();
+    expect(c.relationships).toHaveLength(63);
+
+    // At ep 22, Annie is not yet unmasked (watch_ep 23), so rel_annie_inherits_female_titan is sealed.
+    const at22 = await loadGatedGraph(db, makeGate({ progress: 22 }));
+    expect(at22.relationships).toEqual([]);
+
+    // At ep 23, Annie's Female Titan inheritance unlocks, with future expiresEp (89) clamped to null.
+    const at23 = await loadGatedGraph(db, makeGate({ progress: 23 }));
+    expect(at23.relationships?.map((r) => r.id)).toEqual(["rel_annie_inherits_female_titan"]);
+    expect(at23.relationships?.[0]?.expiresEp).toBeNull();
+
+    // At ep 31, Bertholdt's Colossal Titan inheritance and the Warriors' infiltration of the Survey Corps unlock.
+    const at31 = await loadGatedGraph(db, makeGate({ progress: 31 }));
+    const bertholdtRel31 = at31.relationships?.find((r) => r.id === "rel_bertholdt_inherits_colossal_titan");
+    expect(bertholdtRel31).toBeDefined();
+    expect(bertholdtRel31?.expiresEp).toBeNull();
+    expect(at31.relationships?.some((r) => r.id === "rel_warrior_unit_infiltrates_survey_corps")).toBe(true);
+    // rel_warrior_unit_infiltrates_paradis has visible_from_ep 31, but location_paradis_island unlocks at 57.
+    expect(at31.relationships?.some((r) => r.id === "rel_warrior_unit_infiltrates_paradis")).toBe(false);
+
+    const at55 = await loadGatedGraph(db, makeGate({ progress: 55 }));
+    const bertholdtRel55 = at55.relationships?.find((r) => r.id === "rel_bertholdt_inherits_colossal_titan");
+    expect(bertholdtRel55?.expiresEp).toBe(55);
+
+    // At ep 57, location_paradis_island unlocks, so Paradis-targeted relationships (e.g. rel_warrior_unit_infiltrates_paradis) open.
+    const at57 = await loadGatedGraph(db, makeGate({ progress: 57 }));
+    expect(at57.relationships?.some((r) => r.id === "rel_warrior_unit_infiltrates_paradis")).toBe(true);
+    expect(at57.relationships?.some((r) => r.id === "rel_marley_enemy_of_paradis")).toBe(true);
+    // Zeke's Beast Titan inheritance has visible_from_ep 57, but char_zeke unlocks at 74, so it stays sealed at 57 and opens at 74.
+    expect(at57.relationships?.some((r) => r.id === "rel_zeke_inherits_beast_titan")).toBe(false);
+    const at74 = await loadGatedGraph(db, makeGate({ progress: 74 }));
+    expect(at74.relationships?.some((r) => r.id === "rel_zeke_inherits_beast_titan")).toBe(true);
+
+    // At ep 89 (rewatch), all 63 relationships are visible and true_from_ep / source_url stay server-side.
+    const full = await loadGatedGraph(db, makeGate({ rewatch: true }));
+    expect(full.relationships).toHaveLength(63);
+    const json = JSON.stringify(full.relationships);
+    expect(json).not.toContain("true_from_ep");
+    expect(json).not.toContain("trueFromEp");
+    expect(json).not.toContain("sourceUrl");
+  });
+
+  it("loads all S1-S4 events and 83 event_participants rows, sealing hidden_actor participants until visible_from_ep", async () => {
+    const c = sample();
+    expect(c.nodes.filter((n) => n.type === "event")).toHaveLength(25);
+    expect(c.event_participants).toHaveLength(83);
+
+    // At ep 1, Fall of Shiganshina shows Eren, Mikasa, Hannes, and Carla, but withholds Reiner and Bertholdt (hidden_actor, ep 31).
+    const at1 = await loadGatedGraph(db, makeGate({ progress: 1 }));
+    const shiganshina1 = at1.eventParticipants?.filter((ep) => ep.eventId === "evt_fall_of_shiganshina").map((ep) => ep.id);
+    expect(shiganshina1).toEqual([
+      "fall_of_shiganshina_carla_yeager",
+      "fall_of_shiganshina_eren_yeager",
+      "fall_of_shiganshina_hannes",
+      "fall_of_shiganshina_mikasa_ackerman",
+    ]);
+
+    // At ep 31, Reiner and Bertholdt's hidden_actor rows in Fall of Shiganshina and Trost Attack unlock alongside Warrior Reveal.
+    const at31 = await loadGatedGraph(db, makeGate({ progress: 31 }));
+    const shiganshina31 = at31.eventParticipants?.filter((ep) => ep.eventId === "evt_fall_of_shiganshina").map((ep) => ep.id);
+    expect(shiganshina31).toContain("fall_of_shiganshina_reiner_braun");
+    expect(shiganshina31).toContain("fall_of_shiganshina_bertolt_hoover");
+    expect(at31.eventParticipants?.some((ep) => ep.id === "trost_attack_bertolt_hoover")).toBe(true);
+    expect(at31.eventParticipants?.filter((ep) => ep.eventId === "evt_reiner_and_bertholdt_reveal")).toHaveLength(5);
+
+    // At ep 65, Raid on Liberio opens with Eren, Mikasa, and Lara Tybur, while Zeke's hidden_actor defection (ep 67) and Sasha's death (ep 67) stay sealed until ep 67.
+    const at65 = await loadGatedGraph(db, makeGate({ progress: 65 }));
+    const liberio65 = at65.eventParticipants?.filter((ep) => ep.eventId === "evt_raid_on_liberio").map((ep) => ep.id);
+    expect(liberio65).toEqual(["raid_on_liberio_eren_yeager", "raid_on_liberio_lara_tybur", "raid_on_liberio_mikasa_ackerman"]);
+    const at67 = await loadGatedGraph(db, makeGate({ progress: 67 }));
+    expect(at67.eventParticipants?.filter((ep) => ep.eventId === "evt_raid_on_liberio")).toHaveLength(8);
+
+    // In rewatch mode, all 83 event participant rows are present and sourceUrl stays server-side.
+    const full = await loadGatedGraph(db, makeGate({ rewatch: true }));
+    expect(full.eventParticipants).toHaveLength(83);
+    expect(JSON.stringify(full.eventParticipants)).not.toContain("sourceUrl");
+  });
 });
+

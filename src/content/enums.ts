@@ -19,9 +19,46 @@ export const EPISODE_TYPES = ["normal", "premiere", "finale", "reveal", "special
  */
 export const IMPORTANCE = ["core", "major", "minor"] as const;
 
+export const RELATIONSHIP_TYPES = [
+  "INHERITS_TITAN",
+  "RESTRICTED_BY",
+  "REQUIRES",
+  "ENABLES",
+  "CONTROLS",
+  "USED_BY",
+  "USES",
+  "CONNECTED_THROUGH_PATHS",
+  "MEMBER_OF",
+  "LEADS",
+  "ENEMY_OF",
+  "INFILTRATES",
+  "OPPOSES",
+  "OVERTHROWS",
+  "REBELS_AGAINST",
+  "NEGOTIATES_WITH",
+  "ALLIED_WITH",
+] as const;
+
+export const EVENT_TYPES = ["invasion", "battle", "decision", "reveal", "coup", "political", "ritual", "memory"] as const;
+
+export const PARTICIPANT_ROLES = [
+  "primary",
+  "secondary",
+  "opponent",
+  "victim",
+  "hidden_actor",
+  "observer",
+  "memory_of",
+  "beneficiary",
+  "cause",
+] as const;
+
 export type Confidence = (typeof CONFIDENCE)[number];
 export type EdgeType = (typeof EDGE_TYPES)[number];
 export type KState = (typeof KNOWLEDGE_STATES)[number];
 export type DepthLayer = (typeof DEPTH_LAYERS)[number];
 export type EpisodeType = (typeof EPISODE_TYPES)[number];
 export type Importance = (typeof IMPORTANCE)[number];
+export type RelationshipType = (typeof RELATIONSHIP_TYPES)[number];
+export type EventType = (typeof EVENT_TYPES)[number];
+export type ParticipantRole = (typeof PARTICIPANT_ROLES)[number];

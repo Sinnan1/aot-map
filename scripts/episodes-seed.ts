@@ -22,8 +22,14 @@ async function main(): Promise<void> {
   // the UI cannot describe.
   const gateValues = (c: ContentSet): number[] => [
     ...c.lanes.map((l) => l.watch_ep),
-    ...c.nodes.map((n) => n.watch_ep),
+    ...c.nodes.flatMap((n) => [
+      n.watch_ep,
+      ...(n.type === "event" && n.episode_abs_start != null ? [n.episode_abs_start] : []),
+      ...(n.type === "event" && n.episode_abs_end != null ? [n.episode_abs_end] : []),
+    ]),
     ...c.edges.map((e) => e.watch_ep),
+    ...(c.relationships ?? []).flatMap((r) => [r.true_from_ep, r.visible_from_ep, ...(r.expires_ep === null ? [] : [r.expires_ep])]),
+    ...(c.event_participants ?? []).map((ep) => ep.visible_from_ep),
     ...c.facts.map((f) => f.revealed_ep),
     ...c.knowledge_states.flatMap((k) => [k.from_ep, ...(k.to_ep === null ? [] : [k.to_ep])]),
     ...c.goals.flatMap((g) => [g.from_ep, ...(g.to_ep === null ? [] : [g.to_ep])]),

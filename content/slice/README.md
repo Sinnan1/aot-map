@@ -67,15 +67,31 @@ The 12 Concept nodes (`concept_*`, `type: "concept"`) came from the batch 3C exp
 The 13 Location nodes (`location_*`, `type: "location"`) came from the geography export (`cluster_id = geography`). Like characters, Titans, and Concepts, they live in `nodes.json` with `importance` instead of `tier` and server-only `bio`/`tags`/`icon`/`color`/`source_url`:
 
 - **Early `short_description` (`summary`) rewrites:**
-  - `location_wall_maria` (Ep 1): removed `"Paradis Island"` (Ep 57).
-  - `location_trost_district` (Ep 2): removed `"site of humanity's first victory"` (the Trost boulder victory happens in Ep 13).
-  - `location_ragako_village` (Ep 27): removed `"turned into Titans by the Beast Titan"` (the villagers' transformation is deduced in Ep 37 and Zeke's method in Ep 74).
-  - `location_reiss_chapel` (Ep 40): removed `"Titan succession"` (an Ep 43 concept alias and ritual reveal).
+  - `location_shiganshina` (Ep 1): removed `"Mikasa, and Armin"` (both names unlock at Ep 3).
+  - `location_wall_maria` (Ep 1): removed `"on Paradis"` (Ep 57).
+  - `location_trost_district` (Ep 2): removed `"site of humanity's first counterattack victory"` (the Trost boulder victory happens in Ep 13).
+  - `location_reiss_chapel` (Ep 40): removed `"crystal cavern"` (an Ep 42 location alias).
+  - `location_paradis_island` (Ep 57): replaced `"King Karl Fritz"` with `"the First King"` (Kruger names Karl Fritz in Ep 58).
 - **Delayed Location alias:** `"Crystal Cavern"@42` on `location_reiss_chapel@40`.
+
+## Character Phases (`goals.json`)
+
+`goals.json` holds the 50 character psychological phases (`entity_states.csv`) across 13 characters — Eren (5), Armin (5), Mikasa (5), Reiner (5), Zeke (4), Historia (4), Annie (4), Grisha (4), Gabi (3), Falco (3), Pieck (3), Bertholdt (3), and Porco (2):
+
+- **Half-open intervals (`from_ep` / `to_ep`):** Inclusive `until_ep` ranges from the CSV (`1..8`, `9..37`, etc.) are stored as half-open `[from_ep, to_ep)` intervals (`to_ep = until_ep + 1`, or `null` through Ep 89) so `activeGoals()` resolves a single phase at every episode with no gaps or overlaps (`STATE_OVERLAP`).
+- **Gate alignment:** Phase 1 `from_ep` values are aligned to each character's `watch_ep` where the character unlocks inside that phase (`char_armin@3`, `char_mikasa@3`, `char_reiner@17`, `char_historia@30`, `char_gabi@63`, `char_falco@63`), while pre-reveal phases for Annie (`23`), Bertholdt (`31`), Grisha (`48`), Zeke (`74`), Pieck (`75`), and Porco (`78`) remain sealed behind each character's `watch_ep` in `loadGatedGraph()`.
+- **Client vs. server-only fields:** `display_label`, `text` (`motive`), `fear`, and `belief` are spoiler-rewritten for their phase gate and shipped in `CGoal`; `secret` and `spoiler_notes` contain end-of-phase or whole-series reveals and stay server-side only in `character_goals`.
+
+## Relationships (`relationships.json`)
+
+`relationships.json` holds the 63 Character, Titan, Concept, Faction/Lane, and Location relationships (`rel_*`) across 17 `relationship_type` values (`INHERITS_TITAN`, `RESTRICTED_BY`, `REQUIRES`, `ENABLES`, `CONTROLS`, `USED_BY`, `USES`, `CONNECTED_THROUGH_PATHS`, `MEMBER_OF`, `LEADS`, `ENEMY_OF`, `INFILTRATES`, `OPPOSES`, `OVERTHROWS`, `REBELS_AGAINST`, `NEGOTIATES_WITH`, `ALLIED_WITH`):
+
+- **Separate from event `edges.json`:** Event edges (`causes`, `alliance`, `secret`) connect `evt_*` nodes on the timeline ribbon, while `relationships.json` connects non-event entities (`char_*`, `titan_*`, `concept_*`, `location_*`, and faction lanes in `lanes.json`).
+- **Dual-gated visibility & expiry clamping:** Each row carries `true_from_ep` (in-universe start, kept server-side), `visible_from_ep`, and `expires_ep`. `loadGatedGraph()` gates each relationship by `max(visible_from_ep, source.watch_ep, target.watch_ep)` and clamps `expires_ep > progress` to `null` so a viewer at Ep 31 does not see that Bertholdt's Colossal Titan tenure ends at Ep 55.
 
 ## Aliases
 
-`aliases.json` holds the 132 alternative names (42 character aliases + 26 Titan aliases + 33 Concept aliases + 31 Location aliases), one row per `(node_id, alias)`, each with its own `from_ep` (trivial `"The <Title>"` prefixes on Titan rows are omitted since `searchGated` matches `nodes.title` directly).
+`aliases.json` holds the 293 alternative names (133 character aliases + 47 Titan aliases + 59 Concept aliases + 54 Location aliases), including English, Japanese Kanji/Katakana, and Romaji variants, one row per `(node_id, alias)`, each with its own `from_ep`.
 
 Names are gated **independently of their node**, because the safe episode for a name is usually much later than
 the episode the entity appears: Eren is visible from ep 1, but "Attack Titan" is not safe until 25 and

@@ -26,7 +26,7 @@ export function lintContent(c: ContentSet): LintIssue[] {
 
   // 1. Unique ids
   const seen = new Set<string>();
-  for (const id of [...c.lanes, ...c.nodes, ...c.edges, ...c.facts].map((x) => x.id)) {
+  for (const id of [...c.lanes, ...c.nodes, ...c.edges, ...c.facts, ...(c.relationships ?? []), ...(c.event_participants ?? [])].map((x) => x.id)) {
     if (seen.has(id)) error("DUPLICATE_ID", id, "id is used more than once");
     seen.add(id);
   }
@@ -39,6 +39,14 @@ export function lintContent(c: ContentSet): LintIssue[] {
       if (!lane) error("REF_MISSING", n.id, `faction_lane "${n.faction_lane}" does not exist`);
       else if (n.watch_ep < lane.watch_ep)
         error("LANE_NOT_UNLOCKED", n.id, `sits in lane "${lane.id}" which unlocks at ep ${lane.watch_ep}, after this node (ep ${n.watch_ep})`);
+
+      if (n.episode_abs_start != null && n.episode_abs_end != null && n.episode_abs_end < n.episode_abs_start)
+        error("RANGE", n.id, "episode_abs_end must not be before episode_abs_start");
+
+      if (n.location_id) {
+        const loc = nodes.get(n.location_id);
+        if (!loc || loc.type !== "location") error("REF_MISSING", n.id, `location_id "${n.location_id}" is not a location`);
+      }
 
       if (n.setup_ref) {
         const s = nodes.get(n.setup_ref);
@@ -109,6 +117,31 @@ export function lintContent(c: ContentSet): LintIssue[] {
     if (MULTI_SENTENCE.test(e.why_text)) warn("ONE_SENTENCE", e.id, "'why_text' should be one sentence");
   }
 
+  // 3b. Relationships
+  const entityGate = (id: string): { watch_ep: number } | undefined => nodes.get(id) ?? lanes.get(id);
+  for (const r of c.relationships ?? []) {
+    const src = entityGate(r.source_id);
+    const dst = entityGate(r.target_id);
+    if (!src || !dst) {
+      error("REF_MISSING", r.id, `relationship endpoint missing (${!src ? r.source_id : r.target_id})`);
+      continue;
+    }
+    if (r.source_id === r.target_id) error("SELF_EDGE", r.id, "relationship points at itself");
+    if (r.expires_ep !== null && r.expires_ep < r.true_from_ep)
+      error("RANGE", r.id, "relationship expires_ep must not be before true_from_ep");
+    if (MULTI_SENTENCE.test(r.description)) warn("ONE_SENTENCE", r.id, "'description' should be one sentence");
+  }
+
+  // 3c. Event participants
+  for (const ep of c.event_participants ?? []) {
+    const evt = nodes.get(ep.event_id);
+    if (!evt || evt.type !== "event") {
+      error("REF_MISSING", ep.id, `event_participant event_id "${ep.event_id}" is not an event`);
+      continue;
+    }
+    if (MULTI_SENTENCE.test(ep.notes)) warn("ONE_SENTENCE", ep.id, "'notes' should be one sentence");
+  }
+
   // 4. Knowledge states and goals
   const ranges = new Map<string, Array<[number, number]>>();
   for (const k of c.knowledge_states) {
@@ -132,11 +165,25 @@ export function lintContent(c: ContentSet): LintIssue[] {
     list.push([k.from_ep, end]);
     ranges.set(key, list);
   }
+  const goalRanges = new Map<string, Array<[number, number]>>();
   for (const g of c.goals) {
+    const key = g.id ?? g.character;
     const ch = nodes.get(g.character);
-    if (!ch || ch.type !== "character") error("REF_MISSING", g.character, "goal character does not exist");
-    else if (g.from_ep < ch.watch_ep) error("GATE_ORDER", g.character, `goal starts at ep ${g.from_ep}, before the character appears (ep ${ch.watch_ep})`);
-    if (g.to_ep !== null && g.to_ep <= g.from_ep) error("RANGE", g.character, "goal to_ep must be greater than from_ep");
+    if (!ch || ch.type !== "character") error("REF_MISSING", key, "goal character does not exist");
+    else if (!g.phase_name && g.from_ep < ch.watch_ep)
+      error("GATE_ORDER", key, `goal starts at ep ${g.from_ep}, before the character appears (ep ${ch.watch_ep})`);
+    if (g.to_ep !== null && g.to_ep <= g.from_ep) error("RANGE", key, "goal to_ep must be greater than from_ep");
+    if (g.phase_name) {
+      const list = goalRanges.get(g.character) ?? [];
+      const end = g.to_ep ?? Infinity;
+      if (list.some(([a, b]) => g.from_ep < b && a < end))
+        error("STATE_OVERLAP", key, `overlapping phase ranges for ${g.character}`);
+      list.push([g.from_ep, end]);
+      goalRanges.set(g.character, list);
+    }
+    if (MULTI_SENTENCE.test(g.text)) warn("ONE_SENTENCE", key, "goal 'text' should be one sentence");
+    if (g.fear && MULTI_SENTENCE.test(g.fear)) warn("ONE_SENTENCE", key, "goal 'fear' should be one sentence");
+    if (g.belief && MULTI_SENTENCE.test(g.belief)) warn("ONE_SENTENCE", key, "goal 'belief' should be one sentence");
   }
 
   // 5. Spoiler lint: copy may not mention anything with a later watch_ep.
@@ -190,8 +237,28 @@ export function lintContent(c: ContentSet): LintIssue[] {
     }
   }
   for (const e of c.edges) scan(e.id, e.watch_ep, "why_text", e.why_text);
+  for (const r of c.relationships ?? []) {
+    const src = entityGate(r.source_id);
+    const dst = entityGate(r.target_id);
+    const gateEp = Math.max(r.visible_from_ep, src?.watch_ep ?? 1, dst?.watch_ep ?? 1);
+    scan(r.id, gateEp, "label", r.label);
+    scan(r.id, gateEp, "description", r.description);
+  }
+  for (const ep of c.event_participants ?? []) {
+    const evt = nodes.get(ep.event_id);
+    const gateEp = Math.max(ep.visible_from_ep, evt?.watch_ep ?? 1);
+    scan(ep.id, gateEp, "notes", ep.notes);
+  }
   for (const f of c.facts) scan(f.id, f.revealed_ep, "text", f.text);
-  for (const g of c.goals) scan(g.character, g.from_ep, "goal", g.text);
+  for (const g of c.goals) {
+    const ch = nodes.get(g.character);
+    const gateEp = ch ? Math.max(g.from_ep, ch.watch_ep) : g.from_ep;
+    const key = g.id ?? g.character;
+    scan(key, gateEp, "display_label", g.display_label);
+    scan(key, gateEp, "goal", g.text);
+    scan(key, gateEp, "fear", g.fear);
+    scan(key, gateEp, "belief", g.belief);
+  }
 
   // 6. STALE_EDGE: an edge gated far later than both of its endpoints reads as broken UI -- two
   // visible nodes sitting next to each other with no line. Warn, never error: a relationship may

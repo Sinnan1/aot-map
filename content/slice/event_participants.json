@@ -1,0 +1,749 @@
+[
+  {
+    "id": "fall_of_shiganshina_eren_yeager",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_eren",
+    "role": "victim",
+    "visible_from_ep": 1,
+    "notes": "Witnesses the destruction of his hometown and the loss of his mother.",
+    "source_url": "https://attackontitan.fandom.com/wiki/To_You,_in_2000_Years:_The_Fall_of_Shiganshina,_Part_1"
+  },
+  {
+    "id": "fall_of_shiganshina_carla_yeager",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_carla_yeager",
+    "role": "victim",
+    "visible_from_ep": 1,
+    "notes": "Trapped beneath the rubble of her home and eaten by the Smiling Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/To_You,_in_2000_Years:_The_Fall_of_Shiganshina,_Part_1"
+  },
+  {
+    "id": "fall_of_shiganshina_bertolt_hoover",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_bertholdt",
+    "role": "hidden_actor",
+    "visible_from_ep": 31,
+    "notes": "Breaches Wall Maria's outer gate in his Colossal Titan form.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "fall_of_shiganshina_reiner_braun",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_reiner",
+    "role": "hidden_actor",
+    "visible_from_ep": 31,
+    "notes": "Breaches the inner gate of Shiganshina in his Armored Titan form.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "fall_of_shiganshina_hannes",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_hannes",
+    "role": "secondary",
+    "visible_from_ep": 1,
+    "notes": "Rescues young Eren and Mikasa after freezing in fear before the Smiling Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/To_You,_in_2000_Years:_The_Fall_of_Shiganshina,_Part_1"
+  },
+  {
+    "id": "fall_of_shiganshina_mikasa_ackerman",
+    "event_id": "evt_fall_of_shiganshina",
+    "entity_id": "char_mikasa",
+    "role": "secondary",
+    "visible_from_ep": 1,
+    "notes": "Escapes Shiganshina alongside Eren.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Fall_of_Shiganshina_arc"
+  },
+  {
+    "id": "trost_attack_eren_yeager",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 5,
+    "notes": "Discovers his Titan power and successfully seals the breach with a boulder.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_for_Trost_District_arc"
+  },
+  {
+    "id": "trost_attack_bertolt_hoover",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_bertholdt",
+    "role": "hidden_actor",
+    "visible_from_ep": 31,
+    "notes": "Appears as the Colossal Titan to breach Trost's outer gate.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "trost_attack_armin_arlert",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_armin",
+    "role": "secondary",
+    "visible_from_ep": 5,
+    "notes": "Devises the military strategy to use Eren's Titan to plug the gate.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_for_Trost_District_arc"
+  },
+  {
+    "id": "trost_attack_mikasa_ackerman",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_mikasa",
+    "role": "secondary",
+    "visible_from_ep": 6,
+    "notes": "Protects retreating civilians and defends Eren during his transformation.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_for_Trost_District_arc"
+  },
+  {
+    "id": "trost_attack_dot_pyxis",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_dot_pyxis",
+    "role": "secondary",
+    "visible_from_ep": 11,
+    "notes": "Overrides fearful Garrison troops to authorize the Trost reclamation mission.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_for_Trost_District_arc"
+  },
+  {
+    "id": "trost_attack_levi_ackerman",
+    "event_id": "evt_trost_attack",
+    "entity_id": "char_levi",
+    "role": "secondary",
+    "visible_from_ep": 9,
+    "notes": "Arrives with the Scout vanguard to eliminate remaining Titans.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Struggle_for_Trost"
+  },
+  {
+    "id": "reiner_armored_reveal_reiner_braun",
+    "event_id": "evt_reiner_and_bertholdt_reveal",
+    "entity_id": "char_reiner",
+    "role": "primary",
+    "visible_from_ep": 31,
+    "notes": "Confesses to Eren atop Wall Rose that he is the Armored Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "reiner_armored_reveal_bertolt_hoover",
+    "event_id": "evt_reiner_and_bertholdt_reveal",
+    "entity_id": "char_bertholdt",
+    "role": "secondary",
+    "visible_from_ep": 31,
+    "notes": "Reveals himself as the Colossal Titan alongside Reiner.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "reiner_armored_reveal_eren_yeager",
+    "event_id": "evt_reiner_and_bertholdt_reveal",
+    "entity_id": "char_eren",
+    "role": "opponent",
+    "visible_from_ep": 31,
+    "notes": "Transforms into his Titan form to battle Reiner following the betrayal.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "reiner_armored_reveal_mikasa_ackerman",
+    "event_id": "evt_reiner_and_bertholdt_reveal",
+    "entity_id": "char_mikasa",
+    "role": "secondary",
+    "visible_from_ep": 31,
+    "notes": "Strikes both Reiner and Bertolt with blades before they transform.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "reiner_armored_reveal_hange_zoe",
+    "event_id": "evt_reiner_and_bertholdt_reveal",
+    "entity_id": "char_hange",
+    "role": "secondary",
+    "visible_from_ep": 31,
+    "notes": "Provides tactical command and directs Scout strikes on the Armored Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Warrior_(Episode)"
+  },
+  {
+    "id": "uprising_arc_erwin_smith",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_erwin_smith",
+    "role": "primary",
+    "visible_from_ep": 38,
+    "notes": "Engineers a bloodless military coup to overthrow the royal puppet regime.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Smoke_Signal_(Episode)"
+  },
+  {
+    "id": "uprising_arc_historia_reiss",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_historia",
+    "role": "primary",
+    "visible_from_ep": 38,
+    "notes": "Defies her father's manipulation, frees Eren, and is crowned queen.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Smoke_Signal_(Episode)"
+  },
+  {
+    "id": "uprising_arc_rod_reiss",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_rod_reiss",
+    "role": "opponent",
+    "visible_from_ep": 38,
+    "notes": "Attempts to force Historia to devour Eren before turning into a colossal monster.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Smoke_Signal_(Episode)"
+  },
+  {
+    "id": "uprising_arc_levi_ackerman",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_levi",
+    "role": "secondary",
+    "visible_from_ep": 38,
+    "notes": "Commands the Special Operations Squad against the Interior Military Police.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Smoke_Signal_(Episode)"
+  },
+  {
+    "id": "uprising_arc_kenny_ackerman",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_kenny_ackerman",
+    "role": "opponent",
+    "visible_from_ep": 38,
+    "notes": "Leads the Anti-Personnel Squad hunting the Survey Corps for Rod Reiss.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Smoke_Signal_(Episode)"
+  },
+  {
+    "id": "uprising_arc_eren_yeager",
+    "event_id": "evt_uprising_arc",
+    "entity_id": "char_eren",
+    "role": "victim",
+    "visible_from_ep": 38,
+    "notes": "Kidnapped by the interior police before unlocking the hardening ability.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Royal_Government_arc_(Anime)"
+  },
+  {
+    "id": "return_to_shiganshina_erwin_smith",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_erwin_smith",
+    "role": "primary",
+    "visible_from_ep": 49,
+    "notes": "Leads a fatal charge into the Beast Titan's rock barrage.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hero_(Episode)"
+  },
+  {
+    "id": "return_to_shiganshina_levi_ackerman",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_levi",
+    "role": "secondary",
+    "visible_from_ep": 49,
+    "notes": "Dismantles the Beast Titan in a devastating surprise ambush.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hero_(Episode)"
+  },
+  {
+    "id": "return_to_shiganshina_zeke_yeager",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_zeke",
+    "role": "opponent",
+    "visible_from_ep": 49,
+    "notes": "Decimates the Survey Corps ranks by hurling crushed boulders.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hero_(Episode)"
+  },
+  {
+    "id": "return_to_shiganshina_armin_arlert",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_armin",
+    "role": "secondary",
+    "visible_from_ep": 49,
+    "notes": "Sacrifices his body to the Colossal Titan's steam so Eren can attack.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hero_(Episode)"
+  },
+  {
+    "id": "return_to_shiganshina_eren_yeager",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 49,
+    "notes": "Seals Wall Maria and defeats Bertolt with Armin's distraction.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hero_(Episode)"
+  },
+  {
+    "id": "return_to_shiganshina_reiner_braun",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_reiner",
+    "role": "opponent",
+    "visible_from_ep": 49,
+    "notes": "Ambushed by Thunder Spears while defending the breached gate.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Return_to_Shiganshina_arc"
+  },
+  {
+    "id": "return_to_shiganshina_bertholdt_hoover",
+    "event_id": "evt_return_to_shiganshina",
+    "entity_id": "char_bertholdt",
+    "role": "opponent",
+    "visible_from_ep": 49,
+    "notes": "Detonates over Shiganshina as the Colossal Titan and is ultimately defeated.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Return_to_Shiganshina_arc"
+  },
+  {
+    "id": "basement_reveal_eren_yeager",
+    "event_id": "evt_basement_reveal",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 56,
+    "notes": "Unlocks the desk drawer in his childhood home to discover the photograph.",
+    "source_url": "https://attackontitan.fandom.com/wiki/That_Day_(Episode)"
+  },
+  {
+    "id": "basement_reveal_grisha_yeager",
+    "event_id": "evt_basement_reveal",
+    "entity_id": "char_grisha",
+    "role": "memory_of",
+    "visible_from_ep": 57,
+    "notes": "Leaves behind three journals explaining the truth about the outside world.",
+    "source_url": "https://attackontitan.fandom.com/wiki/That_Day_(Episode)"
+  },
+  {
+    "id": "basement_reveal_mikasa_ackerman",
+    "event_id": "evt_basement_reveal",
+    "entity_id": "char_mikasa",
+    "role": "observer",
+    "visible_from_ep": 56,
+    "notes": "Accompanies Eren into the basement to uncover Grisha's records.",
+    "source_url": "https://attackontitan.fandom.com/wiki/That_Day_(Episode)"
+  },
+  {
+    "id": "basement_reveal_hange_zoe",
+    "event_id": "evt_basement_reveal",
+    "entity_id": "char_hange",
+    "role": "observer",
+    "visible_from_ep": 56,
+    "notes": "Examines Grisha's diaries and reports their historical contents to the Queen.",
+    "source_url": "https://attackontitan.fandom.com/wiki/That_Day_(Episode)"
+  },
+  {
+    "id": "basement_reveal_levi_ackerman",
+    "event_id": "evt_basement_reveal",
+    "entity_id": "char_levi",
+    "role": "observer",
+    "visible_from_ep": 56,
+    "notes": "Secures the basement entrance and oversees the investigation.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Basement_(Episode)"
+  },
+  {
+    "id": "marley_mid_east_war_reiner_braun",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_reiner",
+    "role": "primary",
+    "visible_from_ep": 60,
+    "notes": "Destroys artillery fortifications at Fort Slava to protect the warrior cadets.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea_(Episode)"
+  },
+  {
+    "id": "marley_mid_east_war_zeke_yeager",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_zeke",
+    "role": "primary",
+    "visible_from_ep": 60,
+    "notes": "Obliterates the Mid-East Allied navy fleet with projectile artillery shells.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea_(Episode)"
+  },
+  {
+    "id": "marley_mid_east_war_gabi_braun",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_gabi",
+    "role": "secondary",
+    "visible_from_ep": 60,
+    "notes": "Destroys an armored train with hand grenades to protect Eldian soldiers.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea_(Episode)"
+  },
+  {
+    "id": "marley_mid_east_war_theo_magath",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_theo_magath",
+    "role": "secondary",
+    "visible_from_ep": 60,
+    "notes": "Commands the Marleyan ground forces and Warrior Unit at Fort Slava.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea_(Episode)"
+  },
+  {
+    "id": "marley_mid_east_war_falco_grice",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_falco",
+    "role": "secondary",
+    "visible_from_ep": 60,
+    "notes": "Serves on the front lines as a young cadet in the trenches.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea"
+  },
+  {
+    "id": "marley_mid_east_war_porco_galliard",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_porco",
+    "role": "secondary",
+    "visible_from_ep": 60,
+    "notes": "Destroys enemy artillery emplacements as the Jaw Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea"
+  },
+  {
+    "id": "marley_mid_east_war_pieck_finger",
+    "event_id": "evt_marley_mid_east_war",
+    "entity_id": "char_pieck",
+    "role": "secondary",
+    "visible_from_ep": 60,
+    "notes": "Provides mobile quadrupedal armor and machine-gun fire on the battlefield.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Other_Side_of_the_Sea"
+  },
+  {
+    "id": "declaration_of_war_willy_tybur",
+    "event_id": "evt_declaration_of_war",
+    "entity_id": "char_willy_tybur",
+    "role": "primary",
+    "visible_from_ep": 64,
+    "notes": "Delivers the speech declaring war on Paradis before being killed by Eren.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Declaration_of_War_(Episode)"
+  },
+  {
+    "id": "declaration_of_war_eren_yeager",
+    "event_id": "evt_declaration_of_war",
+    "entity_id": "char_eren",
+    "role": "opponent",
+    "visible_from_ep": 64,
+    "notes": "Emerges in Attack Titan form to kill Willy Tybur on stage.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Declaration_of_War_(Episode)"
+  },
+  {
+    "id": "declaration_of_war_reiner_braun",
+    "event_id": "evt_declaration_of_war",
+    "entity_id": "char_reiner",
+    "role": "observer",
+    "visible_from_ep": 64,
+    "notes": "Confronted by Eren in a basement beneath the festival stage.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Declaration_of_War_(Episode)"
+  },
+  {
+    "id": "declaration_of_war_falco_grice",
+    "event_id": "evt_declaration_of_war",
+    "entity_id": "char_falco",
+    "role": "secondary",
+    "visible_from_ep": 64,
+    "notes": "Unknowingly brings Reiner to the basement to meet Eren.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Declaration_of_War_(Episode)"
+  },
+  {
+    "id": "declaration_of_war_lara_tybur",
+    "event_id": "evt_declaration_of_war",
+    "entity_id": "char_lara_tybur",
+    "role": "secondary",
+    "visible_from_ep": 64,
+    "notes": "Transforms into the Tybur family's Titan following Willy's demise.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Declaration_of_War_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_eren_yeager",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 64,
+    "notes": "Eliminates Marley's military leadership and consumes the War Hammer Titan.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_lara_tybur",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_lara_tybur",
+    "role": "opponent",
+    "visible_from_ep": 65,
+    "notes": "Fights Eren as the War Hammer Titan before being crushed in the Jaw Titan's teeth.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_armin_arlert",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_armin",
+    "role": "secondary",
+    "visible_from_ep": 66,
+    "notes": "Transforms into the Colossal Titan to wipe out Marley's naval fleet.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_mikasa_ackerman",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_mikasa",
+    "role": "secondary",
+    "visible_from_ep": 65,
+    "notes": "Assists Eren by disabling the War Hammer Titan and rescuing him.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_sasha_braus",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_sasha",
+    "role": "victim",
+    "visible_from_ep": 67,
+    "notes": "Fatally shot by Gabi on the Survey Corps airship during withdrawal.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_gabi_braun",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_gabi",
+    "role": "opponent",
+    "visible_from_ep": 67,
+    "notes": "Boards the retreating airship and shoots Sasha.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_War_Hammer_Titan_(Episode)"
+  },
+  {
+    "id": "raid_on_liberio_levi_ackerman",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_levi",
+    "role": "primary",
+    "visible_from_ep": 66,
+    "notes": "Incapacitates the Beast Titan and coordinates the airship extraction.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Raid_on_Liberio_(Anime)"
+  },
+  {
+    "id": "raid_on_liberio_zeke_yeager",
+    "event_id": "evt_raid_on_liberio",
+    "entity_id": "char_zeke",
+    "role": "hidden_actor",
+    "visible_from_ep": 67,
+    "notes": "Stages his defeat to secretly extract to Paradis with the Scouts.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Raid_on_Liberio_(Anime)"
+  },
+  {
+    "id": "yeagerist_coup_floch_forster",
+    "event_id": "evt_yeagerist_coup",
+    "entity_id": "char_floch_forster",
+    "role": "primary",
+    "visible_from_ep": 71,
+    "notes": "Coordinates the assassination of Zachary and leads the Yeagerist takeover.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Guides_(Episode)"
+  },
+  {
+    "id": "yeagerist_coup_dhalis_zachary",
+    "event_id": "evt_yeagerist_coup",
+    "entity_id": "char_darius_zackly",
+    "role": "victim",
+    "visible_from_ep": 71,
+    "notes": "Killed by a bomb hidden inside his custom chair in his office.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Guides_(Episode)"
+  },
+  {
+    "id": "yeagerist_coup_eren_yeager",
+    "event_id": "evt_yeagerist_coup",
+    "entity_id": "char_eren",
+    "role": "beneficiary",
+    "visible_from_ep": 71,
+    "notes": "Escapes his prison cell using War Hammer powers to join the insurgents.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Guides_(Episode)"
+  },
+  {
+    "id": "yeagerist_coup_hange_zoe",
+    "event_id": "evt_yeagerist_coup",
+    "entity_id": "char_hange",
+    "role": "victim",
+    "visible_from_ep": 71,
+    "notes": "Detained at gunpoint by Floch along with the remaining military leaders.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Guides_(Episode)"
+  },
+  {
+    "id": "yeagerist_coup_dot_pyxis",
+    "event_id": "evt_yeagerist_coup",
+    "entity_id": "char_dot_pyxis",
+    "role": "victim",
+    "visible_from_ep": 73,
+    "notes": "Surrenders command after being poisoned with spinal fluid wine.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Savagery_(Episode)"
+  },
+  {
+    "id": "eren_zeke_contact_eren_yeager",
+    "event_id": "evt_contact_between_eren_and_zeke",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 78,
+    "notes": "Reaches Zeke's hand with his severed head right before dying.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Two_Brothers_(Episode)"
+  },
+  {
+    "id": "eren_zeke_contact_zeke_yeager",
+    "event_id": "evt_contact_between_eren_and_zeke",
+    "entity_id": "char_zeke",
+    "role": "primary",
+    "visible_from_ep": 78,
+    "notes": "Catches Eren's decapitated head to establish the royal blood link.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Two_Brothers_(Episode)"
+  },
+  {
+    "id": "eren_zeke_contact_gabi_braun",
+    "event_id": "evt_contact_between_eren_and_zeke",
+    "entity_id": "char_gabi",
+    "role": "opponent",
+    "visible_from_ep": 78,
+    "notes": "Decapitates Eren with an anti-Titan rifle bullet as he sprints toward Zeke.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Two_Brothers_(Episode)"
+  },
+  {
+    "id": "eren_zeke_contact_reiner_braun",
+    "event_id": "evt_contact_between_eren_and_zeke",
+    "entity_id": "char_reiner",
+    "role": "opponent",
+    "visible_from_ep": 76,
+    "notes": "Pins down Eren to prevent contact between the brothers.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Two_Brothers_(Episode)"
+  },
+  {
+    "id": "eren_zeke_contact_falco_grice",
+    "event_id": "evt_contact_between_eren_and_zeke",
+    "entity_id": "char_falco",
+    "role": "secondary",
+    "visible_from_ep": 78,
+    "notes": "Transforms into a pure Titan from Zeke's scream and consumes Porco Galliard.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Two_Brothers_(Episode)"
+  },
+  {
+    "id": "rumbling_starts_eren_yeager",
+    "event_id": "evt_rumbling_begins",
+    "entity_id": "char_eren",
+    "role": "primary",
+    "visible_from_ep": 80,
+    "notes": "Frees Ymir from royal submission and orders the Wall Titans to march.",
+    "source_url": "https://attackontitan.fandom.com/wiki/From_You,_2,000_Years_Ago_(Episode)"
+  },
+  {
+    "id": "rumbling_starts_ymir_fritz",
+    "event_id": "evt_rumbling_begins",
+    "entity_id": "char_ymir_fritz",
+    "role": "secondary",
+    "visible_from_ep": 80,
+    "notes": "Chooses to follow Eren's will rather than obeying the royal family.",
+    "source_url": "https://attackontitan.fandom.com/wiki/From_You,_2,000_Years_Ago_(Episode)"
+  },
+  {
+    "id": "rumbling_starts_zeke_yeager",
+    "event_id": "evt_rumbling_begins",
+    "entity_id": "char_zeke",
+    "role": "opponent",
+    "visible_from_ep": 80,
+    "notes": "Loses control of the Founder as Eren takes full possession of the power.",
+    "source_url": "https://attackontitan.fandom.com/wiki/From_You,_2,000_Years_Ago_(Episode)"
+  },
+  {
+    "id": "rumbling_starts_armin_arlelt",
+    "event_id": "evt_rumbling_begins",
+    "entity_id": "char_armin",
+    "role": "observer",
+    "visible_from_ep": 80,
+    "notes": "Hears Eren's telepathic declaration to all Subjects of Ymir.",
+    "source_url": "https://attackontitan.fandom.com/wiki/From_You,_2,000_Years_Ago_(Episode)"
+  },
+  {
+    "id": "rumbling_starts_mikasa_ackerman",
+    "event_id": "evt_rumbling_begins",
+    "entity_id": "char_mikasa",
+    "role": "observer",
+    "visible_from_ep": 80,
+    "notes": "Receives Eren's global telepathic broadcast as the walls collapse.",
+    "source_url": "https://attackontitan.fandom.com/wiki/From_You,_2,000_Years_Ago_(Episode)"
+  },
+  {
+    "id": "final_alliance_hange_zoe",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_hange",
+    "role": "primary",
+    "visible_from_ep": 83,
+    "notes": "Brokers peace between the Survey Corps and remaining Marleyan forces.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Night_of_the_End_(Episode)"
+  },
+  {
+    "id": "final_alliance_theo_magath",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 83,
+    "notes": "Cooperates with Hange to formulate a joint strategy to halt the Rumbling.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Night_of_the_End_(Episode)"
+  },
+  {
+    "id": "final_alliance_armin_arlert",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_armin",
+    "role": "secondary",
+    "visible_from_ep": 84,
+    "notes": "Helps mediate tensions during the campfire discussion in the forest.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Night_of_the_End_(Episode)"
+  },
+  {
+    "id": "final_alliance_reiner_braun",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_reiner",
+    "role": "secondary",
+    "visible_from_ep": 84,
+    "notes": "Confesses his remorse over destroying the walls to his former comrades.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Night_of_the_End_(Episode)"
+  },
+  {
+    "id": "final_alliance_annie_leonhart",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_annie",
+    "role": "secondary",
+    "visible_from_ep": 83,
+    "notes": "Joins the coalition after emerging from crystal hardening.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Night_of_the_End_(Episode)"
+  },
+  {
+    "id": "final_alliance_mikasa_ackerman",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_mikasa",
+    "role": "primary",
+    "visible_from_ep": 86,
+    "notes": "Breaches Yeagerist defensive lines around the harbor.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Retrospective_(Episode)"
+  },
+  {
+    "id": "final_alliance_floch_forster",
+    "event_id": "evt_global_alliance_forms",
+    "entity_id": "char_floch_forster",
+    "role": "opponent",
+    "visible_from_ep": 86,
+    "notes": "Leads the Yeagerist garrison trying to destroy the flying boat.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Retrospective_(Episode)"
+  },
+  {
+    "id": "final_battle_eren_yeager",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_eren",
+    "role": "opponent",
+    "visible_from_ep": 88,
+    "notes": "Battles his former friends in his gargantuan Founding Titan form.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_of_Heaven_and_Earth_(Episode)"
+  },
+  {
+    "id": "final_battle_mikasa_ackerman",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_mikasa",
+    "role": "primary",
+    "visible_from_ep": 88,
+    "notes": "Enters the Titan's mouth to decapitate Eren and end the Titan curse.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_of_Heaven_and_Earth_(Episode)"
+  },
+  {
+    "id": "final_battle_armin_arlert",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_armin",
+    "role": "primary",
+    "visible_from_ep": 88,
+    "notes": "Clashes with Eren's Colossal Titan and coordinates the final assault.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_of_Heaven_and_Earth_(Episode)"
+  },
+  {
+    "id": "final_battle_levi_ackerman",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_levi",
+    "role": "secondary",
+    "visible_from_ep": 88,
+    "notes": "Decapitates Zeke and creates an opening into Eren's Titan for Mikasa.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_of_Heaven_and_Earth_(Episode)"
+  },
+  {
+    "id": "final_battle_zeke_yeager",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_zeke",
+    "role": "secondary",
+    "visible_from_ep": 89,
+    "notes": "Rallies past Titan shifters to help the alliance before sacrificing himself.",
+    "source_url": "https://attackontitan.fandom.com/wiki/The_Battle_of_Heaven_and_Earth_(Episode)"
+  },
+  {
+    "id": "final_battle_reiner_braun",
+    "event_id": "evt_final_battle",
+    "entity_id": "char_reiner",
+    "role": "primary",
+    "visible_from_ep": 89,
+    "notes": "Restrains the Hallucigenia to prevent it from reconnecting with Eren.",
+    "source_url": "https://attackontitan.fandom.com/wiki/Toward_the_Tree_on_That_Hill_(Episode)"
+  }
+]

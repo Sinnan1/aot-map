@@ -1,4 +1,4 @@
-import type { Confidence, EdgeType, EpisodeType, KState } from "@/content/enums";
+import type { Confidence, EdgeType, EpisodeType, KState, ParticipantRole, RelationshipType } from "@/content/enums";
 
 /**
  * Everything here is what the CLIENT receives. It is already gated.
@@ -25,9 +25,38 @@ export interface CNode {
 }
 
 export interface CEdge { id: string; from: string; to: string; type: EdgeType; watchEp: number; confidence: Confidence; whyText: string }
+export interface CRelationship {
+  id: string;
+  sourceId: string;
+  targetId: string;
+  relationshipType: RelationshipType;
+  label: string;
+  visibleFromEp: number;
+  expiresEp: number | null;
+  confidence: Confidence;
+  description: string;
+}
+export interface CEventParticipant {
+  id: string;
+  eventId: string;
+  entityId: string;
+  role: ParticipantRole;
+  visibleFromEp: number;
+  notes: string;
+}
 export interface CFact { id: string; text: string; revealedEp: number }
 export interface CKnowledge { holder: string; fact: string; state: KState; fromEp: number; toEp: number | null; confidence: Confidence }
-export interface CGoal { character: string; text: string; fromEp: number; toEp: number | null; confidence: Confidence }
+export interface CGoal {
+  character: string;
+  phaseName?: string | null;
+  displayLabel?: string | null;
+  text: string;
+  fear?: string | null;
+  belief?: string | null;
+  fromEp: number;
+  toEp: number | null;
+  confidence: Confidence;
+}
 export interface CLaneStep { character: string; fromEp: number; lane: string }
 
 export interface GatedGraph {
@@ -37,6 +66,8 @@ export interface GatedGraph {
   lanes: CLane[];
   nodes: CNode[];
   edges: CEdge[];
+  relationships?: CRelationship[];
+  eventParticipants?: CEventParticipant[];
   facts: CFact[];
   knowledge: CKnowledge[];
   goals: CGoal[];

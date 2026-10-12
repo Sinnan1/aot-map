@@ -15,16 +15,16 @@ import type { CNode, CEpisode, GatedGraph, SearchHit } from "./types";
 export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
   const p = gate.progress;
   const base = { progress: p, theories: gate.theories, rewatch: gate.rewatch };
-  if (p < 1) return { ...base, lanes: [], nodes: [], edges: [], facts: [], knowledge: [], goals: [], laneHistory: [] };
+  if (p < 1) return { ...base, lanes: [], nodes: [], edges: [], relationships: [], eventParticipants: [], facts: [], knowledge: [], goals: [], laneHistory: [] };
 
   const conf = allowedConfidence(gate);
   const ch = alias(t.nodes, "ch");
   const nf = alias(t.nodes, "nf");
   const nt = alias(t.nodes, "nt");
-  const clampTo = (col: typeof t.knowledgeStates.toEp | typeof t.characterGoals.toEp) =>
+  const clampTo = (col: typeof t.knowledgeStates.toEp | typeof t.characterGoals.toEp | typeof t.relationships.expiresEp) =>
     sql<number | null>`case when ${col} > ${p} then null else ${col} end`;
 
-  const [laneRows, nodeRows, partRows, histRows, edgeRows, factRows, stateRows, goalRows] = await Promise.all([
+  const [laneRows, nodeRows, partRows, eventPartRows, histRows, edgeRows, relRows, factRows, stateRows, goalRows] = await Promise.all([
     db.select({ id: t.lanes.id, label: t.lanes.label, sort: t.lanes.sort }).from(t.lanes).where(lte(t.lanes.watchEp, p)).orderBy(t.lanes.sort),
 
     db
@@ -45,6 +45,20 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
       .where(and(lte(t.nodes.watchEp, p), lte(ch.watchEp, p), inArray(t.nodes.confidence, conf), inArray(ch.confidence, conf))),
 
     db
+      .select({
+        id: t.eventParticipants.id,
+        eventId: t.eventParticipants.eventId,
+        entityId: t.eventParticipants.entityId,
+        role: t.eventParticipants.role,
+        visibleFromEp: t.eventParticipants.visibleFromEp,
+        notes: t.eventParticipants.notes,
+      })
+      .from(t.eventParticipants)
+      .innerJoin(t.nodes, eq(t.nodes.id, t.eventParticipants.eventId))
+      .where(and(lte(t.eventParticipants.visibleFromEp, p), lte(t.nodes.watchEp, p), inArray(t.nodes.confidence, conf)))
+      .orderBy(t.eventParticipants.visibleFromEp, t.eventParticipants.id),
+
+    db
       .select({ character: t.laneHistory.characterId, fromEp: t.laneHistory.fromEp, lane: t.laneHistory.laneId })
       .from(t.laneHistory)
       .innerJoin(t.lanes, eq(t.lanes.id, t.laneHistory.laneId))
@@ -59,6 +73,22 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
       .innerJoin(nt, eq(nt.id, t.edges.toId))
       .where(and(lte(t.edges.watchEp, p), lte(nf.watchEp, p), lte(nt.watchEp, p), inArray(t.edges.confidence, conf), inArray(nf.confidence, conf), inArray(nt.confidence, conf))),
 
+    db
+      .select({
+        id: t.relationships.id,
+        sourceId: t.relationships.sourceId,
+        targetId: t.relationships.targetId,
+        relationshipType: t.relationships.relationshipType,
+        label: t.relationships.label,
+        visibleFromEp: t.relationships.visibleFromEp,
+        expiresEp: clampTo(t.relationships.expiresEp),
+        confidence: t.relationships.confidence,
+        description: t.relationships.description,
+      })
+      .from(t.relationships)
+      .where(and(lte(t.relationships.visibleFromEp, p), inArray(t.relationships.confidence, conf)))
+      .orderBy(t.relationships.visibleFromEp, t.relationships.id),
+
     db.select({ id: t.facts.id, text: t.facts.text, revealedEp: t.facts.revealedEp }).from(t.facts).where(lte(t.facts.revealedEp, p)),
 
     db
@@ -68,16 +98,28 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
       .where(and(lte(t.knowledgeStates.fromEp, p), lte(t.facts.revealedEp, p), inArray(t.knowledgeStates.confidence, conf))),
 
     db
-      .select({ character: t.characterGoals.characterId, text: t.characterGoals.text, fromEp: t.characterGoals.fromEp, toEp: clampTo(t.characterGoals.toEp), confidence: t.characterGoals.confidence })
+      .select({
+        character: t.characterGoals.characterId,
+        phaseName: t.characterGoals.phaseName,
+        displayLabel: t.characterGoals.displayLabel,
+        text: t.characterGoals.text,
+        fear: t.characterGoals.fear,
+        belief: t.characterGoals.belief,
+        fromEp: t.characterGoals.fromEp,
+        toEp: clampTo(t.characterGoals.toEp),
+        confidence: t.characterGoals.confidence,
+      })
       .from(t.characterGoals)
       .innerJoin(ch, eq(ch.id, t.characterGoals.characterId))
-      .where(and(lte(t.characterGoals.fromEp, p), lte(ch.watchEp, p), inArray(t.characterGoals.confidence, conf))),
+      .where(and(lte(t.characterGoals.fromEp, p), lte(ch.watchEp, p), inArray(t.characterGoals.confidence, conf)))
+      .orderBy(t.characterGoals.characterId, t.characterGoals.fromEp),
   ]);
 
   // assemble(): drop dangling references so nothing points at a node the gate removed.
   const nodeIds = new Set(nodeRows.map((n) => n.id));
   const charIds = new Set(nodeRows.filter((n) => n.type === "character").map((n) => n.id));
   const laneIds = new Set(laneRows.map((l) => l.id));
+  const entityIds = new Set([...nodeIds, ...laneIds]);
   const factIds = new Set(factRows.map((f) => f.id));
 
   const participants = new Map<string, string[]>();
@@ -91,12 +133,15 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
       setupRef: n.setupRef && nodeIds.has(n.setupRef) ? n.setupRef : null,
       participants: participants.get(n.id) ?? [],
     }));
+  const validNodeIds = new Set(nodes.map((n) => n.id));
 
   return {
     ...base,
     lanes: laneRows,
     nodes,
     edges: edgeRows,
+    relationships: relRows.filter((r) => entityIds.has(r.sourceId) && entityIds.has(r.targetId)),
+    eventParticipants: eventPartRows.filter((ep) => validNodeIds.has(ep.eventId)),
     facts: factRows,
     knowledge: stateRows.filter((k) => factIds.has(k.fact) && (charIds.has(k.holder) || laneIds.has(k.holder))),
     goals: goalRows.filter((g) => charIds.has(g.character)),

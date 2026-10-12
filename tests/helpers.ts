@@ -20,7 +20,9 @@ export async function makeDb(content: ContentSet): Promise<DB> {
 /** Sample content plus later-episode material that must stay hidden until its gate opens. */
 export function withFuture(): ContentSet {
   const c = structuredClone(sample());
-  c.lanes.push({ id: "yeagerists", label: "Yeagerists", sort: 4, watch_ep: 70 });
+  if (!c.lanes.some((l) => l.id === "yeagerists")) {
+    c.lanes.push({ id: "yeagerists", label: "Yeagerists", sort: 4, watch_ep: 70 });
+  }
   c.nodes.push(
     {
       id: "evt_late_event", type: "event", title: "Late Event", faction_lane: "yeagerists", watch_ep: 70, story_order: 2,

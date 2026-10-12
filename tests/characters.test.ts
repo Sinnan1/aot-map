@@ -36,7 +36,7 @@ describe("character nodes", () => {
   it("aliases live in aliases.json, gated independently of their node", () => {
     const c = sample();
     const charAliases = c.aliases.filter((a) => a.node_id.startsWith("char_"));
-    expect(charAliases).toHaveLength(42);
+    expect(charAliases).toHaveLength(133);
     expect(new Set(charAliases.map((a) => a.node_id))).toHaveProperty("size", 19);
     // The names moved out of nodes.json entirely.
     expect(JSON.stringify(c.nodes)).not.toContain('"aliases"');
@@ -129,10 +129,10 @@ describe("the gate seals the newly added characters", () => {
       const json = JSON.stringify(g);
       const erenJson = JSON.stringify(g.nodes.find((n) => n.id === "char_eren"));
       // Eren is visible from ep 1, so his own row must not smuggle the rest of the plot.
-      for (const leak of ["bio", "tags", "aliases", "Yeagerists", "#2e5a27"]) {
+      for (const leak of ["bio", "tags", "aliases", "#2e5a27"]) {
         expect(json, `progress ${progress} leaked ${leak}`).not.toContain(leak);
       }
-      for (const erenLeak of ["Founding Titan", "Attack Titan", "Rumbling"]) {
+      for (const erenLeak of ["Founding Titan", "Attack Titan", "Rumbling", "Yeagerists", "yeagerists"]) {
         expect(erenJson, `progress ${progress} char_eren leaked ${erenLeak}`).not.toContain(erenLeak);
       }
       if (progress < 43) {
@@ -141,6 +141,9 @@ describe("the gate seals the newly added characters", () => {
       }
       if (progress < 69) {
         expect(json, `progress ${progress} leaked Rumbling`).not.toContain("Rumbling");
+      }
+      if (progress < 70) {
+        expect(json, `progress ${progress} leaked Yeagerists`).not.toContain("Yeagerists");
       }
     }
   });
@@ -197,5 +200,62 @@ describe("the gate seals the newly added characters", () => {
     const db = await makeDb(sample());
     const g = await loadGatedGraph(db, makeGate({ rewatch: true }));
     expect(g.nodes.filter((n) => n.type === "character")).toHaveLength(19);
+  });
+
+  it("loads all 50 character phases into goals.json and gates secret and spoiler_notes server-side", async () => {
+    const { activeGoals } = await import("@/lib/lenses");
+    const c = sample();
+    const phases = c.goals.filter((g) => g.phase_name !== null);
+    expect(phases).toHaveLength(50);
+    expect(c.goals).toHaveLength(50);
+    expect(new Set(phases.map((p) => p.character))).toHaveProperty("size", 13);
+
+    const db = await makeDb(c);
+    // At progress 5, Eren is in phase 1 (Cadet Corps Trainee) and its future end-episode (9) is clamped to null.
+    const at5 = await loadGatedGraph(db, makeGate({ progress: 5 }));
+    const eren5 = activeGoals(at5, "char_eren", 5);
+    expect(eren5).toHaveLength(1);
+    expect(eren5[0]).toMatchObject({
+      character: "char_eren",
+      phaseName: "cadet_corps",
+      displayLabel: "Cadet Corps Trainee",
+      fromEp: 1,
+      toEp: null,
+    });
+    expect(eren5[0]?.fear).toContain("powerless behind the walls");
+    expect(eren5[0]?.belief).toContain("monstrous invaders");
+
+    // Zeke (74), Pieck (75), and Porco (78) stay sealed at progress 64.
+    const at64 = await loadGatedGraph(db, makeGate({ progress: 64 }));
+    expect(at64.goals.filter((g) => ["char_zeke", "char_pieck", "char_porco"].includes(g.character))).toEqual([]);
+    expect(activeGoals(at64, "char_gabi", 64)[0]?.phaseName).toBe("devoted_candidate");
+    expect(activeGoals(at64, "char_falco", 64)[0]?.phaseName).toBe("reluctant_candidate");
+
+    // In rewatch mode, every phase resolves cleanly at its episode and secret/spoiler_notes never leak.
+    const full = await loadGatedGraph(db, makeGate({ rewatch: true }));
+    expect(activeGoals(full, "char_eren", 8)[0]?.phaseName).toBe("cadet_corps");
+    expect(activeGoals(full, "char_eren", 9)[0]?.phaseName).toBe("scout_vanguard");
+    expect(activeGoals(full, "char_zeke", 50)[0]?.phaseName).toBe("warrior_warchief");
+    expect(activeGoals(full, "char_historia", 35)[0]?.phaseName).toBe("selfless_mask");
+    expect(activeGoals(full, "char_historia", 45)[0]?.phaseName).toBe("worst_girl");
+    expect(activeGoals(full, "char_annie", 30)[0]?.phaseName).toBe("crystallized_prisoner");
+    expect(activeGoals(full, "char_bertholdt", 52)[0]?.phaseName).toBe("resolved_destroyer");
+    expect(activeGoals(full, "char_grisha", 60)[0]?.phaseName).toBe("eldian_restorationist");
+    expect(activeGoals(full, "char_pieck", 55)[0]?.phaseName).toBe("cart_titan_scout");
+    expect(activeGoals(full, "char_porco", 70)[0]?.phaseName).toBe("vengeful_assailant");
+
+    const fullJson = JSON.stringify(full);
+    for (const secretLeak of [
+      "spoiler_notes",
+      "spoilerNotes",
+      "split-personality psychosis",
+      "Attempted suicide with a rifle",
+      "Azumabito clan",
+      "wine reserves with his own spinal fluid",
+      "orphaned refugee named Mia",
+      "psychically coerced him",
+    ]) {
+      expect(fullJson).not.toContain(secretLeak);
+    }
   });
 });

@@ -6,8 +6,23 @@
   },
   {
     "node_id": "char_eren",
+    "alias": "エレン・イェーガー",
+    "from_ep": 1
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Eren Iēgā",
+    "from_ep": 1
+  },
+  {
+    "node_id": "char_eren",
     "alias": "Attack Titan",
     "from_ep": 25
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "進撃の巨人",
+    "from_ep": 58
   },
   {
     "node_id": "char_eren",
@@ -15,9 +30,69 @@
     "from_ep": 80
   },
   {
+    "node_id": "char_eren",
+    "alias": "始祖の巨人",
+    "from_ep": 80
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "War Hammer Titan",
+    "from_ep": 66
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "戦槌の巨人",
+    "from_ep": 66
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Mr. Kruger",
+    "from_ep": 64
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "エレン・クルーガー",
+    "from_ep": 64
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Suicidal Blockhead",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "死に急ぎ野郎",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_eren",
+    "alias": "Usurper",
+    "from_ep": 64
+  },
+  {
     "node_id": "char_mikasa",
     "alias": "Mikasa Ackermann",
     "from_ep": 3
+  },
+  {
+    "node_id": "char_mikasa",
+    "alias": "ミカサ・アッカーマン",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_mikasa",
+    "alias": "Mikasa Akkāman",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_mikasa",
+    "alias": "Humanity's Strongest Woman",
+    "from_ep": 7
+  },
+  {
+    "node_id": "char_mikasa",
+    "alias": "Shogun Clan Successor",
+    "from_ep": 69
   },
   {
     "node_id": "char_armin",
@@ -26,8 +101,48 @@
   },
   {
     "node_id": "char_armin",
+    "alias": "アルミン・アルレルト",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "Arumin Arureruto",
+    "from_ep": 3
+  },
+  {
+    "node_id": "char_armin",
     "alias": "Colossal Titan",
     "from_ep": 55
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "超大型巨人",
+    "from_ep": 55
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "15th Commander of the Survey Corps",
+    "from_ep": 87
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "第15代調査兵団団長",
+    "from_ep": 87
+  },
+  {
+    "node_id": "char_armin",
+    "alias": "Hero of Shiganshina",
+    "from_ep": 56
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "ライナー・ブラウン",
+    "from_ep": 17
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "Rainā Buraun",
+    "from_ep": 17
   },
   {
     "node_id": "char_reiner",
@@ -36,8 +151,28 @@
   },
   {
     "node_id": "char_reiner",
+    "alias": "鎧の巨人",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_reiner",
     "alias": "Vice Chief Reiner",
     "from_ep": 84
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "Vice Captain of the Warriors",
+    "from_ep": 60
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "戦士隊副長",
+    "from_ep": 60
+  },
+  {
+    "node_id": "char_reiner",
+    "alias": "Shield of Marley",
+    "from_ep": 60
   },
   {
     "node_id": "char_bertholdt",
@@ -46,12 +181,62 @@
   },
   {
     "node_id": "char_bertholdt",
+    "alias": "Berthold Fubar",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "ベルトルト・フーバー",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "Berutoruto Hūbā",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_bertholdt",
     "alias": "Colossal Titan",
     "from_ep": 31
   },
   {
+    "node_id": "char_bertholdt",
+    "alias": "超大型巨人",
+    "from_ep": 31
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "God of Destruction",
+    "from_ep": 62
+  },
+  {
+    "node_id": "char_bertholdt",
+    "alias": "破壊の神",
+    "from_ep": 62
+  },
+  {
+    "node_id": "char_annie",
+    "alias": "Annie Leonhardt",
+    "from_ep": 23
+  },
+  {
+    "node_id": "char_annie",
+    "alias": "アニ・レオンハート",
+    "from_ep": 23
+  },
+  {
+    "node_id": "char_annie",
+    "alias": "Ani Reonhāto",
+    "from_ep": 23
+  },
+  {
     "node_id": "char_annie",
     "alias": "Female Titan",
+    "from_ep": 23
+  },
+  {
+    "node_id": "char_annie",
+    "alias": "女型の巨人",
     "from_ep": 23
   },
   {
@@ -61,7 +246,27 @@
   },
   {
     "node_id": "char_levi",
+    "alias": "Rivaille",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "リヴァイ・アッカーマン",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "Rivai Akkāman",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
     "alias": "Captain Levi",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "リヴァイ兵長",
     "from_ep": 14
   },
   {
@@ -70,8 +275,28 @@
     "from_ep": 14
   },
   {
+    "node_id": "char_levi",
+    "alias": "人類最強の兵士",
+    "from_ep": 14
+  },
+  {
+    "node_id": "char_levi",
+    "alias": "Clean Freak",
+    "from_ep": 15
+  },
+  {
     "node_id": "char_hange",
     "alias": "Hans Zoe",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "Hanji Zoe",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "ハンジ・ゾエ",
     "from_ep": 15
   },
   {
@@ -81,8 +306,33 @@
   },
   {
     "node_id": "char_hange",
+    "alias": "Section Commander",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "分隊長",
+    "from_ep": 15
+  },
+  {
+    "node_id": "char_hange",
     "alias": "Commander Hange",
     "from_ep": 69
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "14th Commander of the Survey Corps",
+    "from_ep": 56
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "第14代調査兵団団長",
+    "from_ep": 56
+  },
+  {
+    "node_id": "char_hange",
+    "alias": "Four-Eyes",
+    "from_ep": 15
   },
   {
     "node_id": "char_historia",
@@ -91,12 +341,27 @@
   },
   {
     "node_id": "char_historia",
-    "alias": "Queen Historia",
-    "from_ep": 47
+    "alias": "Christa Lenz",
+    "from_ep": 30
   },
   {
     "node_id": "char_historia",
-    "alias": "Christa Lenz",
+    "alias": "Christa Renz",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "クリスタ・レンズ",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "ヒストリア・レイス",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Hisutoria Reisu",
     "from_ep": 30
   },
   {
@@ -105,8 +370,33 @@
     "from_ep": 34
   },
   {
+    "node_id": "char_historia",
+    "alias": "Queen Historia",
+    "from_ep": 47
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "女王ヒストリア",
+    "from_ep": 47
+  },
+  {
+    "node_id": "char_historia",
+    "alias": "Cattle-Farming Goddess",
+    "from_ep": 48
+  },
+  {
     "node_id": "char_grisha",
     "alias": "Grisha Jaeger",
+    "from_ep": 48
+  },
+  {
+    "node_id": "char_grisha",
+    "alias": "グリシャ・イェーガー",
+    "from_ep": 48
+  },
+  {
+    "node_id": "char_grisha",
+    "alias": "Gurisha Iēgā",
     "from_ep": 48
   },
   {
@@ -115,8 +405,28 @@
     "from_ep": 48
   },
   {
+    "node_id": "char_grisha",
+    "alias": "Attack Titan",
+    "from_ep": 58
+  },
+  {
+    "node_id": "char_grisha",
+    "alias": "Eldian Restorationist",
+    "from_ep": 57
+  },
+  {
     "node_id": "char_zeke",
     "alias": "Zeke Jaeger",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "ジーク・イェーガー",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Jīku Iēgā",
     "from_ep": 74
   },
   {
@@ -126,7 +436,22 @@
   },
   {
     "node_id": "char_zeke",
+    "alias": "獣の巨人",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
     "alias": "Boy Wonder",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "Boy of Miracle",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "奇跡の子",
     "from_ep": 74
   },
   {
@@ -135,9 +460,24 @@
     "from_ep": 74
   },
   {
+    "node_id": "char_zeke",
+    "alias": "War Chief",
+    "from_ep": 74
+  },
+  {
+    "node_id": "char_zeke",
+    "alias": "戦士長",
+    "from_ep": 74
+  },
+  {
     "node_id": "char_ymir",
-    "alias": "Dancing Titan",
-    "from_ep": 35
+    "alias": "ユミル",
+    "from_ep": 30
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Yumiru",
+    "from_ep": 30
   },
   {
     "node_id": "char_ymir",
@@ -146,8 +486,28 @@
   },
   {
     "node_id": "char_ymir",
+    "alias": "顎の巨人",
+    "from_ep": 60
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Dancing Titan",
+    "from_ep": 35
+  },
+  {
+    "node_id": "char_ymir",
     "alias": "Lady Ymir",
     "from_ep": 34
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Goddess Ymir",
+    "from_ep": 34
+  },
+  {
+    "node_id": "char_ymir",
+    "alias": "Freckles",
+    "from_ep": 30
   },
   {
     "node_id": "char_jean",
@@ -176,8 +536,13 @@
   },
   {
     "node_id": "char_falco",
-    "alias": "Flying Titan",
-    "from_ep": 83
+    "alias": "ファルコ・グライス",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Faruko Guraisu",
+    "from_ep": 63
   },
   {
     "node_id": "char_falco",
@@ -185,13 +550,78 @@
     "from_ep": 78
   },
   {
+    "node_id": "char_falco",
+    "alias": "顎の巨人",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Flying Titan",
+    "from_ep": 83
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Winged Titan",
+    "from_ep": 83
+  },
+  {
+    "node_id": "char_falco",
+    "alias": "Warrior Candidate",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "ガビ・ブラウン",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "Gabi Buraun",
+    "from_ep": 63
+  },
+  {
     "node_id": "char_gabi",
     "alias": "Armored Titan Candidate",
     "from_ep": 63
   },
   {
+    "node_id": "char_gabi",
+    "alias": "Warrior Candidate",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "Angel of Liberio",
+    "from_ep": 63
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "Mia",
+    "from_ep": 70
+  },
+  {
+    "node_id": "char_gabi",
+    "alias": "ミア",
+    "from_ep": 70
+  },
+  {
+    "node_id": "char_pieck",
+    "alias": "ピーク・フィンガー",
+    "from_ep": 75
+  },
+  {
+    "node_id": "char_pieck",
+    "alias": "Pīku Fingā",
+    "from_ep": 75
+  },
+  {
     "node_id": "char_pieck",
     "alias": "Cart Titan",
+    "from_ep": 75
+  },
+  {
+    "node_id": "char_pieck",
+    "alias": "車力の巨人",
     "from_ep": 75
   },
   {
@@ -201,7 +631,22 @@
   },
   {
     "node_id": "char_porco",
+    "alias": "ポルコ・ガリアード",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_porco",
+    "alias": "Poruko Gariādo",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_porco",
     "alias": "Jaw Titan",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_porco",
+    "alias": "顎の巨人",
     "from_ep": 78
   },
   {
@@ -210,8 +655,23 @@
     "from_ep": 78
   },
   {
+    "node_id": "char_porco",
+    "alias": "Pokko",
+    "from_ep": 78
+  },
+  {
+    "node_id": "char_porco",
+    "alias": "ポッコ",
+    "from_ep": 78
+  },
+  {
     "node_id": "titan_founding",
     "alias": "Founder",
+    "from_ep": 43
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "The Founder",
     "from_ep": 43
   },
   {
@@ -225,6 +685,21 @@
     "from_ep": 58
   },
   {
+    "node_id": "titan_founding",
+    "alias": "始祖の巨人",
+    "from_ep": 43
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "Shiso no Kyojin",
+    "from_ep": 43
+  },
+  {
+    "node_id": "titan_founding",
+    "alias": "Scream",
+    "from_ep": 43
+  },
+  {
     "node_id": "titan_attack",
     "alias": "Rogue Titan",
     "from_ep": 58
@@ -232,6 +707,21 @@
   {
     "node_id": "titan_attack",
     "alias": "Shingeki no Kyojin",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_attack",
+    "alias": "進撃の巨人",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_attack",
+    "alias": "Vanguard Titan",
+    "from_ep": 58
+  },
+  {
+    "node_id": "titan_attack",
+    "alias": "Titan of Freedom",
     "from_ep": 58
   },
   {
@@ -245,6 +735,21 @@
     "from_ep": 2
   },
   {
+    "node_id": "titan_armored",
+    "alias": "鎧の巨人",
+    "from_ep": 2
+  },
+  {
+    "node_id": "titan_armored",
+    "alias": "The Shield of Marley",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_armored",
+    "alias": "Iron Titan",
+    "from_ep": 2
+  },
+  {
     "node_id": "titan_colossal",
     "alias": "Colossus Titan",
     "from_ep": 1
@@ -255,8 +760,23 @@
     "from_ep": 62
   },
   {
+    "node_id": "titan_colossal",
+    "alias": "超大型巨人",
+    "from_ep": 1
+  },
+  {
+    "node_id": "titan_colossal",
+    "alias": "Chōōgata Kyojin",
+    "from_ep": 1
+  },
+  {
     "node_id": "titan_female",
     "alias": "Megata no Kyojin",
+    "from_ep": 17
+  },
+  {
+    "node_id": "titan_female",
+    "alias": "女型の巨人",
     "from_ep": 17
   },
   {
@@ -275,6 +795,21 @@
     "from_ep": 26
   },
   {
+    "node_id": "titan_beast",
+    "alias": "獣の巨人",
+    "from_ep": 26
+  },
+  {
+    "node_id": "titan_beast",
+    "alias": "Ape Titan",
+    "from_ep": 26
+  },
+  {
+    "node_id": "titan_beast",
+    "alias": "Monkey",
+    "from_ep": 26
+  },
+  {
     "node_id": "titan_jaw",
     "alias": "Jaws Titan",
     "from_ep": 60
@@ -282,6 +817,11 @@
   {
     "node_id": "titan_jaw",
     "alias": "Agito no Kyojin",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_jaw",
+    "alias": "顎の巨人",
     "from_ep": 60
   },
   {
@@ -295,6 +835,16 @@
     "from_ep": 60
   },
   {
+    "node_id": "titan_cart",
+    "alias": "車力の巨人",
+    "from_ep": 60
+  },
+  {
+    "node_id": "titan_cart",
+    "alias": "Mule Titan",
+    "from_ep": 60
+  },
+  {
     "node_id": "titan_war_hammer",
     "alias": "Warhammer Titan",
     "from_ep": 65
@@ -302,6 +852,16 @@
   {
     "node_id": "titan_war_hammer",
     "alias": "Sentsui no Kyojin",
+    "from_ep": 65
+  },
+  {
+    "node_id": "titan_war_hammer",
+    "alias": "戦槌の巨人",
+    "from_ep": 65
+  },
+  {
+    "node_id": "titan_war_hammer",
+    "alias": "Tybur Titan",
     "from_ep": 65
   },
   {
@@ -355,6 +915,16 @@
     "from_ep": 78
   },
   {
+    "node_id": "concept_the_paths",
+    "alias": "Coordinate Realm",
+    "from_ep": 58
+  },
+  {
+    "node_id": "concept_the_paths",
+    "alias": "The Path",
+    "from_ep": 58
+  },
+  {
     "node_id": "concept_subjects_of_ymir",
     "alias": "Eldians",
     "from_ep": 57
@@ -367,6 +937,11 @@
   {
     "node_id": "concept_subjects_of_ymir",
     "alias": "Descendants of Ymir",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_subjects_of_ymir",
+    "alias": "Ymir's People",
     "from_ep": 57
   },
   {
@@ -385,6 +960,11 @@
     "from_ep": 44
   },
   {
+    "node_id": "concept_royal_blood",
+    "alias": "Royal Family",
+    "from_ep": 44
+  },
+  {
     "node_id": "concept_vow_renouncing_war",
     "alias": "Pact of Non-Resistance",
     "from_ep": 44
@@ -400,6 +980,26 @@
     "from_ep": 44
   },
   {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "Karl Fritz's Vow",
+    "from_ep": 58
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "Vow of Pacifism",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "Pacifist Vow",
+    "from_ep": 44
+  },
+  {
+    "node_id": "concept_vow_renouncing_war",
+    "alias": "Renunciation of War",
+    "from_ep": 44
+  },
+  {
     "node_id": "concept_the_rumbling",
     "alias": "Earth Flattening",
     "from_ep": 69
@@ -410,6 +1010,16 @@
     "from_ep": 69
   },
   {
+    "node_id": "concept_the_rumbling",
+    "alias": "Wall Titan March",
+    "from_ep": 69
+  },
+  {
+    "node_id": "concept_the_rumbling",
+    "alias": "Grand Rumbling",
+    "from_ep": 80
+  },
+  {
     "node_id": "concept_coordinate",
     "alias": "The Coordinate",
     "from_ep": 37
@@ -418,6 +1028,16 @@
     "node_id": "concept_coordinate",
     "alias": "Intersection of Paths",
     "from_ep": 58
+  },
+  {
+    "node_id": "concept_coordinate",
+    "alias": "Zahyo",
+    "from_ep": 37
+  },
+  {
+    "node_id": "concept_coordinate",
+    "alias": "Titan Control",
+    "from_ep": 37
   },
   {
     "node_id": "concept_titan_inheritance",
@@ -435,6 +1055,26 @@
     "from_ep": 43
   },
   {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Succession",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Titan Transfer",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Passing the Power",
+    "from_ep": 43
+  },
+  {
+    "node_id": "concept_titan_inheritance",
+    "alias": "Curse of Ymir",
+    "from_ep": 58
+  },
+  {
     "node_id": "concept_memory_manipulation",
     "alias": "Memory Alteration",
     "from_ep": 42
@@ -447,6 +1087,21 @@
   {
     "node_id": "concept_memory_manipulation",
     "alias": "Mind Alteration",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Mind Wipe",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Memory Erasure",
+    "from_ep": 42
+  },
+  {
+    "node_id": "concept_memory_manipulation",
+    "alias": "Brainwashing",
     "from_ep": 42
   },
   {
@@ -465,6 +1120,16 @@
     "from_ep": 57
   },
   {
+    "node_id": "concept_eldian_internment",
+    "alias": "Eldian Ghetto",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_eldian_internment",
+    "alias": "Liberio Zone",
+    "from_ep": 57
+  },
+  {
     "node_id": "concept_great_titan_war",
     "alias": "Titan Civil War",
     "from_ep": 57
@@ -472,6 +1137,11 @@
   {
     "node_id": "concept_great_titan_war",
     "alias": "Fall of Eldia",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_great_titan_war",
+    "alias": "Eldian Civil War",
     "from_ep": 57
   },
   {
@@ -490,6 +1160,16 @@
     "from_ep": 57
   },
   {
+    "node_id": "concept_paradise_island_isolation",
+    "alias": "Wall Century",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_paradise_island_isolation",
+    "alias": "Hundred-Year Peace",
+    "from_ep": 57
+  },
+  {
     "node_id": "concept_warrior_program",
     "alias": "Marleyan Warriors",
     "from_ep": 57
@@ -505,8 +1185,23 @@
     "from_ep": 57
   },
   {
+    "node_id": "concept_warrior_program",
+    "alias": "Marley Warrior Unit",
+    "from_ep": 57
+  },
+  {
+    "node_id": "concept_warrior_program",
+    "alias": "Warrior Candidate Program",
+    "from_ep": 57
+  },
+  {
     "node_id": "location_shiganshina",
     "alias": "Shiganshina District",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_shiganshina",
+    "alias": "District of Shiganshina",
     "from_ep": 1
   },
   {
@@ -521,8 +1216,23 @@
   },
   {
     "node_id": "location_trost_district",
+    "alias": "District of Trost",
+    "from_ep": 2
+  },
+  {
+    "node_id": "location_trost_district",
     "alias": "Trost-ku",
     "from_ep": 2
+  },
+  {
+    "node_id": "location_wall_maria",
+    "alias": "Maria",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_maria",
+    "alias": "Outermost Wall",
+    "from_ep": 1
   },
   {
     "node_id": "location_wall_maria",
@@ -532,6 +1242,16 @@
   {
     "node_id": "location_wall_maria",
     "alias": "Maria Wall",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_rose",
+    "alias": "Rose",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_rose",
+    "alias": "Middle Wall",
     "from_ep": 1
   },
   {
@@ -556,6 +1276,21 @@
   },
   {
     "node_id": "location_wall_sheena",
+    "alias": "Sina",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
+    "alias": "Sheena",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
+    "alias": "Innermost Wall",
+    "from_ep": 1
+  },
+  {
+    "node_id": "location_wall_sheena",
     "alias": "Wōru Shīna",
     "from_ep": 1
   },
@@ -567,6 +1302,21 @@
   {
     "node_id": "location_mitras",
     "alias": "Capital Mitras",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "Royal Capital Mitras",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "Mitras Capital",
+    "from_ep": 14
+  },
+  {
+    "node_id": "location_mitras",
+    "alias": "The Capital",
     "from_ep": 14
   },
   {
@@ -586,8 +1336,23 @@
   },
   {
     "node_id": "location_stohess_district",
+    "alias": "District of Stohess",
+    "from_ep": 23
+  },
+  {
+    "node_id": "location_stohess_district",
     "alias": "Stohess-ku",
     "from_ep": 23
+  },
+  {
+    "node_id": "location_marley",
+    "alias": "Marley Empire",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_marley",
+    "alias": "Nation of Marley",
+    "from_ep": 57
   },
   {
     "node_id": "location_marley",
@@ -606,12 +1371,22 @@
   },
   {
     "node_id": "location_liberio",
+    "alias": "Liberio District",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_liberio",
     "alias": "Reberio",
     "from_ep": 57
   },
   {
     "node_id": "location_paradis_island",
     "alias": "Paradis",
+    "from_ep": 57
+  },
+  {
+    "node_id": "location_paradis_island",
+    "alias": "Island of Paradis",
     "from_ep": 57
   },
   {
@@ -631,7 +1406,17 @@
   },
   {
     "node_id": "location_reiss_chapel",
+    "alias": "Reiss Underground Chapel",
+    "from_ep": 40
+  },
+  {
+    "node_id": "location_reiss_chapel",
     "alias": "Reiss Family Chapel",
+    "from_ep": 40
+  },
+  {
+    "node_id": "location_reiss_chapel",
+    "alias": "Underground Cavern",
     "from_ep": 40
   },
   {
@@ -646,12 +1431,32 @@
   },
   {
     "node_id": "location_ragako_village",
+    "alias": "Connie's Village",
+    "from_ep": 27
+  },
+  {
+    "node_id": "location_ragako_village",
+    "alias": "Ragako Hamlet",
+    "from_ep": 27
+  },
+  {
+    "node_id": "location_ragako_village",
     "alias": "Ragako-mura",
     "from_ep": 27
   },
   {
     "node_id": "location_fort_salta",
+    "alias": "Salta",
+    "from_ep": 88
+  },
+  {
+    "node_id": "location_fort_salta",
     "alias": "Fortress Salta",
+    "from_ep": 88
+  },
+  {
+    "node_id": "location_fort_salta",
+    "alias": "Salta Airbase",
     "from_ep": 88
   },
   {

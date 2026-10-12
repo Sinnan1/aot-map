@@ -1,5 +1,5 @@
 import { boolean, index, integer, jsonb, pgEnum, pgTable, primaryKey, serial, smallint, text, uniqueIndex, type AnyPgColumn } from "drizzle-orm/pg-core";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, IMPORTANCE, KNOWLEDGE_STATES } from "@/content/enums";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, EVENT_TYPES, IMPORTANCE, KNOWLEDGE_STATES, PARTICIPANT_ROLES, RELATIONSHIP_TYPES } from "@/content/enums";
 
 /**
  * Every table that holds viewer-visible content carries an episode gate column
@@ -16,6 +16,9 @@ export const depthLayerEnum = pgEnum("depth_layer", DEPTH_LAYERS);
 export const nodeTypeEnum = pgEnum("node_type", ["event", "character", "titan", "concept", "location"]);
 export const importanceEnum = pgEnum("importance", IMPORTANCE);
 export const episodeTypeEnum = pgEnum("episode_type", EPISODE_TYPES);
+export const relationshipTypeEnum = pgEnum("relationship_type", RELATIONSHIP_TYPES);
+export const eventTypeEnum = pgEnum("event_type", EVENT_TYPES);
+export const participantRoleEnum = pgEnum("participant_role", PARTICIPANT_ROLES);
 
 export const episodes = pgTable(
   "episodes",
@@ -52,6 +55,12 @@ export const nodes = pgTable(
     id: text("id").primaryKey(),
     type: nodeTypeEnum("type").notNull(),
     title: text("title").notNull(), // character name for characters
+    shortLabel: text("short_label"),
+    eventType: eventTypeEnum("event_type"),
+    season: integer("season"),
+    episodeAbsStart: integer("episode_abs_start"),
+    episodeAbsEnd: integer("episode_abs_end"),
+    arc: text("arc"),
     factionLane: text("faction_lane").references(() => lanes.id),
     watchEp: integer("watch_ep").notNull(),
     storyOrder: integer("story_order"), // Rewatch mode only. Never selected by the gate queries.
@@ -61,12 +70,14 @@ export const nodes = pgTable(
     depthLayer: depthLayerEnum("depth_layer").notNull().default("surface"),
     /** Event-only: the Rule of 7 primary/clustered split. Never set on characters. */
     tier: smallint("tier").notNull().default(2),
-    /** Character prominence. Null on events, which use tier instead. */
+    /** Prominence scale (core/major/minor). */
     importance: importanceEnum("importance"),
     summary: text("summary"),
+    whyItMatters: text("why_it_matters"),
     because: text("because"),
     setupRef: text("setup_ref").references((): AnyPgColumn => nodes.id),
     voidPos: jsonb("void_pos").$type<{ x: number; y: number; z: number } | null>(),
+    locationId: text("location_id"),
 
     // Reference copy, server-side only. NOT in the gated client payload: bio and tags are
     // written with whole-series knowledge (Hange's bio mentions succeeding Erwin; Eren's tags
@@ -163,9 +174,58 @@ export const knowledgeStates = pgTable(
 
 export const characterGoals = pgTable("character_goals", {
   id: serial("id").primaryKey(),
+  stateId: text("state_id"),
   characterId: text("character_id").notNull().references(() => nodes.id),
+  phaseName: text("phase_name"),
+  displayLabel: text("display_label"),
   text: text("text").notNull(),
+  fear: text("fear"),
+  belief: text("belief"),
+  // Server-side only: secret and spoiler_notes contain whole-phase or series-wide reveals
+  // (e.g. Phase 1 secrets name Reiner as an undercover Warrior and Historia as Rod Reiss's daughter).
+  secret: text("secret"),
+  spoilerNotes: text("spoiler_notes"),
+  sourceUrl: text("source_url"),
   fromEp: integer("from_ep").notNull(),
   toEp: integer("to_ep"),
   confidence: confidenceEnum("confidence").notNull(),
 });
+
+/** source_id and target_id can be a node id or a lane id (like knowledgeStates.holder); lint enforces existence. */
+export const relationships = pgTable(
+  "relationships",
+  {
+    id: text("id").primaryKey(),
+    sourceId: text("source_id").notNull(),
+    targetId: text("target_id").notNull(),
+    relationshipType: relationshipTypeEnum("relationship_type").notNull(),
+    label: text("label").notNull(),
+    // Server-side / rewatch-only: true_from_ep can be Ep 1 even when the relationship is revealed later.
+    trueFromEp: integer("true_from_ep").notNull(),
+    visibleFromEp: integer("visible_from_ep").notNull(),
+    expiresEp: integer("expires_ep"),
+    confidence: confidenceEnum("confidence").notNull(),
+    description: text("description").notNull(),
+    sourceUrl: text("source_url"),
+  },
+  (t) => [index("relationships_visible_from_ep_idx").on(t.visibleFromEp)],
+);
+
+/** entity_id can be a character in nodes.json or a supporting character id; lint enforces valid format and event_id FK. */
+export const eventParticipants = pgTable(
+  "event_participants",
+  {
+    id: text("id").primaryKey(),
+    eventId: text("event_id").notNull().references(() => nodes.id),
+    entityId: text("entity_id").notNull(),
+    role: participantRoleEnum("role").notNull(),
+    visibleFromEp: integer("visible_from_ep").notNull(),
+    notes: text("notes").notNull(),
+    sourceUrl: text("source_url"),
+  },
+  (t) => [
+    index("event_participants_event_id_idx").on(t.eventId),
+    index("event_participants_visible_from_ep_idx").on(t.visibleFromEp),
+  ],
+);
+

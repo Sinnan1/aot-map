@@ -192,7 +192,14 @@ export function CharacterPanel({ graph, view, dispatch }: P) {
       </header>
       <section>
         <h3>Goals now</h3>
-        {activeGoals(graph, c.id, view.cursor).map((g) => <p key={g.text}>{g.text}</p>)}
+        {activeGoals(graph, c.id, view.cursor).map((g) => (
+          <div key={g.text}>
+            {g.displayLabel && <p className="dim"><strong>{g.displayLabel}</strong></p>}
+            <p>{g.text}</p>
+            {g.fear && <p className="dim">Fear: {g.fear}</p>}
+            {g.belief && <p className="dim">Belief: {g.belief}</p>}
+          </div>
+        ))}
         {activeGoals(graph, c.id, view.cursor).length === 0 && <p className="dim">Nothing stated yet.</p>}
       </section>
       <section>

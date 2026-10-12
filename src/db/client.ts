@@ -1,4 +1,5 @@
 import "server-only";
+import fs from "node:fs";
 import path from "node:path";
 import { drizzle as drizzlePg } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
@@ -9,14 +10,39 @@ import { seedEpisodes } from "./seed-episodes";
 import * as schema from "./schema";
 import type { DB } from "./types";
 
-const g = globalThis as unknown as { __aotDb?: Promise<DB> };
+const g = globalThis as unknown as { __aotDb?: Promise<DB>; __aotDbKey?: string };
+
+function devFingerprint(): string {
+  if (process.env.DATABASE_URL) return "pg";
+  const root = process.cwd();
+  const stat = (p: string) => {
+    try {
+      return fs.statSync(p).mtimeMs;
+    } catch {
+      return 0;
+    }
+  };
+  const dirMtimes = (dir: string) =>
+    fs.existsSync(dir)
+      ? fs
+          .readdirSync(dir)
+          .sort()
+          .map((f) => `${f}:${stat(path.join(dir, f))}`)
+          .join("|")
+      : "";
+  return `${dirMtimes(path.join(root, "drizzle"))}#${dirMtimes(path.join(root, "content/slice"))}`;
+}
 
 /**
  * Production / docker: DATABASE_URL -> Postgres.
  * Local dev with no DATABASE_URL: in-memory Postgres (pglite), migrated and seeded from content/slice.
  */
 export function getDb(): Promise<DB> {
-  g.__aotDb ??= open();
+  const key = devFingerprint();
+  if (!g.__aotDb || g.__aotDbKey !== key) {
+    g.__aotDbKey = key;
+    g.__aotDb = open();
+  }
   return g.__aotDb;
 }
 
@@ -33,3 +59,4 @@ async function open(): Promise<DB> {
   await seedContent(db as unknown as DB, loadContent(path.join(process.cwd(), "content/slice")));
   return db as unknown as DB;
 }
+

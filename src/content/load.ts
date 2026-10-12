@@ -12,6 +12,8 @@ const FILES = {
   goals: "goals.json",
   terms: "terms.json",
   aliases: "aliases.json",
+  relationships: "relationships.json",
+  event_participants: "event_participants.json",
 } as const;
 
 /** Reads a content directory (one JSON file per table), validates it, and returns a typed ContentSet. */

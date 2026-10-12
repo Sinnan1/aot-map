@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, IMPORTANCE, KNOWLEDGE_STATES } from "./enums";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, EVENT_TYPES, IMPORTANCE, KNOWLEDGE_STATES, PARTICIPANT_ROLES, RELATIONSHIP_TYPES } from "./enums";
 
 /**
  * Authoring schema (spec section 7). Field names follow the spec.
@@ -28,6 +28,13 @@ const EventNode = z
     id: slug("evt"),
     type: z.literal("event"),
     title: z.string().min(1),
+    short_label: z.string().min(1).nullable().optional(),
+    event_type: z.enum(EVENT_TYPES).nullable().optional(),
+    season: z.number().int().min(1).nullable().optional(),
+    episode_abs_start: ep.nullable().optional(),
+    episode_abs_end: ep.nullable().optional(),
+    arc: z.string().min(1).nullable().optional(),
+    importance: z.enum(IMPORTANCE).nullable().optional(),
     faction_lane: z.string(),
     watch_ep: ep,
     story_order: z.number().int().nullable(), // stored for Rewatch mode; never sent to the client
@@ -37,10 +44,14 @@ const EventNode = z
     depth_layer: z.enum(DEPTH_LAYERS),
     tier: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(2), // EXT
     summary: z.string().min(1),
+    why_it_matters: z.string().min(1).nullable().optional(),
     because: z.string().nullable(), // null only for root events
     setup_ref: slug("evt").nullable().default(null),
     void_pos: z.object({ x: z.number(), y: z.number(), z: z.number() }).nullable().default(null),
     participants: z.array(slug("char")).default([]), // EXT
+    tags: z.array(z.string()).optional(),
+    location_id: z.string().min(1).nullable().optional(),
+    source_url: z.url().nullable().optional(),
   })
   .superRefine((n, ctx) => {
     if (n.is_flashback && !n.happened_in)
@@ -144,11 +155,20 @@ export const KnowledgeState = z.object({
 });
 
 export const Goal = z.object({
+  id: z.string().min(1).nullable().default(null),
   character: slug("char"),
+  phase_name: z.string().min(1).nullable().default(null),
+  display_label: z.string().min(1).nullable().default(null),
   text: z.string().min(1),
+  fear: z.string().min(1).nullable().default(null),
+  belief: z.string().min(1).nullable().default(null),
+  // Server-side only. Never sent to the client in loadGatedGraph.
+  secret: z.string().min(1).nullable().default(null),
+  spoiler_notes: z.string().min(1).nullable().default(null),
+  source_url: z.url().nullable().default(null),
   from_ep: ep,
   to_ep: ep.nullable(),
-  confidence,
+  confidence: confidence.default("shown"),
 });
 
 export const Term = z.object({ term: z.string().min(3), watch_ep: ep });
@@ -167,6 +187,38 @@ export const NodeAlias = z.object({
   node_id: z.union([slug("char"), slug("titan"), slug("concept"), slug("location")]), // characters, titans, concepts, and locations
   alias: z.string().min(2),
   from_ep: ep,
+});
+
+const entityOrLaneId = z.union([
+  slug("char"),
+  slug("titan"),
+  slug("concept"),
+  slug("location"),
+  z.string().regex(/^[a-z_]+$/),
+]);
+
+export const Relationship = z.object({
+  id: slug("rel"),
+  source_id: entityOrLaneId,
+  target_id: entityOrLaneId,
+  relationship_type: z.enum(RELATIONSHIP_TYPES),
+  label: z.string().min(1),
+  true_from_ep: ep,
+  visible_from_ep: ep,
+  expires_ep: ep.nullable().default(null),
+  confidence: confidence.default("shown"),
+  description: z.string().min(1),
+  source_url: z.url().nullable().default(null),
+});
+
+export const EventParticipant = z.object({
+  id: z.string().regex(/^[a-z0-9_]+$/),
+  event_id: slug("evt"),
+  entity_id: slug("char"),
+  role: z.enum(PARTICIPANT_ROLES),
+  visible_from_ep: ep,
+  notes: z.string().min(1),
+  source_url: z.url().nullable().default(null),
 });
 
 /**
@@ -204,11 +256,15 @@ export const ContentSet = z.object({
   goals: z.array(Goal).default([]),
   terms: z.array(Term).default([]),
   aliases: z.array(NodeAlias).default([]), // EXT: names gated independently of their node
+  relationships: z.array(Relationship).default([]), // EXT: Character/Titan/Concept relationships
+  event_participants: z.array(EventParticipant).default([]), // EXT: Per-event participant roles & notes
 });
 
 export type ContentSet = z.infer<typeof ContentSet>;
 export type LaneC = z.infer<typeof Lane>;
 export type NodeAliasC = z.infer<typeof NodeAlias>;
+export type RelationshipC = z.infer<typeof Relationship>;
+export type EventParticipantC = z.infer<typeof EventParticipant>;
 export type NodeC = ContentSet["nodes"][number];
 export type EventNodeC = Extract<NodeC, { type: "event" }>;
 export type CharacterNodeC = Extract<NodeC, { type: "character" }>;

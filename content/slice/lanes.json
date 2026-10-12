@@ -1,7 +1,10 @@
 [
-  { "id": "marley_military",    "label": "Marley Military",    "sort": 0, "watch_ep": 60 },
-  { "id": "warriors",           "label": "Warriors",           "sort": 1, "watch_ep": 23 },
-  { "id": "paradis_government", "label": "Paradis Government", "sort": 2, "watch_ep": 38 },
-  { "id": "scouts",             "label": "Scouts",             "sort": 3, "watch_ep": 1 },
-  { "id": "lore_history",       "label": "Lore / History",     "sort": 5, "watch_ep": 1 }
+  { "id": "marley_military",          "label": "Marley Military",          "sort": 0, "watch_ep": 60 },
+  { "id": "warriors",                 "label": "Warriors",                 "sort": 1, "watch_ep": 23 },
+  { "id": "paradis_government",       "label": "Paradis Government",       "sort": 2, "watch_ep": 38 },
+  { "id": "scouts",                   "label": "Scouts",                   "sort": 3, "watch_ep": 1 },
+  { "id": "yeagerists",               "label": "Yeagerists",               "sort": 4, "watch_ep": 70 },
+  { "id": "lore_history",             "label": "Lore / History",           "sort": 5, "watch_ep": 1 },
+  { "id": "anti_marleyan_volunteers", "label": "Anti-Marleyan Volunteers", "sort": 6, "watch_ep": 68 },
+  { "id": "eldian_empire",            "label": "Eldian Empire",            "sort": 7, "watch_ep": 57 }
 ]
