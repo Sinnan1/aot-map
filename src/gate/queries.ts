@@ -3,7 +3,7 @@ import { alias } from "drizzle-orm/pg-core";
 import * as t from "@/db/schema";
 import type { DB } from "@/db/types";
 import { allowedConfidence, type Gate } from "./gate";
-import type { CNode, GatedGraph, SearchHit } from "./types";
+import type { CNode, CEpisode, GatedGraph, SearchHit } from "./types";
 
 /**
  * THE gate. Every read of viewer-visible content goes through here.
@@ -102,6 +102,32 @@ export async function loadGatedGraph(db: DB, gate: Gate): Promise<GatedGraph> {
     goals: goalRows.filter((g) => charIds.has(g.character)),
     laneHistory: histRows.filter((h) => charIds.has(h.character) && laneIds.has(h.lane)),
   };
+}
+
+/**
+ * The episode spine, gated.
+ *
+ * This table is the only content table whose gate column is its own primary key rather than a
+ * watch_ep column, so it gets its own query instead of riding in loadGatedGraph(). A row is
+ * only visible once the viewer has watched that episode: at ep 26 the row is withheld, because
+ * the title alone ("Beast Titan") and ep 89's summary both give away plot.
+ */
+export async function loadGatedEpisodes(db: DB, gate: Gate): Promise<CEpisode[]> {
+  return db
+    .select({
+      episodeAbs: t.episodes.episodeAbs,
+      season: t.episodes.season,
+      part: t.episodes.part,
+      episodeInPart: t.episodes.episodeInPart,
+      title: t.episodes.title,
+      arc: t.episodes.arc,
+      episodeType: t.episodes.episodeType,
+      summary: t.episodes.summary,
+      sourceUrl: t.episodes.sourceUrl,
+    })
+    .from(t.episodes)
+    .where(lte(t.episodes.episodeAbs, gate.progress))
+    .orderBy(t.episodes.episodeAbs);
 }
 
 /** Gated search. The index never contains anything past the viewer's progress. */

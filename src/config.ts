@@ -1,5 +1,7 @@
-// Verify against your episode numbering (e.g. whether "Final Chapters" specials count).
-export const FINALE_EP = Number(process.env.NEXT_PUBLIC_FINALE_EP ?? 87);
+// The last episode is 89 ("The Final Chapters: Special 2"), so the Final Chapters specials
+// count toward the numbering. content/episodes.csv is the authority; tests/episodes.test.ts
+// asserts that this constant agrees with the CSV.
+export const FINALE_EP = Number(process.env.NEXT_PUBLIC_FINALE_EP ?? 89);
 export const SEASON4_FIRST_EP = 60;
 export const COOKIE_NAME = "aot_gate";
 

@@ -1,15 +1,42 @@
-import { boolean, index, integer, jsonb, pgEnum, pgTable, primaryKey, serial, smallint, text, type AnyPgColumn } from "drizzle-orm/pg-core";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, KNOWLEDGE_STATES } from "@/content/enums";
+import { boolean, index, integer, jsonb, pgEnum, pgTable, primaryKey, serial, smallint, text, uniqueIndex, type AnyPgColumn } from "drizzle-orm/pg-core";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, KNOWLEDGE_STATES } from "@/content/enums";
 
 /**
  * Every table that holds viewer-visible content carries an episode gate column
  * (watch_ep / revealed_ep / from_ep). Nothing reads these tables without going through src/gate/queries.ts.
+ *
+ * The episode spine: episode_abs is the single numbering authority for the whole app.
+ * Every gate column in the other tables is an episode_abs value; there is deliberately no FK
+ * to it (see content/slice/README.md: gate columns are a spoiler coordinate, not a reference).
  */
 export const confidenceEnum = pgEnum("confidence", CONFIDENCE);
 export const edgeTypeEnum = pgEnum("edge_type", EDGE_TYPES);
 export const knowledgeStateEnum = pgEnum("knowledge_state", KNOWLEDGE_STATES);
 export const depthLayerEnum = pgEnum("depth_layer", DEPTH_LAYERS);
 export const nodeTypeEnum = pgEnum("node_type", ["event", "character"]);
+export const episodeTypeEnum = pgEnum("episode_type", EPISODE_TYPES);
+
+export const episodes = pgTable(
+  "episodes",
+  {
+    /** Absolute episode number, 1..FINALE_EP. The spine every other gate column points at. */
+    episodeAbs: integer("episode_abs").primaryKey(),
+    season: integer("season").notNull(),
+    /** Disc batches (S1 parts 1-2, S3 parts 1-2, S4 parts 1-2). Null for unparted seasons and specials. */
+    part: integer("part"),
+    episodeInPart: integer("episode_in_part").notNull(),
+    title: text("title").notNull(),
+    arc: text("arc").notNull(),
+    episodeType: episodeTypeEnum("episode_type").notNull().default("normal"),
+    summary: text("summary"),
+    sourceUrl: text("source_url"),
+  },
+  (t) => [
+    index("episodes_season_idx").on(t.season),
+    index("episodes_arc_idx").on(t.arc),
+    uniqueIndex("episodes_season_part_order_idx").on(t.season, t.part, t.episodeInPart),
+  ],
+);
 
 export const lanes = pgTable("lanes", {
   id: text("id").primaryKey(),
@@ -37,6 +64,16 @@ export const nodes = pgTable(
     setupRef: text("setup_ref").references((): AnyPgColumn => nodes.id),
     voidPos: jsonb("void_pos").$type<{ x: number; y: number; z: number } | null>(),
     aliases: text("aliases").array().notNull().default([]),
+
+    // Reference copy, server-side only. NOT in the gated client payload: bio and tags are
+    // written with whole-series knowledge (Hange's bio mentions succeeding Erwin; Eren's tags
+    // say "yeagerists"), so they spoil against any gate the row can carry. They need their own
+    // per-field gate before the character panel can read them.
+    bio: text("bio"),
+    tags: text("tags").array().notNull().default([]),
+    icon: text("icon"),
+    color: text("color"),
+    sourceUrl: text("source_url"),
   },
   (t) => [index("nodes_watch_ep_idx").on(t.watchEp)],
 );

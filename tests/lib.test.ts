@@ -39,10 +39,11 @@ describe("lenses", () => {
   it("Character lens: route, lane hops, goals", async () => {
     g = await load(64);
     expect([...characterRoute(g, "char_gabi")].sort()).toEqual(["char_gabi", "evt_liberio_zone", "evt_warrior_candidates"]);
-    expect(laneOfCharacter(g, "char_reiner", 59)).toBe("scouts");
-    expect(laneOfCharacter(g, "char_reiner", 60)).toBe("warriors");
-    expect(activeGoals(g, "char_gabi", 59)).toHaveLength(0);
-    expect(activeGoals(g, "char_gabi", 60)).toHaveLength(1);
+    // Reiner is a cadet from ep 17 and moves to the Warriors lane at ep 31 ("Warrior").
+    expect(laneOfCharacter(g, "char_reiner", 30)).toBe("scouts");
+    expect(laneOfCharacter(g, "char_reiner", 31)).toBe("warriors");
+    expect(activeGoals(g, "char_gabi", 62)).toHaveLength(0);
+    expect(activeGoals(g, "char_gabi", 63)).toHaveLength(1);
   });
 });
 

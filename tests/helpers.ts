@@ -33,7 +33,11 @@ export function withFuture(): ContentSet {
       is_flashback: false, happened_in: null, confidence: "interpretation", depth_layer: "surface", tier: 2,
       summary: "A debated reading.", because: null, setup_ref: null, void_pos: null, participants: [], aliases: [],
     },
-    { id: "char_late", type: "character", title: "Late Character", watch_ep: 70, confidence: "shown", lane_history: [{ from_ep: 70, lane: "yeagerists" }], aliases: [] },
+    {
+      id: "char_late", type: "character", title: "Late Character", watch_ep: 70, confidence: "shown",
+      tier: 2, summary: null, bio: null, tags: [], icon: null, color: null, source_url: null,
+      lane_history: [{ from_ep: 70, lane: "yeagerists" }], aliases: [],
+    },
   );
   c.edges.push({ id: "edge_declaration_to_late", from: "evt_declaration_of_war", to: "evt_late_event", type: "causes", watch_ep: 70, confidence: "shown", why_text: "Late link." });
   c.facts.push({ id: "fact_late", text: "A late reveal.", revealed_ep: 70 });

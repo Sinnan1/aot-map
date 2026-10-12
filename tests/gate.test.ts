@@ -23,12 +23,19 @@ describe("episode gate", () => {
 
   it("locks lanes, nodes, edges, facts until their episode", async () => {
     const at59 = await loadGatedGraph(db, makeGate({ progress: 59 }));
-    expect(at59.lanes.map((l) => l.id).sort()).toEqual(["lore_history", "scouts"]);
-    expect(ids(at59)).toEqual(["char_eren", "char_reiner", "evt_life_inside_walls", "evt_world_beyond_walls"]);
+    // Lanes unlock on their own watch_ep: Marley Military opens at 60, so it must be absent.
+    expect(at59.lanes.map((l) => l.id)).not.toContain("marley_military");
+    expect(ids(at59)).toEqual(expect.arrayContaining(["char_eren", "char_reiner", "evt_life_inside_walls", "evt_world_beyond_walls"]));
+    // The rule, not a content list: nothing past the gate, and the ep-60+ characters stay sealed.
+    expect(at59.nodes.every((n) => n.watchEp <= 59)).toBe(true);
+    expect(ids(at59)).not.toContain("char_gabi"); // gated at 63
+    expect(ids(at59)).not.toContain("char_zeke"); // gated at 74
     expect(at59.facts.map((f) => f.id)).toEqual(["fact_world_beyond_walls"]);
 
     const at64 = await loadGatedGraph(db, makeGate({ progress: 64 }));
     expect(ids(at64)).toContain("evt_declaration_of_war");
+    expect(ids(at64)).toContain("char_gabi");
+    expect(ids(at64)).not.toContain("char_zeke"); // still sealed at 64
     expect(ids(at64)).not.toContain("evt_late_event");
     expect(ids(at64)).not.toContain("char_late");
     expect(at64.lanes.map((l) => l.id)).not.toContain("yeagerists");

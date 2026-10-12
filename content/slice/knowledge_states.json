@@ -1,6 +1,34 @@
 [
-  { "holder": "char_eren",   "fact": "fact_world_beyond_walls",  "state": "knows",            "from_ep": 59, "to_ep": null, "confidence": "shown" },
-  { "holder": "char_gabi",   "fact": "fact_world_beyond_walls",  "state": "knows",            "from_ep": 60, "to_ep": null, "confidence": "shown" },
-  { "holder": "char_reiner", "fact": "fact_paradis_not_devils",  "state": "knows",            "from_ep": 60, "to_ep": null, "confidence": "shown" },
-  { "holder": "char_gabi",   "fact": "fact_paradis_not_devils",  "state": "believes_falsely", "from_ep": 60, "to_ep": null, "confidence": "shown" }
+  {
+    "holder": "char_eren",
+    "fact": "fact_world_beyond_walls",
+    "state": "knows",
+    "from_ep": 59,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_gabi",
+    "fact": "fact_world_beyond_walls",
+    "state": "knows",
+    "from_ep": 63,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_reiner",
+    "fact": "fact_paradis_not_devils",
+    "state": "knows",
+    "from_ep": 60,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_gabi",
+    "fact": "fact_paradis_not_devils",
+    "state": "believes_falsely",
+    "from_ep": 63,
+    "to_ep": null,
+    "confidence": "shown"
+  }
 ]

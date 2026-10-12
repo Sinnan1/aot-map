@@ -29,8 +29,9 @@ export async function seedContent(db: DB, c: ContentSet): Promise<void> {
               }
             : {
                 id: n.id, type: "character" as const, title: n.title, factionLane: null, watchEp: n.watch_ep, storyOrder: null,
-                isFlashback: false, happenedIn: null, confidence: n.confidence, depthLayer: "surface" as const, tier: 2,
-                summary: null, because: null, setupRef: null, voidPos: null, aliases: n.aliases,
+                isFlashback: false, happenedIn: null, confidence: n.confidence, depthLayer: "surface" as const, tier: n.tier,
+                summary: n.summary, because: null, setupRef: null, voidPos: null, aliases: n.aliases,
+                bio: n.bio, tags: n.tags, icon: n.icon, color: n.color, sourceUrl: n.source_url,
               },
         ),
       );

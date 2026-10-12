@@ -52,7 +52,7 @@ describe("content lint", () => {
 
   it("LANE_NOT_UNLOCKED: nothing may use a lane before it unlocks", () => {
     const c = fresh();
-    evt(c, "evt_world_beyond_walls").faction_lane = "warriors";
+    evt(c, "evt_world_beyond_walls").faction_lane = "marley_military"; // unlocks at ep 60, node is 59
     expect(codes(c)).toContain("LANE_NOT_UNLOCKED");
   });
 

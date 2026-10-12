@@ -2,8 +2,10 @@ import "server-only";
 import path from "node:path";
 import { drizzle as drizzlePg } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+import { loadEpisodesCsv } from "@/content/episodes";
 import { loadContent } from "@/content/load";
 import { seedContent } from "./seed";
+import { seedEpisodes } from "./seed-episodes";
 import * as schema from "./schema";
 import type { DB } from "./types";
 
@@ -27,6 +29,7 @@ async function open(): Promise<DB> {
   const { migrate } = await import("drizzle-orm/pglite/migrator");
   const db = drizzle(new PGlite(), { schema });
   await migrate(db, { migrationsFolder: path.join(process.cwd(), "drizzle") });
+  await seedEpisodes(db as unknown as DB, loadEpisodesCsv().episodes);
   await seedContent(db as unknown as DB, loadContent(path.join(process.cwd(), "content/slice")));
   return db as unknown as DB;
 }

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, KNOWLEDGE_STATES } from "./enums";
+import { CONFIDENCE, DEPTH_LAYERS, EDGE_TYPES, EPISODE_TYPES, KNOWLEDGE_STATES } from "./enums";
 
 /**
  * Authoring schema (spec section 7). Field names follow the spec.
@@ -58,6 +58,16 @@ const CharacterNode = z.object({
   title: z.string().min(1),
   watch_ep: ep,
   confidence: confidence.default("shown"),
+  // importance (core/major/minor) arrives as tier 1/2/3: one prominence scale, not two.
+  tier: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(2),
+  /** One present-tense sentence. Must not describe anything later than watch_ep. */
+  summary: z.string().min(1).nullable().default(null),
+  // Server-side only. See the bio/tags/aliases note in src/db/schema.ts.
+  bio: z.string().min(1).nullable().default(null),
+  tags: z.array(z.string()).default([]),
+  icon: z.string().nullable().default(null),
+  color: z.string().nullable().default(null),
+  source_url: z.url().nullable().default(null),
   lane_history: z.array(z.object({ from_ep: ep, lane: z.string() })).min(1),
   aliases: z.array(z.string()).default([]),
 });
@@ -92,6 +102,32 @@ export const Goal = z.object({
 });
 
 export const Term = z.object({ term: z.string().min(3), watch_ep: ep });
+
+/**
+ * The episode spine (content/episodes.csv). episode_abs is the numbering authority: every
+ * watch_ep / revealed_ep / from_ep value in the other content files is an episode_abs.
+ * Row-local rules live here; cross-row rules live in lintEpisodes().
+ */
+export const Episode = z
+  .object({
+    episode_abs: z.number().int().min(1),
+    season: z.number().int().min(1),
+    part: z.number().int().min(1).nullable(),
+    episode_in_part: z.number().int().min(1),
+    title: z.string().min(1),
+    arc: z.string().min(1),
+    episode_type: z.enum(EPISODE_TYPES),
+    summary: z.string().min(1).nullable(),
+    source_url: z.url().nullable(),
+  })
+  .superRefine((e, ctx) => {
+    if (e.episode_type === "special" && e.part !== null)
+      ctx.addIssue({ code: "custom", message: "specials sit outside any part (part must be empty)", path: ["part"] });
+    if (e.episode_type === "premiere" && e.episode_in_part !== 1)
+      ctx.addIssue({ code: "custom", message: "a premiere opens its season, so episode_in_part must be 1", path: ["episode_in_part"] });
+  });
+
+export type EpisodeC = z.infer<typeof Episode>;
 
 export const ContentSet = z.object({
   lanes: z.array(Lane),

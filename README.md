@@ -27,11 +27,44 @@ With a real database:
 docker compose up -d
 export DATABASE_URL=postgres://aot:aot@localhost:5432/aot
 npm run db:migrate
-npm run content:seed            # lints first; refuses to seed on errors
+npm run db:seed-episodes    # lints content/episodes.csv, then seeds the episode spine
+npm run content:seed        # lints first; refuses to seed on errors
 ```
 
 Other scripts: `npm test`, `npm run typecheck`, `npm run content:lint [dir] [--strict]`,
+`npm run db:check-episodes` (lint the spine without a database),
 `npm run db:generate` (after editing `src/db/schema.ts`).
+
+## Characters
+
+Characters are `nodes` rows, not a separate table: `title` is the name, `watch_ep` is the gate, `lane_history`
+is the faction path, `tier` is prominence (the Rule of 7 scale, so `importance` was folded into it rather than
+added beside it), and `aliases`/`tags` are `text[]`.
+
+The gate value is the episode a character is **named**, not the episode they are first on screen — those differ
+for most of the cast. See `content/slice/README.md` for the full rewrite and the list of `watch_ep` values
+awaiting a second reviewer.
+
+`bio`, `tags` and `aliases` are stored but **never selected** into the gated payload: they are written with
+whole-series knowledge (Hange's bio says he succeeds Erwin; Eren's tags say "yeagerists"), so they spoil against
+any gate. Alias search is consequently not wired up; it needs a per-alias gate first.
+
+## The episode spine
+
+`content/episodes.csv` is the numbering authority: 89 rows, `episode_abs` as the primary key.
+Every `watch_ep` / `revealed_ep` / `from_ep` value elsewhere in the content is an `episode_abs`,
+and `db:seed-episodes` refuses to seed if the content references an episode the spine does not
+cover (`EPISODE_UNCOVERED`). There is deliberately no foreign key: gate columns are a spoiler
+coordinate, not a reference.
+
+The table is read through `loadGatedEpisodes()` in `src/gate/queries.ts`, like every other
+content table. A row is withheld until the viewer reaches that episode, because the title
+("Beast Titan", ep 26) and ep 89's summary are both spoilers on their own.
+
+`lintEpisodes()` enforces the shape: `episode_abs` gapless from 1, exactly one `premiere` per
+season opening it, `finale` closing its arc, `episode_in_part` counting 1..n inside each
+`(season, part)` group, and partless episodes trailing a parted season (S4 runs parts 1-2 over
+eps 60-87, then 88-89 sit outside the parts as the Final Chapters).
 
 ## How the spoiler gate works
 
@@ -49,6 +82,7 @@ It is a spoiler guard, not a security boundary: the cookie is user-editable, whi
 
 ```
 content/slice/        authored JSON, one file per table (spec section 7). SAMPLE DATA, see its README
+content/episodes.csv  the episode spine, 89 rows, the numbering authority for every watch_ep
 src/content/          zod schema, loader, lint (spoiler lint, because-needs-edge, gate order, ...)
 src/db/               drizzle schema, seed, client (postgres-js or pglite)
 src/gate/             gate cookie, gated queries, client-facing types

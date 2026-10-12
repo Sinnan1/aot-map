@@ -1,57 +1,666 @@
 [
   {
-    "id": "evt_life_inside_walls", "type": "event", "title": "Life Inside the Walls",
-    "faction_lane": "lore_history", "watch_ep": 1, "story_order": 1,
-    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "id": "evt_life_inside_walls",
+    "type": "event",
+    "title": "Life Inside the Walls",
+    "faction_lane": "lore_history",
+    "watch_ep": 1,
+    "story_order": 1,
+    "is_flashback": false,
+    "happened_in": null,
+    "confidence": "shown",
+    "depth_layer": "surface",
+    "tier": 1,
     "summary": "Humanity lives behind three concentric Walls, hunted by man-eating Titans outside them.",
-    "because": null, "setup_ref": null, "participants": ["char_eren"]
+    "because": null,
+    "setup_ref": null,
+    "participants": [
+      "char_eren"
+    ]
   },
   {
-    "id": "evt_world_beyond_walls", "type": "event", "title": "The World Beyond the Walls",
-    "faction_lane": "lore_history", "watch_ep": 59, "story_order": 2,
-    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "id": "evt_world_beyond_walls",
+    "type": "event",
+    "title": "The World Beyond the Walls",
+    "faction_lane": "lore_history",
+    "watch_ep": 59,
+    "story_order": 2,
+    "is_flashback": false,
+    "happened_in": null,
+    "confidence": "shown",
+    "depth_layer": "surface",
+    "tier": 1,
     "summary": "The Survey Corps reach the ocean and learn that the world extends far beyond the Walls.",
     "because": "What the Scouts find beyond the Walls overturns what humanity believed about its world.",
-    "setup_ref": "evt_life_inside_walls", "participants": ["char_eren"]
+    "setup_ref": "evt_life_inside_walls",
+    "participants": [
+      "char_eren"
+    ]
   },
   {
-    "id": "evt_liberio_zone", "type": "event", "title": "Liberio Internment Zone",
-    "faction_lane": "marley_military", "watch_ep": 60, "story_order": 3,
-    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "id": "evt_liberio_zone",
+    "type": "event",
+    "title": "Liberio Internment Zone",
+    "faction_lane": "marley_military",
+    "watch_ep": 63,
+    "story_order": 3,
+    "is_flashback": false,
+    "happened_in": null,
+    "confidence": "shown",
+    "depth_layer": "surface",
+    "tier": 1,
     "summary": "Eldians live confined to an internment zone in the Marleyan city of Liberio.",
-    "because": null, "setup_ref": "evt_world_beyond_walls", "participants": ["char_gabi", "char_falco"]
+    "because": null,
+    "setup_ref": "evt_world_beyond_walls",
+    "participants": [
+      "char_gabi",
+      "char_falco"
+    ]
   },
   {
-    "id": "evt_warrior_candidates", "type": "event", "title": "Warrior Candidates",
-    "faction_lane": "warriors", "watch_ep": 60, "story_order": 4,
-    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 2,
+    "id": "evt_warrior_candidates",
+    "type": "event",
+    "title": "Warrior Candidates",
+    "faction_lane": "warriors",
+    "watch_ep": 63,
+    "story_order": 4,
+    "is_flashback": false,
+    "happened_in": null,
+    "confidence": "shown",
+    "depth_layer": "surface",
+    "tier": 2,
     "summary": "Child candidates compete to inherit the Armored Titan.",
     "because": "Eldian children can win honorary status for their families by becoming Warriors.",
-    "setup_ref": "evt_liberio_zone", "participants": ["char_gabi", "char_falco", "char_reiner"]
+    "setup_ref": "evt_liberio_zone",
+    "participants": [
+      "char_gabi",
+      "char_falco",
+      "char_reiner"
+    ]
   },
   {
-    "id": "evt_declaration_of_war", "type": "event", "title": "Declaration of War",
-    "faction_lane": "marley_military", "watch_ep": 64, "story_order": 5,
-    "is_flashback": false, "happened_in": null, "confidence": "shown", "depth_layer": "surface", "tier": 1,
+    "id": "evt_declaration_of_war",
+    "type": "event",
+    "title": "Declaration of War",
+    "faction_lane": "marley_military",
+    "watch_ep": 64,
+    "story_order": 5,
+    "is_flashback": false,
+    "happened_in": null,
+    "confidence": "shown",
+    "depth_layer": "surface",
+    "tier": 1,
     "summary": "Eren attacks the Marleyan festival in Liberio and declares war on the world.",
     "because": "Eren aims to strike Marley before it can strike Paradis.",
-    "setup_ref": "evt_world_beyond_walls", "participants": ["char_eren"]
+    "setup_ref": "evt_world_beyond_walls",
+    "participants": [
+      "char_eren"
+    ]
   },
   {
-    "id": "char_eren", "type": "character", "title": "Eren", "watch_ep": 1, "confidence": "shown",
-    "aliases": ["Eren Yeager"], "lane_history": [{ "from_ep": 1, "lane": "scouts" }]
+    "id": "char_eren",
+    "type": "character",
+    "title": "Eren Yeager",
+    "watch_ep": 1,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Passionate soldier driven to eliminate Titans and fight for Eldia's freedom.",
+    "bio": "Born in Shiganshina, Eren joins the Scout Regiment after his mother is killed. Possessing the Attack and Founding Titans, he later leads the Yeagerists and triggers the Rumbling.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "titan_shifter",
+      "yeagerists",
+      "shiganshina"
+    ],
+    "icon": "attack_titan",
+    "color": "#2e5a27",
+    "source_url": "https://attackontitan.fandom.com/wiki/Eren_Jaeger_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 1,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Eren Jaeger",
+      "Attack Titan",
+      "Founding Titan"
+    ]
   },
   {
-    "id": "char_reiner", "type": "character", "title": "Reiner", "watch_ep": 1, "confidence": "shown",
-    "aliases": ["Reiner Braun"],
-    "lane_history": [{ "from_ep": 1, "lane": "scouts" }, { "from_ep": 60, "lane": "warriors" }]
+    "id": "char_mikasa",
+    "type": "character",
+    "title": "Mikasa Ackerman",
+    "watch_ep": 3,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Top graduate of the 104th Cadet Corps fiercely devoted to protecting Eren.",
+    "bio": "An elite soldier of the Scout Regiment with unmatched combat abilities. Bound to Eren by deep devotion, she ultimately plays a pivotal role in ending the Titan curse during the final battle.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "ackerman",
+      "special_operations_squad"
+    ],
+    "icon": "swords",
+    "color": "#8b0000",
+    "source_url": "https://attackontitan.fandom.com/wiki/Mikasa_Ackermann_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 3,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Mikasa Ackermann"
+    ]
   },
   {
-    "id": "char_gabi", "type": "character", "title": "Gabi", "watch_ep": 60, "confidence": "shown",
-    "aliases": ["Gabi Braun"], "lane_history": [{ "from_ep": 60, "lane": "warriors" }]
+    "id": "char_armin",
+    "type": "character",
+    "title": "Armin Arlert",
+    "watch_ep": 3,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Childhood friend whose deductive mind compensates for a weak body.",
+    "bio": "Eren and Mikasa's childhood friend who compensates for physical weakness with extraordinary deductive reasoning. He inherits the Colossal Titan and eventually becomes the 15th Scout Commander.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "commander",
+      "titan_shifter",
+      "shiganshina"
+    ],
+    "icon": "colossal_titan",
+    "color": "#4682b4",
+    "source_url": "https://attackontitan.fandom.com/wiki/Armin_Arlelt_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 3,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Armin Arlelt",
+      "Colossal Titan"
+    ]
   },
   {
-    "id": "char_falco", "type": "character", "title": "Falco", "watch_ep": 60, "confidence": "shown",
-    "aliases": ["Falco Grice"], "lane_history": [{ "from_ep": 60, "lane": "warriors" }]
+    "id": "char_reiner",
+    "type": "character",
+    "title": "Reiner Braun",
+    "watch_ep": 17,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Unusually strong cadet of the 104th whose confident manner hides something.",
+    "bio": "An Eldian Warrior for Marley who breached Wall Maria with Bertholdt. Plagued by guilt and a split persona from his time in the 104th, he remains torn between duty and his former comrades.",
+    "tags": [
+      "marley_warriors",
+      "104th_cadet_corps",
+      "titan_shifter",
+      "honorary_marleyan"
+    ],
+    "icon": "armored_titan",
+    "color": "#b8860b",
+    "source_url": "https://attackontitan.fandom.com/wiki/Reiner_Braun_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 17,
+        "lane": "scouts"
+      },
+      {
+        "from_ep": 31,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Armored Titan",
+      "Vice Chief Reiner"
+    ]
+  },
+  {
+    "id": "char_bertholdt",
+    "type": "character",
+    "title": "Bertholdt Hoover",
+    "watch_ep": 31,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Quiet Warrior who breached Wall Maria as the feared Colossal Titan.",
+    "bio": "A reserved Marleyan Warrior who infiltrated the Walls alongside Reiner. Despite possessing the devastating Colossal Titan, he struggled with remorse before falling in the Battle of Shiganshina.",
+    "tags": [
+      "marley_warriors",
+      "104th_cadet_corps",
+      "titan_shifter",
+      "honorary_marleyan"
+    ],
+    "icon": "colossal_titan",
+    "color": "#b22222",
+    "source_url": "https://attackontitan.fandom.com/wiki/Bertholdt_Hoover_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 31,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Bertolt Hoover",
+      "Colossal Titan"
+    ]
+  },
+  {
+    "id": "char_annie",
+    "type": "character",
+    "title": "Annie Leonhart",
+    "watch_ep": 23,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Skilled Marleyan Warrior operative who possessed the Female Titan.",
+    "bio": "An aloof, expert martial artist who joined the Military Police to complete her infiltration mission. After being exposed as the Female Titan in Stohess, she encased herself in crystal.",
+    "tags": [
+      "marley_warriors",
+      "104th_cadet_corps",
+      "military_police",
+      "titan_shifter"
+    ],
+    "icon": "female_titan",
+    "color": "#5c6b73",
+    "source_url": "https://attackontitan.fandom.com/wiki/Annie_Leonhart_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 23,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Female Titan"
+    ]
+  },
+  {
+    "id": "char_levi",
+    "type": "character",
+    "title": "Levi Ackerman",
+    "watch_ep": 14,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Captain of the Special Operations Squad, famed as humanity's strongest.",
+    "bio": "A formidable, clean-obsessed soldier from the Underground who rose to lead the Scouts' elite squad. His Ackerman bloodline and unmatched speed make him the greatest threat to Titans.",
+    "tags": [
+      "scout_regiment",
+      "special_operations_squad",
+      "ackerman",
+      "humanitys_strongest"
+    ],
+    "icon": "swords",
+    "color": "#1e3f20",
+    "source_url": "https://attackontitan.fandom.com/wiki/Levi_Ackermann_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 14,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Levi Ackermann",
+      "Captain Levi",
+      "Humanity's Strongest Soldier"
+    ]
+  },
+  {
+    "id": "char_hange",
+    "type": "character",
+    "title": "Hange Zoë",
+    "watch_ep": 15,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Eccentric Scout scientist who studies Titans far too closely.",
+    "bio": "An energetic researcher obsessed with Titan biology who invents anti-Titan weaponry. Succeeding Erwin as 14th Commander, Hange leads the Scouts through political turmoil and the final global crisis.",
+    "tags": [
+      "scout_regiment",
+      "commander",
+      "researcher",
+      "veteran"
+    ],
+    "icon": "scientist",
+    "color": "#2e5a27",
+    "source_url": "https://attackontitan.fandom.com/wiki/Hange_Zo%C3%AB_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 15,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Hans Zoe",
+      "Section Commander Hange",
+      "Commander Hange"
+    ]
+  },
+  {
+    "id": "char_historia",
+    "type": "character",
+    "title": "Historia Reiss",
+    "watch_ep": 30,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Cadet whose plain kindness is backed by a claim to the throne itself.",
+    "bio": "Born as an illegitimate child of Rod Reiss, she discarded her false Krista persona during the Uprising. Defying her father, she helped slay his Titan and was crowned the rightful monarch of Paradis.",
+    "tags": [
+      "royal_family",
+      "queen",
+      "paradis_island",
+      "former_scout",
+      "alias"
+    ],
+    "icon": "crown",
+    "color": "#ffd700",
+    "source_url": "https://attackontitan.fandom.com/wiki/Historia_Reiss_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 30,
+        "lane": "scouts"
+      },
+      {
+        "from_ep": 40,
+        "lane": "paradis_government"
+      }
+    ],
+    "aliases": [
+      "Krista Lenz",
+      "Queen Historia",
+      "Christa Lenz",
+      "Goddess"
+    ]
+  },
+  {
+    "id": "char_grisha",
+    "type": "character",
+    "title": "Grisha Yeager",
+    "watch_ep": 48,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Doctor who spent years abroad pressing a dangerous case.",
+    "bio": "An Eldian doctor who led the Restorationists in Marley. On Paradis, he started a family, took the Founding Titan from the royal family, and sacrificed himself to pass his Titans to Eren.",
+    "tags": [
+      "titan_shifter",
+      "eldian_restorationist",
+      "doctor",
+      "shiganshina"
+    ],
+    "icon": "medical",
+    "color": "#696969",
+    "source_url": "https://attackontitan.fandom.com/wiki/Grisha_Jaeger_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 48,
+        "lane": "lore_history"
+      }
+    ],
+    "aliases": [
+      "Grisha Jaeger",
+      "The Doctor"
+    ]
+  },
+  {
+    "id": "char_zeke",
+    "type": "character",
+    "title": "Zeke Yeager",
+    "watch_ep": 74,
+    "confidence": "shown",
+    "tier": 1,
+    "summary": "Marley's Warrior Warchief and royal-blooded wielder of the Beast Titan.",
+    "bio": "Son of Grisha and Dina Fritz, Zeke betrayed his parents to survive. As Beast Titan, his royal blood allows him to command Titans. He secretly orchestrates an Eldian euthanasia plan with Eren.",
+    "tags": [
+      "marley_warriors",
+      "titan_shifter",
+      "royal_blood",
+      "warchief"
+    ],
+    "icon": "beast_titan",
+    "color": "#8b4513",
+    "source_url": "https://attackontitan.fandom.com/wiki/Zeke_Jaeger_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 74,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Zeke Jaeger",
+      "Beast Titan",
+      "Boy Wonder",
+      "Warchief Zeke"
+    ]
+  },
+  {
+    "id": "char_ymir",
+    "type": "character",
+    "title": "Ymir",
+    "watch_ep": 30,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Quiet 104th survivor who protects a certain member of the royal family at any cost.",
+    "bio": "A former vagrant falsely worshipped as a cult goddess in Marley, turned into a Pure Titan for decades. After eating Marcel and regaining humanity, she dedicated herself to protecting Historia.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "titan_shifter",
+      "jaw_titan"
+    ],
+    "icon": "jaw_titan",
+    "color": "#556b2f",
+    "source_url": "https://attackontitan.fandom.com/wiki/Ymir",
+    "lane_history": [
+      {
+        "from_ep": 30,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Dancing Titan",
+      "Jaw Titan",
+      "Lady Ymir"
+    ]
+  },
+  {
+    "id": "char_jean",
+    "type": "character",
+    "title": "Jean Kirstein",
+    "watch_ep": 3,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Wants the Military Police for a safe life; something else keeps pulling him toward the front line.",
+    "bio": "Initially aiming for a comfortable life in the Military Police, Marco's death inspired him to join the Scouts instead. He grew into a reliable battlefield commander with acute situational judgment.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "special_operations_squad",
+      "officer"
+    ],
+    "icon": "soldier",
+    "color": "#556b2f",
+    "source_url": "https://attackontitan.fandom.com/wiki/Jean_Kirschtein_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 3,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Jean Kirschtein",
+      "Horse Face"
+    ]
+  },
+  {
+    "id": "char_connie",
+    "type": "character",
+    "title": "Connie Springer",
+    "watch_ep": 3,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Energetic Scout driven by grief over his Titan-transformed home village.",
+    "bio": "An outgoing 104th graduate from Ragako village whose upbeat nature was tested when his family was turned into Titans. He remains a stalwart Scout committed to standing by his comrades in battle.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "special_operations_squad",
+      "ragako"
+    ],
+    "icon": "soldier",
+    "color": "#6b8e23",
+    "source_url": "https://attackontitan.fandom.com/wiki/Conny_Springer_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 3,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Conny Springer"
+    ]
+  },
+  {
+    "id": "char_sasha",
+    "type": "character",
+    "title": "Sasha Blouse",
+    "watch_ep": 3,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Talented hunter and sharpshooter known for her boundless love of food.",
+    "bio": "A cheerful girl from Dauper with extraordinary hunting instincts and marksmanship. Famously stealing a potato on her first day, she proved to be a courageous and deadly Scout in major battles.",
+    "tags": [
+      "104th_cadet_corps",
+      "scout_regiment",
+      "special_operations_squad",
+      "sharpshooter"
+    ],
+    "icon": "bow",
+    "color": "#8fbc8f",
+    "source_url": "https://attackontitan.fandom.com/wiki/Sasha_Braus_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 3,
+        "lane": "scouts"
+      }
+    ],
+    "aliases": [
+      "Sasha Braus",
+      "Potato Girl"
+    ]
+  },
+  {
+    "id": "char_falco",
+    "type": "character",
+    "title": "Falco Grice",
+    "watch_ep": 63,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Kind Warrior candidate who would rather take a Titan than let someone else.",
+    "bio": "A kind Eldian candidate in Marley fighting to protect Gabi from inheriting a Titan. After ingesting Zeke's spinal fluid, he transforms and inherits Porco's Jaw Titan, later manifesting wings.",
+    "tags": [
+      "warrior_candidate",
+      "marley_warriors",
+      "titan_shifter",
+      "jaw_titan"
+    ],
+    "icon": "falcon",
+    "color": "#4682b4",
+    "source_url": "https://attackontitan.fandom.com/wiki/Falco_Grice_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 63,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Flying Titan",
+      "Jaw Titan"
+    ]
+  },
+  {
+    "id": "char_gabi",
+    "type": "character",
+    "title": "Gabi Braun",
+    "watch_ep": 63,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Fierce Warrior candidate whose extreme Marleyan indoctrination is challenged.",
+    "bio": "Reiner's fiercely patriotic cousin and top Warrior candidate. After infiltrating Paradis and confronting the realities of island Eldians, she unlearns her hatred and aids the global alliance.",
+    "tags": [
+      "warrior_candidate",
+      "marley_warriors",
+      "sharpshooter",
+      "braun_family"
+    ],
+    "icon": "rifle",
+    "color": "#b22222",
+    "source_url": "https://attackontitan.fandom.com/wiki/Gabi_Braun_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 63,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Armored Titan Candidate"
+    ]
+  },
+  {
+    "id": "char_pieck",
+    "type": "character",
+    "title": "Pieck Finger",
+    "watch_ep": 75,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Clever Marleyan Warrior who commands the versatile, long-endurance Cart Titan.",
+    "bio": "An exceptionally observant Warrior whose Cart Titan provides long-distance reconnaissance, logistical transport, and mobile artillery support. She prioritizes the survival of her Eldian comrades.",
+    "tags": [
+      "marley_warriors",
+      "titan_shifter",
+      "cart_titan",
+      "panzer_unit"
+    ],
+    "icon": "cart_titan",
+    "color": "#708090",
+    "source_url": "https://attackontitan.fandom.com/wiki/Pieck_Finger_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 75,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Cart Titan",
+      "Cart"
+    ]
+  },
+  {
+    "id": "char_porco",
+    "type": "character",
+    "title": "Porco Galliard",
+    "watch_ep": 78,
+    "confidence": "shown",
+    "tier": 2,
+    "summary": "Hot-tempered Marleyan Warrior who inherited the Jaw Titan from Ymir.",
+    "bio": "Marcel's younger brother who wields the agile Jaw Titan. Harboring resentment toward Reiner, he proves his bravery in battle before sacrificing himself to save Reiner and pass his Titan to Falco.",
+    "tags": [
+      "marley_warriors",
+      "titan_shifter",
+      "jaw_titan",
+      "galliard_family"
+    ],
+    "icon": "jaw_titan",
+    "color": "#cd853f",
+    "source_url": "https://attackontitan.fandom.com/wiki/Porco_Galliard_(Anime)",
+    "lane_history": [
+      {
+        "from_ep": 78,
+        "lane": "warriors"
+      }
+    ],
+    "aliases": [
+      "Jaw Titan",
+      "Pock"
+    ]
   }
 ]

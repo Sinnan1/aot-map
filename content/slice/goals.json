@@ -1,4 +1,9 @@
 [
-  { "character": "char_gabi", "text": "Win honorary status for her family by inheriting the Armored Titan.",
-    "from_ep": 60, "to_ep": null, "confidence": "shown" }
+  {
+    "character": "char_gabi",
+    "text": "Win honorary status for her family by inheriting the Armored Titan.",
+    "from_ep": 63,
+    "to_ep": null,
+    "confidence": "shown"
+  }
 ]

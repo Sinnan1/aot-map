@@ -3,7 +3,7 @@
     "type": "causes", "watch_ep": 59, "confidence": "shown",
     "why_text": "The Walls had been taken for the edge of the world." },
   { "id": "edge_zone_to_candidates", "from": "evt_liberio_zone", "to": "evt_warrior_candidates",
-    "type": "causes", "watch_ep": 60, "confidence": "shown",
+    "type": "causes", "watch_ep": 63, "confidence": "shown",
     "why_text": "Life in the zone gives children a reason to chase Warrior status." },
   { "id": "edge_world_to_declaration", "from": "evt_world_beyond_walls", "to": "evt_declaration_of_war",
     "type": "causes", "watch_ep": 64, "confidence": "implied",

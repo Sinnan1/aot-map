@@ -1,4 +1,4 @@
-import type { Confidence, EdgeType, KState } from "@/content/enums";
+import type { Confidence, EdgeType, EpisodeType, KState } from "@/content/enums";
 
 /**
  * Everything here is what the CLIENT receives. It is already gated.
@@ -44,3 +44,20 @@ export interface GatedGraph {
 }
 
 export interface SearchHit { id: string; title: string; watchEp: number; type: "event" | "character" }
+
+/**
+ * A watched episode. Gated on episode_abs, so an unwatched viewer never receives a row: the
+ * title ("Beast Titan", ep 26) and the summary (ep 89 gives away the ending) are both spoilers
+ * until the episode itself has been seen.
+ */
+export interface CEpisode {
+  episodeAbs: number;
+  season: number;
+  part: number | null;
+  episodeInPart: number;
+  title: string;
+  arc: string;
+  episodeType: EpisodeType;
+  summary: string | null;
+  sourceUrl: string | null;
+}
