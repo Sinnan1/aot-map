@@ -30,5 +30,165 @@
     "from_ep": 63,
     "to_ep": null,
     "confidence": "shown"
+  },
+  {
+    "holder": "char_levi",
+    "fact": "fact_paradis_cooperation_zeke",
+    "state": "knows",
+    "from_ep": 67,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_gabi",
+    "fact": "fact_paradis_cooperation_zeke",
+    "state": "knows",
+    "from_ep": 67,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_pieck",
+    "fact": "fact_paradis_cooperation_zeke",
+    "state": "not_knows",
+    "from_ep": 75,
+    "to_ep": 76,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_hange",
+    "fact": "fact_tainted_wine_spinal_fluid",
+    "state": "knows",
+    "from_ep": 72,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_jean",
+    "fact": "fact_tainted_wine_spinal_fluid",
+    "state": "not_knows",
+    "from_ep": 72,
+    "to_ep": 73,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_zeke",
+    "fact": "fact_zeke_euthanasia_plan",
+    "state": "knows",
+    "from_ep": 74,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_armin",
+    "fact": "fact_zeke_euthanasia_plan",
+    "state": "not_knows",
+    "from_ep": 74,
+    "to_ep": 76,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_connie",
+    "fact": "fact_zeke_euthanasia_plan",
+    "state": "not_knows",
+    "from_ep": 74,
+    "to_ep": 80,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_eren",
+    "fact": "fact_attack_titan_future_memories",
+    "state": "knows",
+    "from_ep": 79,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_zeke",
+    "fact": "fact_attack_titan_future_memories",
+    "state": "knows",
+    "from_ep": 79,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_zeke",
+    "fact": "fact_grisha_slaughter_forced_by_future_eren",
+    "state": "knows",
+    "from_ep": 79,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_eren",
+    "fact": "fact_grisha_slaughter_forced_by_future_eren",
+    "state": "knows",
+    "from_ep": 79,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_armin",
+    "fact": "fact_eren_full_rumbling_intent",
+    "state": "knows",
+    "from_ep": 80,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_mikasa",
+    "fact": "fact_eren_full_rumbling_intent",
+    "state": "knows",
+    "from_ep": 80,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_reiner",
+    "fact": "fact_eren_full_rumbling_intent",
+    "state": "knows",
+    "from_ep": 80,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_eren",
+    "fact": "fact_ymir_not_royal_slave",
+    "state": "knows",
+    "from_ep": 80,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_zeke",
+    "fact": "fact_ymir_not_royal_slave",
+    "state": "believes_falsely",
+    "from_ep": 80,
+    "to_ep": 81,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_armin",
+    "fact": "fact_curse_of_titans_ended",
+    "state": "knows",
+    "from_ep": 89,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_reiner",
+    "fact": "fact_curse_of_titans_ended",
+    "state": "knows",
+    "from_ep": 89,
+    "to_ep": null,
+    "confidence": "shown"
+  },
+  {
+    "holder": "char_levi",
+    "fact": "fact_curse_of_titans_ended",
+    "state": "knows",
+    "from_ep": 89,
+    "to_ep": null,
+    "confidence": "shown"
   }
 ]

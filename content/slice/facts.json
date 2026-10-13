@@ -1,4 +1,52 @@
 [
-  { "id": "fact_world_beyond_walls", "text": "Nations exist beyond the Walls.", "revealed_ep": 59 },
-  { "id": "fact_paradis_not_devils", "text": "The people of Paradis Island are not devils.", "revealed_ep": 60 }
+  {
+    "id": "fact_world_beyond_walls",
+    "text": "Nations exist beyond the Walls.",
+    "revealed_ep": 59
+  },
+  {
+    "id": "fact_paradis_not_devils",
+    "text": "The people of Paradis Island are not devils.",
+    "revealed_ep": 60
+  },
+  {
+    "id": "fact_paradis_cooperation_zeke",
+    "text": "Zeke is secretly allied with the Survey Corps.",
+    "revealed_ep": 67
+  },
+  {
+    "id": "fact_tainted_wine_spinal_fluid",
+    "text": "Marleyan wine distributed to the military contains Zeke's spinal fluid.",
+    "revealed_ep": 72
+  },
+  {
+    "id": "fact_zeke_euthanasia_plan",
+    "text": "Zeke's true objective is the biological sterilization of all Eldians.",
+    "revealed_ep": 74
+  },
+  {
+    "id": "fact_attack_titan_future_memories",
+    "text": "The Attack Titan can perceive memories sent from future successors.",
+    "revealed_ep": 79
+  },
+  {
+    "id": "fact_grisha_slaughter_forced_by_future_eren",
+    "text": "Eren guided and pressured Grisha into slaughtering the Reiss family.",
+    "revealed_ep": 79
+  },
+  {
+    "id": "fact_eren_full_rumbling_intent",
+    "text": "Eren intends to exterminate all humanity outside Paradis rather than execute a limited deterrence.",
+    "revealed_ep": 80
+  },
+  {
+    "id": "fact_ymir_not_royal_slave",
+    "text": "Ymir Fritz can exercise free will and is not bound to obey royal commands.",
+    "revealed_ep": 80
+  },
+  {
+    "id": "fact_curse_of_titans_ended",
+    "text": "The power of the Titans has permanently vanished from the world.",
+    "revealed_ep": 89
+  }
 ]

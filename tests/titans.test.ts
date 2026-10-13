@@ -293,8 +293,8 @@ describe("the gate and search seal Titan, Concept, and Location nodes and aliase
 
   it("loads all S1-S4 events and event_participants rows, sealing hidden_actor participants until visible_from_ep", async () => {
     const c = sample();
-    expect(c.nodes.filter((n) => n.type === "event")).toHaveLength(58);
-    expect(c.event_participants).toHaveLength(106);
+    expect(c.nodes.filter((n) => n.type === "event")).toHaveLength(73);
+    expect(c.event_participants).toHaveLength(128);
 
     // At ep 1, Fall of Shiganshina shows Eren, Mikasa, Hannes, and Carla, but withholds Reiner and Bertholdt (hidden_actor, ep 31).
     const at1 = await loadGatedGraph(db, makeGate({ progress: 1 }));
@@ -323,7 +323,7 @@ describe("the gate and search seal Titan, Concept, and Location nodes and aliase
 
     // In rewatch mode, all event participant rows are present and sourceUrl stays server-side.
     const full = await loadGatedGraph(db, makeGate({ rewatch: true }));
-    expect(full.eventParticipants).toHaveLength(106);
+    expect(full.eventParticipants).toHaveLength(128);
     expect(JSON.stringify(full.eventParticipants)).not.toContain("sourceUrl");
   });
 });

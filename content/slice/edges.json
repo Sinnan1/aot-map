@@ -421,5 +421,122 @@
     "watch_ep": 75,
     "confidence": "shown",
     "why_text": "Marley launches an immediate retaliatory strike to reclaim the Founding Titan before Eren can activate its power."
+  },
+  {
+    "id": "edge_marley_airship_fleet_arrival_to_shiganshina_three_way_clash",
+    "from": "evt_marley_airship_fleet_arrival",
+    "to": "evt_shiganshina_three_way_clash",
+    "type": "causes",
+    "watch_ep": 76,
+    "confidence": "shown",
+    "why_text": "Marley's airborne fleet arrives over Shiganshina to launch a surprise counter-invasion against Eren."
+  },
+  {
+    "id": "edge_shiganshina_three_way_clash_to_beast_titan_artillery_entry",
+    "from": "evt_shiganshina_three_way_clash",
+    "to": "evt_beast_titan_artillery_entry",
+    "type": "causes",
+    "watch_ep": 77,
+    "confidence": "shown",
+    "why_text": "Eren is pinned down and overwhelmed by the combined assault of the Armored and Jaw Titans."
+  },
+  {
+    "id": "edge_beast_titan_artillery_entry_to_jaw_titan_transfer_sacrifice",
+    "from": "evt_beast_titan_artillery_entry",
+    "to": "evt_jaw_titan_transfer_sacrifice",
+    "type": "causes",
+    "watch_ep": 78,
+    "confidence": "shown",
+    "why_text": "Zeke's scream transforms Falco into a rampaging pure Titan who attacks Reiner during the clash."
+  },
+  {
+    "id": "edge_origin_of_progenitor_ymir_to_liberation_of_the_progenitor",
+    "from": "evt_origin_of_progenitor_ymir",
+    "to": "evt_liberation_of_the_progenitor",
+    "type": "causes",
+    "watch_ep": 80,
+    "confidence": "shown",
+    "why_text": "Ymir has remained bound to the commands of royal blood by two millennia of psychological enslavement."
+  },
+  {
+    "id": "edge_liberation_of_the_progenitor_to_shiganshina_pure_titan_purge",
+    "from": "evt_liberation_of_the_progenitor",
+    "to": "evt_shiganshina_pure_titan_purge",
+    "type": "causes",
+    "watch_ep": 81,
+    "confidence": "shown",
+    "why_text": "The collapse of the district walls leaves the military garrison surrounded by rampaging pure Titans."
+  },
+  {
+    "id": "edge_liberation_of_the_progenitor_to_crystal_hardening_shatters",
+    "from": "evt_liberation_of_the_progenitor",
+    "to": "evt_crystal_hardening_shatters",
+    "type": "causes",
+    "watch_ep": 81,
+    "confidence": "shown",
+    "why_text": "Eren commands the total undoing of all Titan hardening across Paradis Island."
+  },
+  {
+    "id": "edge_shiganshina_pure_titan_purge_to_forest_campfire_dialogue",
+    "from": "evt_shiganshina_pure_titan_purge",
+    "to": "evt_forest_campfire_dialogue",
+    "type": "causes",
+    "watch_ep": 84,
+    "confidence": "shown",
+    "why_text": "The surviving factions must reconcile their enmity to form an alliance against the Rumbling."
+  },
+  {
+    "id": "edge_forest_campfire_dialogue_to_harbor_subterfuge_negotiation",
+    "from": "evt_forest_campfire_dialogue",
+    "to": "evt_harbor_subterfuge_negotiation",
+    "type": "causes",
+    "watch_ep": 85,
+    "confidence": "shown",
+    "why_text": "The allied coalition requires the flying boat at the port to pursue Eren before he reaches the mainland."
+  },
+  {
+    "id": "edge_harbor_subterfuge_negotiation_to_battle_for_harbor_flying_boat",
+    "from": "evt_harbor_subterfuge_negotiation",
+    "to": "evt_battle_for_harbor_flying_boat",
+    "type": "causes",
+    "watch_ep": 86,
+    "confidence": "shown",
+    "why_text": "The peaceful ruse collapses into bloodshed when the Yeagerist guards realize they are being betrayed."
+  },
+  {
+    "id": "edge_battle_for_harbor_flying_boat_to_naval_cruiser_scuttling",
+    "from": "evt_battle_for_harbor_flying_boat",
+    "to": "evt_naval_cruiser_scuttling",
+    "type": "causes",
+    "watch_ep": 86,
+    "confidence": "shown",
+    "why_text": "Yeagerist reinforcements with naval artillery threaten to pursue and intercept the escaping alliance ship."
+  },
+  {
+    "id": "edge_battle_for_harbor_flying_boat_to_odiha_airfield_holding_action",
+    "from": "evt_battle_for_harbor_flying_boat",
+    "to": "evt_odiha_airfield_holding_action",
+    "type": "causes",
+    "watch_ep": 88,
+    "confidence": "shown",
+    "why_text": "The Rumbling reaches the coastal hangar before technicians can finish fueling the flying boat."
+  },
+  {
+    "id": "edge_odiha_airfield_holding_action_to_reawakening_in_paths_realm",
+    "from": "evt_odiha_airfield_holding_action",
+    "to": "evt_reawakening_in_paths_realm",
+    "type": "causes",
+    "watch_ep": 89,
+    "confidence": "shown",
+    "why_text": "The alliance's airborne assault is overwhelmed by the puppet Titan army summoned atop Eren's founding form."
+  },
+  {
+    "id": "edge_reawakening_in_paths_realm_to_cessation_of_titan_curse",
+    "from": "evt_reawakening_in_paths_realm",
+    "to": "evt_cessation_of_titan_curse",
+    "type": "causes",
+    "watch_ep": 89,
+    "confidence": "shown",
+    "why_text": "The awakening of past shifters turns the battle and allows Levi to breach Eren's mouth for Mikasa."
   }
 ]

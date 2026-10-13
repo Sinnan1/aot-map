@@ -929,5 +929,181 @@
     "role": "primary",
     "visible_from_ep": 75,
     "notes": "Commands the Marley airborne fleet descending on Shiganshina to launch a surprise counterattack."
+  },
+  {
+    "id": "evt_shiganshina_three_way_clash_theo_magath",
+    "event_id": "evt_shiganshina_three_way_clash",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 76,
+    "notes": "General Magath directs Marleyan anti-titan artillery strikes directly from atop the Cart Titan."
+  },
+  {
+    "id": "evt_beast_titan_artillery_entry_yelena",
+    "event_id": "evt_beast_titan_artillery_entry",
+    "entity_id": "char_yelena",
+    "role": "secondary",
+    "visible_from_ep": 77,
+    "notes": "Yelena observes Zeke's dramatic entrance with fanatical reverence from the district walls."
+  },
+  {
+    "id": "evt_beast_titan_artillery_entry_colt_grice",
+    "event_id": "evt_beast_titan_artillery_entry",
+    "entity_id": "char_colt_grice",
+    "role": "secondary",
+    "visible_from_ep": 77,
+    "notes": "Colt pleads unsuccessfully with Zeke to delay his transformative roar until Falco escapes the blast radius."
+  },
+  {
+    "id": "evt_jaw_titan_transfer_sacrifice_colt_grice",
+    "event_id": "evt_jaw_titan_transfer_sacrifice",
+    "entity_id": "char_colt_grice",
+    "role": "victim",
+    "visible_from_ep": 78,
+    "notes": "Colt embraces his younger brother Falco and is incinerated by the heat of Falco's sudden Titan transformation."
+  },
+  {
+    "id": "evt_origin_of_progenitor_ymir_ymir_fritz",
+    "event_id": "evt_origin_of_progenitor_ymir",
+    "entity_id": "char_ymir_fritz",
+    "role": "primary",
+    "visible_from_ep": 80,
+    "notes": "Ymir obtains the primordial power beneath an ancient tree after being hunted by tribal pursuers."
+  },
+  {
+    "id": "evt_origin_of_progenitor_ymir_king_fritz",
+    "event_id": "evt_origin_of_progenitor_ymir",
+    "entity_id": "char_king_fritz",
+    "role": "primary",
+    "visible_from_ep": 80,
+    "notes": "King Fritz exploits Ymir's devotion to build an empire and orders his daughters to cannibalize her corpse."
+  },
+  {
+    "id": "evt_liberation_of_the_progenitor_ymir_fritz",
+    "event_id": "evt_liberation_of_the_progenitor",
+    "entity_id": "char_ymir_fritz",
+    "role": "primary",
+    "visible_from_ep": 80,
+    "notes": "Ymir weeps with cathartic emotion upon hearing Eren acknowledge her as an autonomous human being."
+  },
+  {
+    "id": "evt_shiganshina_pure_titan_purge_dot_pyxis",
+    "event_id": "evt_shiganshina_pure_titan_purge",
+    "entity_id": "char_dot_pyxis",
+    "role": "victim",
+    "visible_from_ep": 81,
+    "notes": "Dot Pyxis is mercy-killed by Armin Arlert after being involuntarily transformed by Zeke's spinal fluid scream."
+  },
+  {
+    "id": "evt_shiganshina_pure_titan_purge_keith_shadis",
+    "event_id": "evt_shiganshina_pure_titan_purge",
+    "entity_id": "char_keith_shadis",
+    "role": "secondary",
+    "visible_from_ep": 81,
+    "notes": "Keith Shadis rescues trainee recruits from rampaging Titans before instructing them to feign loyalty to the Yeagerists."
+  },
+  {
+    "id": "evt_crystal_hardening_shatters_hitch_dreyse",
+    "event_id": "evt_crystal_hardening_shatters",
+    "entity_id": "char_hitch_dreyse",
+    "role": "primary",
+    "visible_from_ep": 81,
+    "notes": "Hitch discovers Annie collapsed on the basement floor and helps smuggle her out of the military district."
+  },
+  {
+    "id": "evt_forest_campfire_dialogue_theo_magath",
+    "event_id": "evt_forest_campfire_dialogue",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 84,
+    "notes": "General Magath demands Eldians shoulder historical responsibility before Jean violently assaults Reiner."
+  },
+  {
+    "id": "evt_forest_campfire_dialogue_yelena",
+    "event_id": "evt_forest_campfire_dialogue",
+    "entity_id": "char_yelena",
+    "role": "secondary",
+    "visible_from_ep": 84,
+    "notes": "Yelena mocks the self-righteous morality of both factions by recalling each person's past hypocrisies."
+  },
+  {
+    "id": "evt_harbor_subterfuge_negotiation_floch_forster",
+    "event_id": "evt_harbor_subterfuge_negotiation",
+    "entity_id": "char_floch_forster",
+    "role": "primary",
+    "visible_from_ep": 85,
+    "notes": "Floch prepares to execute Azumabito delegates to ensure the world outside Paradis cannot be saved."
+  },
+  {
+    "id": "evt_harbor_subterfuge_negotiation_kiyomi_azumabito",
+    "event_id": "evt_harbor_subterfuge_negotiation",
+    "entity_id": "char_kiyomi_azumabito",
+    "role": "primary",
+    "visible_from_ep": 85,
+    "notes": "Kiyomi subdues an armed Yeagerist guard with a joint lock to protect her clan engineers."
+  },
+  {
+    "id": "evt_battle_for_harbor_flying_boat_floch_forster",
+    "event_id": "evt_battle_for_harbor_flying_boat",
+    "entity_id": "char_floch_forster",
+    "role": "primary",
+    "visible_from_ep": 86,
+    "notes": "Floch leads Yeagerist soldiers in aerial Thunder Spear charges against the Alliance boarding party."
+  },
+  {
+    "id": "evt_naval_cruiser_scuttling_theo_magath",
+    "event_id": "evt_naval_cruiser_scuttling",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 86,
+    "notes": "Theo Magath admits remorse for treating Eldians as disposable soldiers before lighting the gunpowder magazine."
+  },
+  {
+    "id": "evt_naval_cruiser_scuttling_keith_shadis",
+    "event_id": "evt_naval_cruiser_scuttling",
+    "entity_id": "char_keith_shadis",
+    "role": "primary",
+    "visible_from_ep": 86,
+    "notes": "Keith Shadis stands alongside Magath in the ship hold to ensure the allied trainees escape without pursuit."
+  },
+  {
+    "id": "evt_infiltrating_marleyan_mainland_onyankopon",
+    "event_id": "evt_infiltrating_marleyan_mainland",
+    "entity_id": "char_onyankopon",
+    "role": "secondary",
+    "visible_from_ep": 87,
+    "notes": "Onyankopon acts as a city guide and chauffeur for the Survey Corps during their clandestine mission in Marley."
+  },
+  {
+    "id": "evt_odiha_airfield_holding_action_floch_forster",
+    "event_id": "evt_odiha_airfield_holding_action",
+    "entity_id": "char_floch_forster",
+    "role": "hidden_actor",
+    "visible_from_ep": 88,
+    "notes": "Floch crawls into the hangar and punctures the flying boat hull before succumbing to mortal wounds."
+  },
+  {
+    "id": "evt_odiha_airfield_holding_action_onyankopon",
+    "event_id": "evt_odiha_airfield_holding_action",
+    "entity_id": "char_onyankopon",
+    "role": "primary",
+    "visible_from_ep": 88,
+    "notes": "Onyankopon successfully launches the flying boat amidst the scorching steam of approaching Wall Titans."
+  },
+  {
+    "id": "evt_reawakening_in_paths_realm_tom_ksaver",
+    "event_id": "evt_reawakening_in_paths_realm",
+    "entity_id": "char_tom_ksaver",
+    "role": "secondary",
+    "visible_from_ep": 89,
+    "notes": "Tom Ksaver manifests beside Zeke in the Paths sand to assist the Alliance against the Founder."
+  },
+  {
+    "id": "evt_cessation_of_titan_curse_ymir_fritz",
+    "event_id": "evt_cessation_of_titan_curse",
+    "entity_id": "char_ymir_fritz",
+    "role": "primary",
+    "visible_from_ep": 89,
+    "notes": "Ymir smiles as she observes Mikasa's choice and dissolves the titan curse across all Eldians."
   }
 ]
