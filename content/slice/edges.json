@@ -1,11 +1,182 @@
 [
-  { "id": "edge_walls_to_world", "from": "evt_life_inside_walls", "to": "evt_world_beyond_walls",
-    "type": "causes", "watch_ep": 59, "confidence": "shown",
-    "why_text": "The Walls had been taken for the edge of the world." },
-  { "id": "edge_zone_to_candidates", "from": "evt_liberio_zone", "to": "evt_warrior_candidates",
-    "type": "causes", "watch_ep": 63, "confidence": "shown",
-    "why_text": "Life in the zone gives children a reason to chase Warrior status." },
-  { "id": "edge_world_to_declaration", "from": "evt_world_beyond_walls", "to": "evt_declaration_of_war",
-    "type": "causes", "watch_ep": 64, "confidence": "implied",
-    "why_text": "Learning that the wider world exists set Paradis against it." }
+  {
+    "id": "edge_walls_to_world",
+    "from": "evt_life_inside_walls",
+    "to": "evt_world_beyond_walls",
+    "type": "causes",
+    "watch_ep": 59,
+    "confidence": "shown",
+    "why_text": "The Walls had been taken for the edge of the world."
+  },
+  {
+    "id": "edge_zone_to_candidates",
+    "from": "evt_liberio_zone",
+    "to": "evt_warrior_candidates",
+    "type": "causes",
+    "watch_ep": 63,
+    "confidence": "shown",
+    "why_text": "Life in the zone gives children a reason to chase Warrior status."
+  },
+  {
+    "id": "edge_world_to_declaration",
+    "from": "evt_world_beyond_walls",
+    "to": "evt_declaration_of_war",
+    "type": "causes",
+    "watch_ep": 64,
+    "confidence": "implied",
+    "why_text": "Learning that the wider world exists set Paradis against it."
+  },
+  {
+    "id": "edge_fall_shiganshina_to_trost_attack",
+    "from": "evt_fall_of_shiganshina",
+    "to": "evt_trost_attack",
+    "type": "causes",
+    "watch_ep": 5,
+    "confidence": "shown",
+    "why_text": "The destruction of Wall Maria forced human retreat and prompted the Colossal and Armored Titans' subsequent assault on Trost."
+  },
+  {
+    "id": "edge_fall_shiganshina_to_return_shiganshina",
+    "from": "evt_fall_of_shiganshina",
+    "to": "evt_return_to_shiganshina",
+    "type": "causes",
+    "watch_ep": 49,
+    "confidence": "shown",
+    "why_text": "The loss of Wall Maria established the long-term military objective to reclaim Shiganshina District."
+  },
+  {
+    "id": "edge_trost_attack_to_reiner_reveal",
+    "from": "evt_trost_attack",
+    "to": "evt_reiner_and_bertholdt_reveal",
+    "type": "causes",
+    "watch_ep": 31,
+    "confidence": "shown",
+    "why_text": "Eren's public Titan transformation at Trost exposed his powers to Reiner and Bertholdt, ultimately prompting their confession."
+  },
+  {
+    "id": "edge_reiner_reveal_to_uprising_arc",
+    "from": "evt_reiner_and_bertholdt_reveal",
+    "to": "evt_uprising_arc",
+    "type": "causes",
+    "watch_ep": 38,
+    "confidence": "shown",
+    "why_text": "The discovery of Titan shifters within the military spurred the Royal Government to capture Eren, sparking the coup d'état."
+  },
+  {
+    "id": "edge_uprising_arc_to_return_shiganshina",
+    "from": "evt_uprising_arc",
+    "to": "evt_return_to_shiganshina",
+    "type": "causes",
+    "watch_ep": 49,
+    "confidence": "shown",
+    "why_text": "Overthrowing the monarchy and acquiring Titan hardening enabled the Survey Corps to launch the operation to retake Wall Maria."
+  },
+  {
+    "id": "edge_return_shiganshina_to_basement_reveal",
+    "from": "evt_return_to_shiganshina",
+    "to": "evt_basement_reveal",
+    "type": "causes",
+    "watch_ep": 56,
+    "confidence": "shown",
+    "why_text": "Defeating the Warriors and securing Shiganshina granted the Survey Corps access to Grisha Yeager's basement."
+  },
+  {
+    "id": "edge_return_shiganshina_to_marley_war",
+    "from": "evt_return_to_shiganshina",
+    "to": "evt_marley_mid_east_war",
+    "type": "causes",
+    "watch_ep": 60,
+    "confidence": "shown",
+    "why_text": "Marley's defeat at Shiganshina and loss of two Titan powers prompted the Mid-East Allied Forces to declare war."
+  },
+  {
+    "id": "edge_basement_reveal_to_declaration_of_war",
+    "from": "evt_basement_reveal",
+    "to": "evt_declaration_of_war",
+    "type": "causes",
+    "watch_ep": 64,
+    "confidence": "implied",
+    "why_text": "Uncovering the global hostility documented in the journals foreshadowed Marley's worldwide coalition against Paradis."
+  },
+  {
+    "id": "edge_marley_war_to_declaration_of_war",
+    "from": "evt_marley_mid_east_war",
+    "to": "evt_declaration_of_war",
+    "type": "causes",
+    "watch_ep": 64,
+    "confidence": "shown",
+    "why_text": "The rise of anti-Titan weaponry during the war pressured Marley to reclaim the Founding Titan through Tybur's coalition."
+  },
+  {
+    "id": "edge_declaration_of_war_to_raid_on_liberio",
+    "from": "evt_declaration_of_war",
+    "to": "evt_raid_on_liberio",
+    "type": "causes",
+    "watch_ep": 65,
+    "confidence": "shown",
+    "why_text": "Willy Tybur's declaration of war served as Eren's planned cue to transform and assault the Liberio festival."
+  },
+  {
+    "id": "edge_raid_on_liberio_to_yeagerist_coup",
+    "from": "evt_raid_on_liberio",
+    "to": "evt_yeagerist_coup",
+    "type": "causes",
+    "watch_ep": 71,
+    "confidence": "shown",
+    "why_text": "Eren's unauthorized attack and subsequent arrest fractured the military, inspiring the Yeagerists to stage a coup."
+  },
+  {
+    "id": "edge_raid_on_liberio_to_eren_zeke_contact",
+    "from": "evt_raid_on_liberio",
+    "to": "evt_contact_between_eren_and_zeke",
+    "type": "causes",
+    "watch_ep": 78,
+    "confidence": "shown",
+    "why_text": "Extracting Zeke Yeager from Liberio brought royal blood to Paradis, establishing the prerequisite for physical contact."
+  },
+  {
+    "id": "edge_yeagerist_coup_to_eren_zeke_contact",
+    "from": "evt_yeagerist_coup",
+    "to": "evt_contact_between_eren_and_zeke",
+    "type": "causes",
+    "watch_ep": 78,
+    "confidence": "shown",
+    "why_text": "The Yeagerists overthrew military command and defended the brothers from Marleyan forces until they made physical contact."
+  },
+  {
+    "id": "edge_eren_zeke_contact_to_rumbling",
+    "from": "evt_contact_between_eren_and_zeke",
+    "to": "evt_rumbling_begins",
+    "type": "causes",
+    "watch_ep": 80,
+    "confidence": "shown",
+    "why_text": "Physical contact unlocked the Paths, allowing Eren to bypass the royal vow and convince Ymir to unleash the Wall Titans."
+  },
+  {
+    "id": "edge_rumbling_to_final_alliance",
+    "from": "evt_rumbling_begins",
+    "to": "evt_global_alliance_forms",
+    "type": "alliance",
+    "watch_ep": 83,
+    "confidence": "shown",
+    "why_text": "The catastrophic march of the Wall Titans forced the remaining Survey Corps and Marleyan Warriors to forge a truce."
+  },
+  {
+    "id": "edge_rumbling_to_final_battle",
+    "from": "evt_rumbling_begins",
+    "to": "evt_final_battle",
+    "type": "causes",
+    "watch_ep": 88,
+    "confidence": "shown",
+    "why_text": "The imminent destruction of humanity under the Rumbling necessitated the final confrontation at Fort Salta."
+  },
+  {
+    "id": "edge_final_alliance_to_final_battle",
+    "from": "evt_global_alliance_forms",
+    "to": "evt_final_battle",
+    "type": "causes",
+    "watch_ep": 88,
+    "confidence": "shown",
+    "why_text": "The unified alliance secured the Azumabito flying boat to intercept Eren and engage his Founding Titan in the final battle."
+  }
 ]
