@@ -1,5 +1,5 @@
-import type { EdgeType, KState } from "@/content/enums";
-import type { CEdge, CFact, CGoal, CNode, GatedGraph } from "@/gate/types";
+import type { EdgeType, KState, ParticipantRole } from "@/content/enums";
+import type { CEdge, CEventParticipant, CFact, CGoal, CNode, CRelationship, GatedGraph } from "@/gate/types";
 
 /** All lens functions are pure and run on the already-gated graph, so they cannot leak what the gate removed. */
 
@@ -64,6 +64,9 @@ export function connected(g: GatedGraph, nodeId: string): Set<string> {
   const n = g.nodes.find((x) => x.id === nodeId);
   if (n?.setupRef) out.add(n.setupRef);
   n?.participants.forEach((p) => out.add(p));
+  for (const ep of g.eventParticipants ?? []) {
+    if (ep.eventId === nodeId) out.add(ep.entityId);
+  }
   return out;
 }
 
@@ -83,8 +86,51 @@ export function activeGoals(g: GatedGraph, charId: string, ep: number): CGoal[] 
   return g.goals.filter((x) => x.character === charId && x.fromEp <= ep && (x.toEp === null || ep < x.toEp));
 }
 
+export function pastGoals(g: GatedGraph, charId: string, ep: number): CGoal[] {
+  return g.goals.filter((x) => x.character === charId && x.toEp !== null && x.toEp <= ep);
+}
+
 export function edgesTouching(g: GatedGraph, nodeId: string, layers: EdgeType[]): CEdge[] {
   return g.edges.filter((e) => layers.includes(e.type) && (e.from === nodeId || e.to === nodeId));
 }
 
+const ROLE_ORDER: Record<ParticipantRole, number> = {
+  primary: 1,
+  opponent: 2,
+  hidden_actor: 3,
+  victim: 4,
+  secondary: 5,
+  observer: 6,
+  memory_of: 7,
+  beneficiary: 8,
+  cause: 9,
+};
+
+/** Event participants unlocked by `ep`, ordered by narrative role priority. */
+export function eventParticipantsAt(g: GatedGraph, eventId: string, ep: number): CEventParticipant[] {
+  return (g.eventParticipants ?? [])
+    .filter((p) => p.eventId === eventId && p.visibleFromEp <= ep)
+    .sort((a, b) => (ROLE_ORDER[a.role] ?? 9) - (ROLE_ORDER[b.role] ?? 9) || a.visibleFromEp - b.visibleFromEp || a.id.localeCompare(b.id));
+}
+
+/** Relationships touching `entityId` unlocked by `ep`. */
+export function relationshipsFor(g: GatedGraph, entityId: string, ep: number): CRelationship[] {
+  return (g.relationships ?? [])
+    .filter((r) => (r.sourceId === entityId || r.targetId === entityId) && r.visibleFromEp <= ep)
+    .sort((a, b) => a.visibleFromEp - b.visibleFromEp || a.id.localeCompare(b.id));
+}
+
+/** Events a character participates in (combining node.participants and eventParticipants) unlocked by `ep`. */
+export function characterEventsAt(g: GatedGraph, charId: string, ep: number): { event: CNode; participant: CEventParticipant | null }[] {
+  const byEvent = new Map<string, CEventParticipant>();
+  for (const p of g.eventParticipants ?? []) {
+    if (p.entityId === charId && p.visibleFromEp <= ep) byEvent.set(p.eventId, p);
+  }
+  const events = g.nodes
+    .filter((n) => n.type === "event" && n.watchEp <= ep && (n.participants.includes(charId) || byEvent.has(n.id)))
+    .sort(byWatchEp);
+  return events.map((event) => ({ event, participant: byEvent.get(event.id) ?? null }));
+}
+
 export const byWatchEp = (a: CNode, b: CNode) => a.watchEp - b.watchEp || a.id.localeCompare(b.id);
+

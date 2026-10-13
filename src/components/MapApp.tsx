@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { FINALE_EP } from "@/config";
-import type { GatedGraph, SearchHit } from "@/gate/types";
+import type { CEpisode, GatedGraph, SearchHit } from "@/gate/types";
 import { byWatchEp, characterRoute, connected, edgesTouching, laneOfCharacter, stateAt, whyTrace } from "@/lib/lenses";
 import { initialView, viewReducer, type Lens } from "@/lib/viewState";
 import { CharacterPanel, HintPanel, NodePanel, WhoKnowsPanel } from "./Panels";
@@ -35,7 +35,7 @@ function useWidth() {
 type Snap = "peek" | "half" | "full";
 const NEXT_SNAP: Record<Snap, Snap> = { peek: "half", half: "full", full: "peek" };
 
-export function MapApp({ graph }: { graph: GatedGraph }) {
+export function MapApp({ graph, episodes }: { graph: GatedGraph; episodes?: CEpisode[] }) {
   const router = useRouter();
   const [view, dispatch] = useReducer(viewReducer, graph.progress, initialView);
   const [wrapRef, width] = useWidth();
@@ -64,16 +64,23 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
     if (view.selectedNode || view.selectedChar) setSnap((s) => (s === "peek" ? "half" : s));
   }, [view.selectedNode, view.selectedChar]);
 
+  const selectedNodeObj = useMemo(
+    () => (view.selectedNode ? graph.nodes.find((n) => n.id === view.selectedNode) ?? null : null),
+    [graph.nodes, view.selectedNode],
+  );
+
   // Contextual fading (Rule 2) and arrows on request only.
   const { focus, edges } = useMemo(() => {
-    if (view.lens === "why" && view.selectedNode) {
+    if (view.lens === "why" && view.selectedNode && selectedNodeObj?.type === "event") {
       const t = whyTrace(graph, view.selectedNode, graph.theories);
       return { focus: new Set([view.selectedNode, ...t.causes, ...t.effects]), edges: t.edges };
     }
     if (view.lens === "character" && view.selectedChar) return { focus: characterRoute(graph, view.selectedChar), edges: [] };
-    if (view.selectedNode) return { focus: connected(graph, view.selectedNode), edges: edgesTouching(graph, view.selectedNode, view.edgeLayers) };
+    if (view.selectedNode && selectedNodeObj?.type === "event") {
+      return { focus: connected(graph, view.selectedNode), edges: edgesTouching(graph, view.selectedNode, view.edgeLayers) };
+    }
     return { focus: null, edges: [] };
-  }, [graph, view.lens, view.selectedNode, view.selectedChar, view.edgeLayers]);
+  }, [graph, view.lens, view.selectedNode, selectedNodeObj, view.selectedChar, view.edgeLayers]);
 
   const placed = useMemo(() => placeEvents(graph.nodes, laneIds, view.zoom), [graph.nodes, laneIds.join("|"), view.zoom]); // eslint-disable-line react-hooks/exhaustive-deps
   const cx = episodeToX(view.cursor, view.zoom);
@@ -102,6 +109,20 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
     }
   };
 
+  const toggleTheories = async () => {
+    setAdvancing(true);
+    try {
+      await fetch("/api/progress", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ theories: !graph.theories }),
+      });
+      router.refresh();
+    } finally {
+      setAdvancing(false);
+    }
+  };
+
   const pick = (h: SearchHit) => {
     setSearching(false);
     if (h.type === "character") dispatch({ type: "select_char", id: h.id });
@@ -121,18 +142,19 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
   };
 
   const empty = graph.progress < 1;
+  const cursorEp = episodes?.find((e) => e.episodeAbs === view.cursor);
   const panel =
-    view.selectedNode ? <NodePanel graph={graph} view={view} dispatch={dispatch} />
-    : view.lens === "who_knows" ? <WhoKnowsPanel graph={graph} view={view} dispatch={dispatch} />
-    : view.lens === "character" ? <CharacterPanel graph={graph} view={view} dispatch={dispatch} />
-    : <HintPanel lens={view.lens} />;
+    view.selectedNode ? <NodePanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+    : view.lens === "who_knows" ? <WhoKnowsPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+    : view.lens === "character" ? <CharacterPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+    : <HintPanel lens={view.lens} graph={graph} view={view} dispatch={dispatch} episodes={episodes} />;
 
   return (
     <div className="app">
       <header className="top">
         <div className="top-row">
           <p className="progress" aria-live="polite">
-            {graph.rewatch ? <>Rewatch <span className="dim">all episodes</span></> : <>Watched through <strong>Ep {graph.progress}</strong></>}
+            {graph.rewatch ? <>Rewatch <span className="dim">all {FINALE_EP} episodes</span></> : <>Watched through <strong>Ep {graph.progress}</strong></>}
           </p>
           {!graph.rewatch && (
             <button className="next-ep" onClick={advance} disabled={advancing || graph.progress >= FINALE_EP}>I watched the next episode</button>
@@ -145,6 +167,15 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
           {LENSES.map((l) => (
             <button key={l.id} aria-pressed={view.lens === l.id} onClick={() => dispatch({ type: "lens", lens: l.id })}>{l.label}</button>
           ))}
+          <button
+            className="theory-toggle"
+            aria-pressed={graph.theories}
+            disabled={advancing}
+            onClick={toggleTheories}
+            title="Include fan theories and interpretations"
+          >
+            Theories {graph.theories ? "On" : "Off"}
+          </button>
         </div>
       </header>
 
@@ -183,6 +214,11 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
         </div>
         <div className="bottom-row">
           <button className="primary" onClick={() => dispatch({ type: "return_main" })}>Return to Main Thread</button>
+          {cursorEp && (
+            <span className="cursor-ep-meta dim">
+              S{cursorEp.season}{cursorEp.part ? `P${cursorEp.part}` : ""} · Ep {cursorEp.episodeAbs}: <strong>{cursorEp.title}</strong>
+            </span>
+          )}
           <div className="zoom" role="group" aria-label="Zoom">
             <button aria-label="Zoom out" disabled={view.zoom === 1} onClick={() => dispatch({ type: "zoom", delta: -1 })}>−</button>
             <button aria-label="Zoom in" disabled={view.zoom === 3} onClick={() => dispatch({ type: "zoom", delta: 1 })}>+</button>
@@ -192,3 +228,4 @@ export function MapApp({ graph }: { graph: GatedGraph }) {
     </div>
   );
 }
+

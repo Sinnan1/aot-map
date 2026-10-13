@@ -151,13 +151,15 @@ export function Ribbon({ graph, view, dispatch, width, laneIds, primary, cluster
               tabIndex={0}
               aria-pressed={selected}
               aria-label={`${node.title}, episode ${node.watchEp}${node.isFlashback ? ", flashback" : ""}${node.confidence === "interpretation" ? ", fan theory" : ""}`}
-              className={`node ${selected ? "selected" : ""} conf-${node.confidence}`}
+              className={`node tier-${node.tier} ${selected ? "selected" : ""} conf-${node.confidence}`}
               style={{ opacity: dim(node.id) }}
               onClick={tap(() => dispatch({ type: "select_node", id: node.id }))}
               onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), dispatch({ type: "select_node", id: node.id }))}
             >
+              <title>{`${node.title} (Ep ${node.watchEp})`}</title>
               <circle r={22} fill="transparent" /> {/* 44px tap target */}
               {selected && <circle r={18} className="node-halo" />}
+              {node.tier === 1 && !selected && <circle r={14.5} className="node-tier1-ring" style={{ stroke: `var(--lane-${node.lane}, var(--lane-default))` }} />}
               <circle r={11} className="node-dot" style={{ stroke: `var(--lane-${node.lane}, var(--lane-default))` }} />
               <text y={4} textAnchor="middle" className="node-ep">{node.watchEp}</text>
               {node.isFlashback && <text x={13} y={-10} className="badge-flash" aria-hidden>↺</text>}
@@ -195,6 +197,7 @@ export function Ribbon({ graph, view, dispatch, width, laneIds, primary, cluster
                     onClick={tap(() => dispatch({ type: "select_char", id: sel ? null : c.id }))}
                     onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), dispatch({ type: "select_char", id: sel ? null : c.id }))}
                   >
+                    <title>{c.title}</title>
                     <circle r={22} fill="transparent" />
                     <circle r={10} className="char-dot" />
                     <text y={4} textAnchor="middle" className="char-initial">{c.title[0]}</text>

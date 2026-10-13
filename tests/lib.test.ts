@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { makeGate } from "@/gate/gate";
 import { loadGatedGraph } from "@/gate/queries";
 import type { CNode, GatedGraph } from "@/gate/types";
-import { activeGoals, characterRoute, knowledgeMatrix, holdersAt, laneOfCharacter, stateAt, whyTrace } from "@/lib/lenses";
+import { activeGoals, characterEventsAt, characterRoute, eventParticipantsAt, knowledgeMatrix, holdersAt, laneOfCharacter, pastGoals, relationshipsFor, stateAt, whyTrace } from "@/lib/lenses";
 import { initialView, viewReducer } from "@/lib/viewState";
 import { episodeToX, placeEvents, selectPrimary, xToEpisode } from "@/components/ribbon/layout";
 import { makeDb, sample } from "./helpers";
@@ -44,6 +44,28 @@ describe("lenses", () => {
     expect(laneOfCharacter(g, "char_reiner", 31)).toBe("warriors");
     expect(activeGoals(g, "char_gabi", 62)).toHaveLength(0);
     expect(activeGoals(g, "char_gabi", 63)).toHaveLength(1);
+  });
+
+  it("cursor-gates eventParticipants, relationships, characterEventsAt, and pastGoals", async () => {
+    g = await load(64);
+    // At cursor 1, Reiner and Bertholdt's hidden_actor rows (visibleFromEp 31) on Fall of Shiganshina are withheld.
+    const shiganshinaAt1 = eventParticipantsAt(g, "evt_fall_of_shiganshina", 1).map((p) => p.entityId);
+    expect(shiganshinaAt1).toContain("char_eren");
+    expect(shiganshinaAt1).not.toContain("char_reiner");
+    expect(shiganshinaAt1).not.toContain("char_bertholdt");
+    // At cursor 31, the hidden_actor rows unlock.
+    const shiganshinaAt31 = eventParticipantsAt(g, "evt_fall_of_shiganshina", 31).map((p) => p.entityId);
+    expect(shiganshinaAt31).toContain("char_reiner");
+    expect(shiganshinaAt31).toContain("char_bertholdt");
+
+    // Relationships for Armored Titan only unlock at cursor 31 when Reiner's inheritance is revealed.
+    expect(relationshipsFor(g, "titan_armored", 20)).toHaveLength(0);
+    expect(relationshipsFor(g, "titan_armored", 31).map((r) => r.id)).toContain("rel_reiner_inherits_armored_titan");
+
+    // Eren has past phases once cursor advances past ep 9 and ep 38.
+    expect(pastGoals(g, "char_eren", 8)).toHaveLength(0);
+    expect(pastGoals(g, "char_eren", 64).length).toBeGreaterThanOrEqual(2);
+    expect(characterEventsAt(g, "char_eren", 64).some((x) => x.event.id === "evt_declaration_of_war")).toBe(true);
   });
 });
 
