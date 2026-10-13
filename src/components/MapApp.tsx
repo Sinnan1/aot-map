@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useReducer, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback, type Dispatch } from "react";
 import { FINALE_EP } from "@/config";
 import type { CEpisode, GatedGraph, SearchHit } from "@/gate/types";
-import { byWatchEp, characterRoute, connected, edgesTouching, laneOfCharacter, stateAt, whyTrace } from "@/lib/lenses";
-import { initialView, viewReducer, type Lens } from "@/lib/viewState";
 import { CharacterPanel, HintPanel, NodePanel, WhoKnowsPanel } from "./Panels";
 import { SearchBox } from "./SearchBox";
-import { Ribbon } from "./ribbon/Ribbon";
-import { episodeToX, placeEvents, selectPrimary } from "./ribbon/layout";
+import { FlowCanvas } from "./flow/FlowCanvas";
+import { ContinuousTimelineScrubber } from "./timeline/ContinuousTimelineScrubber";
+import { useTimelineStore } from "@/store/timelineStore";
+import type { Action, ViewState, Lens } from "@/lib/viewState";
+import { isSoundEnabled, toggleSound } from "@/lib/sound";
 
 const LENSES: { id: Lens; label: string }[] = [
   { id: "timeline", label: "Timeline" },
@@ -18,91 +19,106 @@ const LENSES: { id: Lens; label: string }[] = [
   { id: "why", label: "Why" },
 ];
 
-function useWidth() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [w, setW] = useState(390);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([e]) => e && setW(Math.round(e.contentRect.width)));
-    ro.observe(el);
-    setW(Math.round(el.getBoundingClientRect().width));
-    return () => ro.disconnect();
-  }, []);
-  return [ref, w] as const;
-}
-
 type Snap = "peek" | "half" | "full";
 const NEXT_SNAP: Record<Snap, Snap> = { peek: "half", half: "full", full: "peek" };
 
 export function MapApp({ graph, episodes }: { graph: GatedGraph; episodes?: CEpisode[] }) {
   const router = useRouter();
-  const [view, dispatch] = useReducer(viewReducer, graph.progress, initialView);
-  const [wrapRef, width] = useWidth();
+
+  // Zustand Store Integration
+  const cursor = useTimelineStore((state) => state.cursor);
+  const progress = useTimelineStore((state) => state.progress);
+  const lens = useTimelineStore((state) => state.lens);
+  const selectedNodeId = useTimelineStore((state) => state.selectedNodeId);
+  const selectedCharId = useTimelineStore((state) => state.selectedCharId);
+  const fact = useTimelineStore((state) => state.fact);
+  const pov = useTimelineStore((state) => state.pov);
+  const edgeLayers = useTimelineStore((state) => state.edgeLayers);
+  const zoom = useTimelineStore((state) => state.zoom);
+  const laneStart = useTimelineStore((state) => state.laneStart);
+
   const [snap, setSnap] = useState<Snap>("peek");
   const [searching, setSearching] = useState(false);
   const [advancing, setAdvancing] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const dragY = useRef<number | null>(null);
 
-  useEffect(() => dispatch({ type: "progress", progress: graph.progress }), [graph.progress]);
-
-  // Phones show 3 lanes at a time; start on the lane with the latest activity.
-  const phone = width < 640;
-  const laneCount = phone ? 3 : 6;
-  const maxStart = Math.max(0, graph.lanes.length - laneCount);
-  const laneStart = Math.min(view.laneStart, maxStart);
-  const laneIds = graph.lanes.slice(laneStart, laneStart + laneCount).map((l) => l.id);
+  // Initialize Zustand store with incoming server-gated data
   useEffect(() => {
-    const latest = graph.nodes.filter((n) => n.type === "event").sort(byWatchEp).at(-1);
-    const idx = graph.lanes.findIndex((l) => l.id === latest?.lane);
-    if (idx >= 0) dispatch({ type: "lane_start", start: idx - 1 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useTimelineStore.getState().init(graph, episodes);
+    setSoundOn(isSoundEnabled());
+  }, [graph, episodes]);
+
+  // Construct view compatibility object for Panels
+  const view: ViewState = useMemo(
+    () => ({
+      progress,
+      cursor,
+      lens,
+      selectedNode: selectedNodeId,
+      selectedChar: selectedCharId,
+      fact,
+      pov,
+      edgeLayers,
+      zoom,
+      laneStart,
+    }),
+    [progress, cursor, lens, selectedNodeId, selectedCharId, fact, pov, edgeLayers, zoom, laneStart]
+  );
+
+  // Dispatch adapter syncing with Zustand
+  const dispatch: Dispatch<Action> = useCallback((action: Action) => {
+    const store = useTimelineStore.getState();
+    switch (action.type) {
+      case "cursor":
+        store.setCursor(action.ep);
+        break;
+      case "select_node":
+        store.selectNode(action.id, action.ep);
+        break;
+      case "select_char":
+        store.selectChar(action.id);
+        break;
+      case "lens":
+        store.setLens(action.lens);
+        break;
+      case "fact":
+        store.setFact(action.id);
+        break;
+      case "pov":
+        store.setPov(action.id);
+        break;
+      case "toggle_edge":
+        store.toggleEdge(action.edge);
+        break;
+      case "zoom":
+        store.setZoom(action.delta);
+        break;
+      case "lane_start":
+        store.setLaneStart(action.start);
+        break;
+      case "return_main":
+        store.returnToMain();
+        break;
+      case "progress":
+        // Server controls progress
+        break;
+    }
   }, []);
 
   // Selecting something opens the sheet.
   useEffect(() => {
-    if (view.selectedNode || view.selectedChar) setSnap((s) => (s === "peek" ? "half" : s));
-  }, [view.selectedNode, view.selectedChar]);
-
-  const selectedNodeObj = useMemo(
-    () => (view.selectedNode ? graph.nodes.find((n) => n.id === view.selectedNode) ?? null : null),
-    [graph.nodes, view.selectedNode],
-  );
-
-  // Contextual fading (Rule 2) and arrows on request only.
-  const { focus, edges } = useMemo(() => {
-    if (view.lens === "why" && view.selectedNode && selectedNodeObj?.type === "event") {
-      const t = whyTrace(graph, view.selectedNode, graph.theories);
-      return { focus: new Set([view.selectedNode, ...t.causes, ...t.effects]), edges: t.edges };
-    }
-    if (view.lens === "character" && view.selectedChar) return { focus: characterRoute(graph, view.selectedChar), edges: [] };
-    if (view.selectedNode && selectedNodeObj?.type === "event") {
-      return { focus: connected(graph, view.selectedNode), edges: edgesTouching(graph, view.selectedNode, view.edgeLayers) };
-    }
-    return { focus: null, edges: [] };
-  }, [graph, view.lens, view.selectedNode, selectedNodeObj, view.selectedChar, view.edgeLayers]);
-
-  const placed = useMemo(() => placeEvents(graph.nodes, laneIds, view.zoom), [graph.nodes, laneIds.join("|"), view.zoom]); // eslint-disable-line react-hooks/exhaustive-deps
-  const cx = episodeToX(view.cursor, view.zoom);
-  const viewLeft = cx - width * 0.6;
-  const cap = (phone ? 5 : 7) * view.zoom; // Rule of 7 (5 on phones)
-  const keep = useMemo(() => new Set<string>([...(focus ?? []), ...(view.selectedNode ? [view.selectedNode] : [])]), [focus, view.selectedNode]);
-  const { primary, clusters } = useMemo(() => selectPrimary(placed, viewLeft, viewLeft + width, cap, keep, cx), [placed, viewLeft, width, cap, keep, cx]);
-
-  const charLane = useMemo(() => new Map(graph.nodes.filter((n) => n.type === "character").map((n) => [n.id, laneOfCharacter(graph, n.id, view.cursor)])), [graph, view.cursor]);
-  const ringFor = (id: string) => (view.lens === "who_knows" && view.fact && graph.facts.some((f) => f.id === view.fact && f.revealedEp <= view.cursor) ? stateAt(graph, id, view.fact, view.cursor) : null);
-
-  const events = useMemo(() => graph.nodes.filter((n) => n.type === "event").sort((a, b) => a.watchEp - b.watchEp || a.tier - b.tier || a.id.localeCompare(b.id)), [graph.nodes]);
-  const step = (dir: 1 | -1) => {
-    const i = view.selectedNode ? events.findIndex((e) => e.id === view.selectedNode) : -1;
-    const target = i >= 0 ? events[i + dir] : dir === 1 ? events.find((e) => e.watchEp >= view.cursor) : [...events].reverse().find((e) => e.watchEp <= view.cursor);
-    if (target) dispatch({ type: "select_node", id: target.id, ep: target.watchEp });
-  };
+    if (selectedNodeId || selectedCharId) setSnap((s) => (s === "peek" ? "half" : s));
+  }, [selectedNodeId, selectedCharId]);
 
   const advance = async () => {
     setAdvancing(true);
     try {
-      await fetch("/api/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ advance: true }) });
+      await fetch("/api/progress", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ advance: true }),
+      });
       router.refresh();
     } finally {
       setAdvancing(false);
@@ -123,10 +139,15 @@ export function MapApp({ graph, episodes }: { graph: GatedGraph; episodes?: CEpi
     }
   };
 
+  const handleSoundToggle = () => {
+    const updated = toggleSound();
+    setSoundOn(updated);
+  };
+
   const pick = (h: SearchHit) => {
     setSearching(false);
-    if (h.type === "character") dispatch({ type: "select_char", id: h.id });
-    else dispatch({ type: "select_node", id: h.id, ep: h.watchEp });
+    if (h.type === "character") useTimelineStore.getState().selectChar(h.id);
+    else useTimelineStore.getState().selectNode(h.id, h.watchEp);
   };
 
   const onHandleDown = (e: React.PointerEvent) => {
@@ -142,30 +163,73 @@ export function MapApp({ graph, episodes }: { graph: GatedGraph; episodes?: CEpi
   };
 
   const empty = graph.progress < 1;
-  const cursorEp = episodes?.find((e) => e.episodeAbs === view.cursor);
-  const panel =
-    view.selectedNode ? <NodePanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
-    : view.lens === "who_knows" ? <WhoKnowsPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
-    : view.lens === "character" ? <CharacterPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
-    : <HintPanel lens={view.lens} graph={graph} view={view} dispatch={dispatch} episodes={episodes} />;
+
+  const panel = selectedNodeId ? (
+    <NodePanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+  ) : lens === "who_knows" ? (
+    <WhoKnowsPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+  ) : lens === "character" ? (
+    <CharacterPanel graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+  ) : (
+    <HintPanel lens={lens} graph={graph} view={view} dispatch={dispatch} episodes={episodes} />
+  );
 
   return (
     <div className="app">
       <header className="top">
         <div className="top-row">
           <p className="progress" aria-live="polite">
-            {graph.rewatch ? <>Rewatch <span className="dim">all {FINALE_EP} episodes</span></> : <>Watched through <strong>Ep {graph.progress}</strong></>}
+            {graph.rewatch ? (
+              <>
+                Rewatch <span className="dim">all {FINALE_EP} episodes</span>
+              </>
+            ) : (
+              <>
+                Watched through <strong>Ep {graph.progress}</strong>
+              </>
+            )}
           </p>
           {!graph.rewatch && (
-            <button className="next-ep" onClick={advance} disabled={advancing || graph.progress >= FINALE_EP}>I watched the next episode</button>
+            <button
+              className="next-ep"
+              onClick={advance}
+              disabled={advancing || graph.progress >= FINALE_EP}
+            >
+              I watched the next episode
+            </button>
           )}
-          <button className="icon" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((s) => !s)}>⌕</button>
-          <Link className="icon" href="/" aria-label="Change episode">⚙</Link>
+          <button
+            className="icon"
+            aria-label={soundOn ? "Mute audio" : "Enable sound"}
+            title={soundOn ? "Audio FX On" : "Audio FX Off"}
+            onClick={handleSoundToggle}
+          >
+            {soundOn ? "🔊" : "🔇"}
+          </button>
+          <button
+            className="icon"
+            aria-label="Search"
+            aria-expanded={searching}
+            onClick={() => setSearching((s) => !s)}
+          >
+            ⌕
+          </button>
+          <Link className="icon" href="/" aria-label="Change episode">
+            ⚙
+          </Link>
         </div>
+
         {searching && <SearchBox onPick={pick} />}
+
         <div className="lenses" role="group" aria-label="Lens">
           {LENSES.map((l) => (
-            <button key={l.id} aria-pressed={view.lens === l.id} onClick={() => dispatch({ type: "lens", lens: l.id })}>{l.label}</button>
+            <button
+              key={l.id}
+              aria-pressed={lens === l.id}
+              onClick={() => useTimelineStore.getState().setLens(l.id)}
+            >
+              {l.label}
+            </button>
           ))}
           <button
             className="theory-toggle"
@@ -180,52 +244,35 @@ export function MapApp({ graph, episodes }: { graph: GatedGraph; episodes?: CEpi
       </header>
 
       <div className="stage">
-        <div className="ribbon-wrap" ref={wrapRef}>
+        <div className="ribbon-wrap">
           {empty ? (
             <div className="empty">
               <h2>Nothing unlocked yet</h2>
               <p>Watch Episode 1, then tap &ldquo;I watched the next episode&rdquo;. The map grows as you do.</p>
-              <button className="primary" onClick={advance} disabled={advancing}>I watched Episode 1</button>
+              <button className="primary" onClick={advance} disabled={advancing}>
+                I watched Episode 1
+              </button>
             </div>
           ) : (
-            <>
-              <Ribbon graph={graph} view={view} dispatch={dispatch} width={width} laneIds={laneIds} primary={primary} clusters={clusters} focus={focus} edges={edges} charLane={charLane} ringFor={ringFor} />
-              {graph.lanes.length > laneCount && (
-                <div className="lane-switch" role="group" aria-label="Lanes">
-                  <button aria-label="Lanes up" disabled={laneStart === 0} onClick={() => dispatch({ type: "lane_start", start: laneStart - 1 })}>▲</button>
-                  <button aria-label="Lanes down" disabled={laneStart >= maxStart} onClick={() => dispatch({ type: "lane_start", start: laneStart + 1 })}>▼</button>
-                </div>
-              )}
-            </>
+            <FlowCanvas />
           )}
         </div>
 
         <aside className="sheet" data-snap={snap} aria-label="Details">
-          <button className="handle" aria-label="Resize details" onPointerDown={onHandleDown} onPointerUp={onHandleUp}><span /></button>
+          <button
+            className="handle"
+            aria-label="Resize details"
+            onPointerDown={onHandleDown}
+            onPointerUp={onHandleUp}
+          >
+            <span />
+          </button>
           <div className="sheet-body">{panel}</div>
         </aside>
       </div>
 
-      <footer className="bottom">
-        <div className="scrub">
-          <button aria-label="Previous event" onClick={() => step(-1)} disabled={empty}>‹</button>
-          <input type="range" min={1} max={Math.max(graph.progress, 1)} value={Math.max(view.cursor, 1)} disabled={empty} aria-label="Episode" aria-valuetext={`Episode ${view.cursor}`} onChange={(e) => dispatch({ type: "cursor", ep: Number(e.target.value) })} />
-          <button aria-label="Next event" onClick={() => step(1)} disabled={empty}>›</button>
-        </div>
-        <div className="bottom-row">
-          <button className="primary" onClick={() => dispatch({ type: "return_main" })}>Return to Main Thread</button>
-          {cursorEp && (
-            <span className="cursor-ep-meta dim">
-              S{cursorEp.season}{cursorEp.part ? `P${cursorEp.part}` : ""} · Ep {cursorEp.episodeAbs}: <strong>{cursorEp.title}</strong>
-            </span>
-          )}
-          <div className="zoom" role="group" aria-label="Zoom">
-            <button aria-label="Zoom out" disabled={view.zoom === 1} onClick={() => dispatch({ type: "zoom", delta: -1 })}>−</button>
-            <button aria-label="Zoom in" disabled={view.zoom === 3} onClick={() => dispatch({ type: "zoom", delta: 1 })}>+</button>
-          </div>
-        </div>
-      </footer>
+      {/* Modern Continuous Scrubber driven by Zustand store */}
+      {!empty && <ContinuousTimelineScrubber />}
     </div>
   );
 }
-
