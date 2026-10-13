@@ -745,5 +745,189 @@
     "visible_from_ep": 89,
     "notes": "Restrains the Hallucigenia to prevent it from reconnecting with Eren.",
     "source_url": "https://attackontitan.fandom.com/wiki/Toward_the_Tree_on_That_Hill_(Episode)"
+  },
+  {
+    "id": "evt_assault_on_fort_slava_theo_magath",
+    "event_id": "evt_assault_on_fort_slava",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 60,
+    "notes": "Commands Marleyan ground forces and Eldian warrior candidates in the assault on Fort Slava."
+  },
+  {
+    "id": "evt_tybur_magath_alliance_willy_tybur",
+    "event_id": "evt_tybur_magath_alliance",
+    "entity_id": "char_willy_tybur",
+    "role": "primary",
+    "visible_from_ep": 61,
+    "notes": "Meets with Commander Magath to orchestrate a global theatrical event in Liberio."
+  },
+  {
+    "id": "evt_tybur_magath_alliance_theo_magath",
+    "event_id": "evt_tybur_magath_alliance",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 61,
+    "notes": "Agrees to cooperate with Willy Tybur to reform the military and unify international support."
+  },
+  {
+    "id": "evt_willy_tybur_speech_willy_tybur",
+    "event_id": "evt_willy_tybur_speech",
+    "entity_id": "char_willy_tybur",
+    "role": "primary",
+    "visible_from_ep": 64,
+    "notes": "Delivers a worldwide declaration of war exposing King Fritz's pacifist deception."
+  },
+  {
+    "id": "evt_willy_tybur_speech_theo_magath",
+    "event_id": "evt_willy_tybur_speech",
+    "entity_id": "char_theo_magath",
+    "role": "secondary",
+    "visible_from_ep": 64,
+    "notes": "Oversees security for the festival while anticipating an enemy ambush."
+  },
+  {
+    "id": "evt_attack_titan_strikes_plaza_willy_tybur",
+    "event_id": "evt_attack_titan_strikes_plaza",
+    "entity_id": "char_willy_tybur",
+    "role": "victim",
+    "visible_from_ep": 65,
+    "notes": "Killed on stage by the Attack Titan as the opening strike of the Liberio raid."
+  },
+  {
+    "id": "evt_war_hammer_enters_battle_lara_tybur",
+    "event_id": "evt_war_hammer_enters_battle",
+    "entity_id": "char_lara_tybur",
+    "role": "primary",
+    "visible_from_ep": 65,
+    "notes": "Transforms into the War Hammer Titan to battle the Attack Titan in the Liberio plaza."
+  },
+  {
+    "id": "evt_survey_corps_arrives_liberio_lara_tybur",
+    "event_id": "evt_survey_corps_arrives_liberio",
+    "entity_id": "char_lara_tybur",
+    "role": "opponent",
+    "visible_from_ep": 65,
+    "notes": "Clashes with arriving Survey Corps forces using remote war hammer hardening weapons."
+  },
+  {
+    "id": "evt_jaw_titan_used_on_crystal_lara_tybur",
+    "event_id": "evt_jaw_titan_used_on_crystal",
+    "entity_id": "char_lara_tybur",
+    "role": "victim",
+    "visible_from_ep": 66,
+    "notes": "Crushed inside her protective crystal by the Jaw Titan and consumed by Eren."
+  },
+  {
+    "id": "evt_retreat_airship_boarded_onyankopon",
+    "event_id": "evt_retreat_airship_boarded",
+    "entity_id": "char_onyankopon",
+    "role": "secondary",
+    "visible_from_ep": 67,
+    "notes": "Pilots the Survey Corps getaway airship over Liberio to extract the raiding forces."
+  },
+  {
+    "id": "evt_zeke_paradis_cooperation_revealed_yelena",
+    "event_id": "evt_zeke_paradis_cooperation_revealed",
+    "entity_id": "char_yelena",
+    "role": "secondary",
+    "visible_from_ep": 67,
+    "notes": "Aids Zeke's extraction aboard the Survey Corps airship."
+  },
+  {
+    "id": "evt_anti_marleyan_volunteers_recalled_yelena",
+    "event_id": "evt_anti_marleyan_volunteers_recalled",
+    "entity_id": "char_yelena",
+    "role": "primary",
+    "visible_from_ep": 68,
+    "notes": "Leads the Anti-Marleyan Volunteers to mutiny against Marleyan survey ships and ally with Paradis."
+  },
+  {
+    "id": "evt_anti_marleyan_volunteers_recalled_onyankopon",
+    "event_id": "evt_anti_marleyan_volunteers_recalled",
+    "entity_id": "char_onyankopon",
+    "role": "secondary",
+    "visible_from_ep": 68,
+    "notes": "Introduces modern technology and engineering concepts to Paradis Island authorities."
+  },
+  {
+    "id": "evt_hizuru_delegation_negotiations_kiyomi_azumabito",
+    "event_id": "evt_hizuru_delegation_negotiations",
+    "entity_id": "char_kiyomi_azumabito",
+    "role": "primary",
+    "visible_from_ep": 69,
+    "notes": "Presents Zeke's secret modernization proposal in exchange for access to iceburst stone."
+  },
+  {
+    "id": "evt_hizuru_delegation_negotiations_dhalis_zachary",
+    "event_id": "evt_hizuru_delegation_negotiations",
+    "entity_id": "char_dhalis_zachary",
+    "role": "secondary",
+    "visible_from_ep": 69,
+    "notes": "Oversees diplomatic and military negotiations with the Hizuru delegation."
+  },
+  {
+    "id": "evt_braus_stables_shelter_kaya",
+    "event_id": "evt_braus_stables_shelter",
+    "entity_id": "char_kaya",
+    "role": "primary",
+    "visible_from_ep": 70,
+    "notes": "Offers food and shelter to runaway warrior candidates Gabi and Falco at the Braus stables."
+  },
+  {
+    "id": "evt_bombing_of_premier_office_dhalis_zachary",
+    "event_id": "evt_bombing_of_premier_office",
+    "entity_id": "char_dhalis_zachary",
+    "role": "victim",
+    "visible_from_ep": 71,
+    "notes": "Assassinated in his office by a bomb hidden inside his custom chair."
+  },
+  {
+    "id": "evt_bombing_of_premier_office_floch_forster",
+    "event_id": "evt_bombing_of_premier_office",
+    "entity_id": "char_floch_forster",
+    "role": "primary",
+    "visible_from_ep": 71,
+    "notes": "Orchestrates the bombing of Zachary's headquarters to trigger the military uprising."
+  },
+  {
+    "id": "evt_yeagerist_faction_declaration_floch_forster",
+    "event_id": "evt_yeagerist_faction_declaration",
+    "entity_id": "char_floch_forster",
+    "role": "primary",
+    "visible_from_ep": 71,
+    "notes": "Rallies military defectors around Eren to seize political control of Paradis Island."
+  },
+  {
+    "id": "evt_nicolo_restaurant_confrontation_nicolo",
+    "event_id": "evt_nicolo_restaurant_confrontation",
+    "entity_id": "char_nicolo",
+    "role": "primary",
+    "visible_from_ep": 72,
+    "notes": "Attacks Falco and Gabi with a wine bottle in retaliation for Sasha's death."
+  },
+  {
+    "id": "evt_tainted_wine_revelation_nicolo",
+    "event_id": "evt_tainted_wine_revelation",
+    "entity_id": "char_nicolo",
+    "role": "primary",
+    "visible_from_ep": 72,
+    "notes": "Alerts the Survey Corps that Marleyan wine contains Zeke's spinal fluid."
+  },
+  {
+    "id": "evt_pieck_paradis_infiltration_pieck_finger",
+    "event_id": "evt_pieck_paradis_infiltration",
+    "entity_id": "char_pieck_finger",
+    "role": "primary",
+    "visible_from_ep": 75,
+    "notes": "Infiltrates Shiganshina disguised as a soldier and lures Eren onto the roof."
+  },
+  {
+    "id": "evt_marley_airship_fleet_arrival_theo_magath",
+    "event_id": "evt_marley_airship_fleet_arrival",
+    "entity_id": "char_theo_magath",
+    "role": "primary",
+    "visible_from_ep": 75,
+    "notes": "Commands the Marley airborne fleet descending on Shiganshina to launch a surprise counterattack."
   }
 ]

@@ -178,5 +178,248 @@
     "watch_ep": 88,
     "confidence": "shown",
     "why_text": "The unified alliance secured the Azumabito flying boat to intercept Eren and engage his Founding Titan in the final battle."
+  },
+  {
+    "id": "edge_assault_on_fort_slava_to_destruction_of_mideast_fleet",
+    "from": "evt_assault_on_fort_slava",
+    "to": "evt_destruction_of_mideast_fleet",
+    "type": "causes",
+    "watch_ep": 60,
+    "confidence": "shown",
+    "why_text": "Fort Slava artillery has been neutralized allowing the Titans to attack the warships directly."
+  },
+  {
+    "id": "edge_assault_on_fort_slava_to_warriors_return_to_liberio",
+    "from": "evt_assault_on_fort_slava",
+    "to": "evt_warriors_return_to_liberio",
+    "type": "causes",
+    "watch_ep": 61,
+    "confidence": "shown",
+    "why_text": "The victory at Fort Slava concludes the war and grants the troops temporary leave."
+  },
+  {
+    "id": "edge_falco_meets_injured_soldier_to_falco_delivers_letters",
+    "from": "evt_falco_meets_injured_soldier",
+    "to": "evt_falco_delivers_letters",
+    "type": "causes",
+    "watch_ep": 63,
+    "confidence": "shown",
+    "why_text": "Kruger claims he wishes to send messages to his family without hospital censorship."
+  },
+  {
+    "id": "edge_falco_delivers_letters_to_reiner_guided_to_basement",
+    "from": "evt_falco_delivers_letters",
+    "to": "evt_reiner_guided_to_basement",
+    "type": "causes",
+    "watch_ep": 63,
+    "confidence": "shown",
+    "why_text": "Falco believes his wounded soldier acquaintance has an important private message for Reiner."
+  },
+  {
+    "id": "edge_reiner_guided_to_basement_to_reiner_eren_basement_reunion",
+    "from": "evt_reiner_guided_to_basement",
+    "to": "evt_reiner_eren_basement_reunion",
+    "type": "causes",
+    "watch_ep": 64,
+    "confidence": "shown",
+    "why_text": "Eren has infiltrated Liberio and summoned Reiner prior to the international festival speech."
+  },
+  {
+    "id": "edge_tybur_magath_alliance_to_willy_tybur_speech",
+    "from": "evt_tybur_magath_alliance",
+    "to": "evt_willy_tybur_speech",
+    "type": "causes",
+    "watch_ep": 64,
+    "confidence": "shown",
+    "why_text": "Marley seeks an international coalition to eliminate the threat posed by Paradis Island."
+  },
+  {
+    "id": "edge_willy_tybur_speech_to_attack_titan_strikes_plaza",
+    "from": "evt_willy_tybur_speech",
+    "to": "evt_attack_titan_strikes_plaza",
+    "type": "causes",
+    "watch_ep": 65,
+    "confidence": "shown",
+    "why_text": "Eren launches a preemptive assault at the conclusion of Willy Tybur's declaration."
+  },
+  {
+    "id": "edge_attack_titan_strikes_plaza_to_war_hammer_enters_battle",
+    "from": "evt_attack_titan_strikes_plaza",
+    "to": "evt_war_hammer_enters_battle",
+    "type": "causes",
+    "watch_ep": 65,
+    "confidence": "shown",
+    "why_text": "Willy Tybur's demise forces the Tybur family to deploy their hidden military asset."
+  },
+  {
+    "id": "edge_attack_titan_strikes_plaza_to_survey_corps_arrives_liberio",
+    "from": "evt_attack_titan_strikes_plaza",
+    "to": "evt_survey_corps_arrives_liberio",
+    "type": "causes",
+    "watch_ep": 65,
+    "confidence": "shown",
+    "why_text": "The Scouts carry out an extraction operation to rescue Eren and eliminate Marleyan leadership."
+  },
+  {
+    "id": "edge_survey_corps_arrives_liberio_to_colossal_titan_destroys_fleet",
+    "from": "evt_survey_corps_arrives_liberio",
+    "to": "evt_colossal_titan_destroys_fleet",
+    "type": "causes",
+    "watch_ep": 66,
+    "confidence": "shown",
+    "why_text": "The Scouts must eliminate Marleyan naval reinforcements and secure the escape vector."
+  },
+  {
+    "id": "edge_war_hammer_enters_battle_to_jaw_titan_used_on_crystal",
+    "from": "evt_war_hammer_enters_battle",
+    "to": "evt_jaw_titan_used_on_crystal",
+    "type": "causes",
+    "watch_ep": 66,
+    "confidence": "shown",
+    "why_text": "Conventional titan strikes cannot penetrate the hardened crystal encasing the War Hammer's body."
+  },
+  {
+    "id": "edge_jaw_titan_used_on_crystal_to_retreat_airship_boarded",
+    "from": "evt_jaw_titan_used_on_crystal",
+    "to": "evt_retreat_airship_boarded",
+    "type": "causes",
+    "watch_ep": 67,
+    "confidence": "shown",
+    "why_text": "Their primary tactical objectives in Liberio have been achieved."
+  },
+  {
+    "id": "edge_retreat_airship_boarded_to_airship_infiltration_and_shooting",
+    "from": "evt_retreat_airship_boarded",
+    "to": "evt_airship_infiltration_and_shooting",
+    "type": "causes",
+    "watch_ep": 67,
+    "confidence": "shown",
+    "why_text": "Gabi seeks vengeance for the destruction of Liberio and the deaths of her friends."
+  },
+  {
+    "id": "edge_retreat_airship_boarded_to_zeke_paradis_cooperation_revealed",
+    "from": "evt_retreat_airship_boarded",
+    "to": "evt_zeke_paradis_cooperation_revealed",
+    "type": "causes",
+    "watch_ep": 67,
+    "confidence": "shown",
+    "why_text": "Zeke faked his death in Liberio to defect to the island alongside Eren and the Scouts."
+  },
+  {
+    "id": "edge_retreat_airship_boarded_to_airship_returns_to_paradis",
+    "from": "evt_retreat_airship_boarded",
+    "to": "evt_airship_returns_to_paradis",
+    "type": "causes",
+    "watch_ep": 68,
+    "confidence": "shown",
+    "why_text": "The military command views Eren's unsanctioned Liberio strike as treasonous insubordination."
+  },
+  {
+    "id": "edge_airship_infiltration_and_shooting_to_gabi_falco_prison_escape",
+    "from": "evt_airship_infiltration_and_shooting",
+    "to": "evt_gabi_falco_prison_escape",
+    "type": "causes",
+    "watch_ep": 70,
+    "confidence": "shown",
+    "why_text": "The young candidates refuse to remain captive on the island and seek a way back to Marley."
+  },
+  {
+    "id": "edge_gabi_falco_prison_escape_to_braus_stables_shelter",
+    "from": "evt_gabi_falco_prison_escape",
+    "to": "evt_braus_stables_shelter",
+    "type": "causes",
+    "watch_ep": 70,
+    "confidence": "shown",
+    "why_text": "Kaya assumes the two runaways are impoverished orphans in need of food and shelter."
+  },
+  {
+    "id": "edge_airship_returns_to_paradis_to_bombing_of_premier_office",
+    "from": "evt_airship_returns_to_paradis",
+    "to": "evt_bombing_of_premier_office",
+    "type": "causes",
+    "watch_ep": 71,
+    "confidence": "shown",
+    "why_text": "Rogue military dissidents despise the high command's decision to imprison and replace Eren."
+  },
+  {
+    "id": "edge_bombing_of_premier_office_to_yeagerist_faction_declaration",
+    "from": "evt_bombing_of_premier_office",
+    "to": "evt_yeagerist_faction_declaration",
+    "type": "causes",
+    "watch_ep": 71,
+    "confidence": "shown",
+    "why_text": "The defectors intend to unite Eren and Zeke to activate the Rumbling independently of military orders."
+  },
+  {
+    "id": "edge_airship_infiltration_and_shooting_to_nicolo_restaurant_confrontation",
+    "from": "evt_airship_infiltration_and_shooting",
+    "to": "evt_nicolo_restaurant_confrontation",
+    "type": "causes",
+    "watch_ep": 72,
+    "confidence": "shown",
+    "why_text": "Nicolo loved Sasha and is overwhelmed by grief upon confronting her killer."
+  },
+  {
+    "id": "edge_nicolo_restaurant_confrontation_to_tainted_wine_revelation",
+    "from": "evt_nicolo_restaurant_confrontation",
+    "to": "evt_tainted_wine_revelation",
+    "type": "causes",
+    "watch_ep": 72,
+    "confidence": "shown",
+    "why_text": "Falco accidentally swallowed a mouthful of the spilled wine during the altercation."
+  },
+  {
+    "id": "edge_yeagerist_faction_declaration_to_eren_table_interrogation",
+    "from": "evt_yeagerist_faction_declaration",
+    "to": "evt_eren_table_interrogation",
+    "type": "causes",
+    "watch_ep": 73,
+    "confidence": "shown",
+    "why_text": "Eren claims Mikasa is bound by Ackerman instincts and Armin is manipulated by Bertholdt's memories."
+  },
+  {
+    "id": "edge_tainted_wine_revelation_to_forest_titan_outbreak",
+    "from": "evt_tainted_wine_revelation",
+    "to": "evt_forest_titan_outbreak",
+    "type": "causes",
+    "watch_ep": 73,
+    "confidence": "shown",
+    "why_text": "The Scout guards had consumed the tainted Marleyan wine distributed to the forest camp."
+  },
+  {
+    "id": "edge_forest_titan_outbreak_to_levi_defeats_beast_titan",
+    "from": "evt_forest_titan_outbreak",
+    "to": "evt_levi_defeats_beast_titan",
+    "type": "causes",
+    "watch_ep": 73,
+    "confidence": "shown",
+    "why_text": "Levi refuses to let Zeke escape to rendez-vous with Eren and the Yeagerists."
+  },
+  {
+    "id": "edge_levi_defeats_beast_titan_to_wagon_thunder_spear_explosion",
+    "from": "evt_levi_defeats_beast_titan",
+    "to": "evt_wagon_thunder_spear_explosion",
+    "type": "causes",
+    "watch_ep": 74,
+    "confidence": "shown",
+    "why_text": "Zeke gambles his survival to break free from Levi's torturous confinement."
+  },
+  {
+    "id": "edge_yeagerist_faction_declaration_to_pieck_paradis_infiltration",
+    "from": "evt_yeagerist_faction_declaration",
+    "to": "evt_pieck_paradis_infiltration",
+    "type": "causes",
+    "watch_ep": 75,
+    "confidence": "shown",
+    "why_text": "Pieck aims to lure Eren into an exposed position for an ambush by Marleyan forces."
+  },
+  {
+    "id": "edge_pieck_paradis_infiltration_to_marley_airship_fleet_arrival",
+    "from": "evt_pieck_paradis_infiltration",
+    "to": "evt_marley_airship_fleet_arrival",
+    "type": "causes",
+    "watch_ep": 75,
+    "confidence": "shown",
+    "why_text": "Marley launches an immediate retaliatory strike to reclaim the Founding Titan before Eren can activate its power."
   }
 ]
