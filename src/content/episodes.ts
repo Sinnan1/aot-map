@@ -62,7 +62,7 @@ export function parseEpisodesCsv(csv: string): { episodes: EpisodeC[]; skippedHe
   return { episodes, skippedHeaders };
 }
 
-export const loadEpisodesCsv = (file = path.join(process.cwd(), "content/episodes.csv")) => parseEpisodesCsv(fs.readFileSync(file, "utf8"));
+export const loadEpisodesCsv = (file = path.join(process.cwd(), "content/episodes.csv")) => parseEpisodesCsv(fs.readFileSync(/*turbopackIgnore: true*/ file, "utf8"));
 
 const issue = (severity: Severity, code: string, id: string, message: string): LintIssue => ({ severity, code, id, message });
 
